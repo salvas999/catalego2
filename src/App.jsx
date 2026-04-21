@@ -11,6 +11,8 @@ import {
   Search,
   ShieldCheck,
   Truck,
+  Menu,
+  X,
 } from "lucide-react";
 
 const PRODUCTS = [
@@ -29,16 +31,16 @@ const IVA = 1.23;
 const CATEGORIES = ["Todos", ...new Set(PRODUCTS.map((p) => p.category))];
 
 const colors = {
-  bg: "#020202",
-  panel: "#060606",
-  panelSoft: "#0b0b0b",
+  bg: "#030303",
+  panel: "#070707",
+  panelSoft: "#0c0c0c",
   panelMuted: "#101010",
-  border: "rgba(255,255,255,0.08)",
-  text: "#f5f5f5",
-  muted: "#c9c9c9",
-  lime: "#d7ff00",
-  limeBorder: "rgba(215,255,0,0.50)",
-  limeSoft: "rgba(215,255,0,0.12)",
+  border: "rgba(255,255,255,0.04)",
+  text: "#f2f2f2",
+  muted: "#b8b8b8",
+  lime: "#b8d400",
+  limeBorder: "rgba(184,212,0,0.32)",
+  limeSoft: "rgba(184,212,0,0.08)",
 };
 
 const formatPrice = (value) => `€${value.toFixed(2)}`;
@@ -47,28 +49,45 @@ const shellCard = {
   background: colors.panel,
   border: `1px solid ${colors.border}`,
   borderRadius: 28,
-  boxShadow: "0 18px 48px rgba(0,0,0,0.34)",
+  boxShadow: "0 14px 34px rgba(0,0,0,0.28)",
 };
+
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const update = () => setIsMobile(window.innerWidth <= 900);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  return isMobile;
+}
 
 function Brand() {
   return (
-    <div style={{ fontSize: "clamp(34px,4vw,56px)", fontWeight: 900, letterSpacing: "-0.08em", lineHeight: 1 }}>
+    <div style={{ fontSize: "clamp(30px,3.4vw,48px)", fontWeight: 900, letterSpacing: "-0.08em", lineHeight: 1 }}>
       <span style={{ color: colors.text }}>PACK</span>
       <span style={{ color: colors.lime, marginLeft: 10 }}>24</span>
     </div>
   );
 }
 
-function Header({ currentPage, setCurrentPage }) {
+function Header({ currentPage, setCurrentPage, isMobile }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const navButton = (active) => ({
     background: "transparent",
     border: "none",
     color: active ? colors.lime : colors.text,
     fontWeight: 800,
-    fontSize: 18,
-    padding: "0 0 12px",
-    borderBottom: active ? `4px solid ${colors.lime}` : "4px solid transparent",
+    fontSize: isMobile ? 16 : 18,
+    padding: isMobile ? "10px 0" : "0 0 12px",
+    borderBottom: active && !isMobile ? `4px solid ${colors.lime}` : "4px solid transparent",
     cursor: "pointer",
+    textAlign: isMobile ? "left" : "center",
+    width: isMobile ? "100%" : "auto",
   });
 
   return (
@@ -77,7 +96,7 @@ function Header({ currentPage, setCurrentPage }) {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        gap: 20,
+        gap: 16,
         flexWrap: "wrap",
         padding: "2px 4px 18px",
         borderBottom: `1px solid ${colors.border}`,
@@ -85,54 +104,108 @@ function Header({ currentPage, setCurrentPage }) {
     >
       <Brand />
 
-      <nav style={{ display: "flex", gap: 42, alignItems: "center", flexWrap: "wrap" }}>
-        <button onClick={() => setCurrentPage("inicio")} style={navButton(currentPage === "inicio")}>INÍCIO</button>
-        <button onClick={() => setCurrentPage("catalogo")} style={navButton(currentPage === "catalogo")}>CATÁLOGO</button>
-        <a href="#contactos" style={{ color: colors.text, textDecoration: "none", fontWeight: 800, fontSize: 18, paddingBottom: 12 }}>
-          CONTACTO
-        </a>
-      </nav>
+      {isMobile ? (
+        <>
+          <button
+            onClick={() => setMenuOpen((v) => !v)}
+            style={{
+              background: "transparent",
+              border: `1px solid ${colors.border}`,
+              borderRadius: 12,
+              width: 44,
+              height: 44,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              color: colors.text,
+              cursor: "pointer",
+            }}
+          >
+            {menuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
 
-      <button
-        onClick={() => window.open(`https://wa.me/${PHONE}`, "_blank")}
-        style={{
-          background: "transparent",
-          color: colors.text,
-          border: `2px solid ${colors.limeBorder}`,
-          borderRadius: 18,
-          padding: "14px 22px",
-          fontWeight: 800,
-          fontSize: 16,
-          display: "inline-flex",
-          alignItems: "center",
-          gap: 10,
-          cursor: "pointer",
-        }}
-      >
-        <MessageCircle size={18} color={colors.lime} />
-        {PHONE_DISPLAY}
-      </button>
+          {menuOpen && (
+            <div style={{ width: "100%", ...shellCard, padding: 18, background: colors.panelSoft }}>
+              <nav style={{ display: "grid", gap: 6 }}>
+                <button onClick={() => { setCurrentPage("inicio"); setMenuOpen(false); }} style={navButton(currentPage === "inicio")}>INÍCIO</button>
+                <button onClick={() => { setCurrentPage("catalogo"); setMenuOpen(false); }} style={navButton(currentPage === "catalogo")}>CATÁLOGO</button>
+                <a href="#contactos" onClick={() => setMenuOpen(false)} style={{ color: colors.text, textDecoration: "none", fontWeight: 800, fontSize: 16, padding: "10px 0" }}>CONTACTO</a>
+                <button
+                  onClick={() => window.open(`https://wa.me/${PHONE}`, "_blank")}
+                  style={{
+                    marginTop: 10,
+                    background: "transparent",
+                    color: colors.text,
+                    border: `1px solid ${colors.limeBorder}`,
+                    borderRadius: 14,
+                    padding: "14px 16px",
+                    fontWeight: 800,
+                    fontSize: 15,
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 10,
+                    cursor: "pointer",
+                    width: "100%",
+                  }}
+                >
+                  <MessageCircle size={18} color={colors.lime} />
+                  {PHONE_DISPLAY}
+                </button>
+              </nav>
+            </div>
+          )}
+        </>
+      ) : (
+        <>
+          <nav style={{ display: "flex", gap: 32, alignItems: "center", flexWrap: "wrap" }}>
+            <button onClick={() => setCurrentPage("inicio")} style={navButton(currentPage === "inicio")}>INÍCIO</button>
+            <button onClick={() => setCurrentPage("catalogo")} style={navButton(currentPage === "catalogo")}>CATÁLOGO</button>
+            <a href="#contactos" style={{ color: colors.text, textDecoration: "none", fontWeight: 800, fontSize: 18, paddingBottom: 12 }}>CONTACTO</a>
+          </nav>
+
+          <button
+            onClick={() => window.open(`https://wa.me/${PHONE}`, "_blank")}
+            style={{
+              background: "transparent",
+              color: colors.text,
+              border: `2px solid ${colors.limeBorder}`,
+              borderRadius: 18,
+              padding: "12px 18px",
+              fontWeight: 800,
+              fontSize: 16,
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 10,
+              cursor: "pointer",
+            }}
+          >
+            <MessageCircle size={18} color={colors.lime} />
+            {PHONE_DISPLAY}
+          </button>
+        </>
+      )}
     </header>
   );
 }
 
-function Hero({ setCurrentPage }) {
+function Hero({ setCurrentPage, isMobile }) {
   return (
     <section
       style={{
         ...shellCard,
         marginTop: 22,
         overflow: "hidden",
-        background: "radial-gradient(circle at 78% 34%, rgba(215,255,0,0.18), transparent 30%), linear-gradient(90deg, #050505 0%, #050505 47%, #0a0d04 100%)",
+        background: "radial-gradient(circle at 78% 34%, rgba(184,212,0,0.14), transparent 30%), linear-gradient(90deg, #050505 0%, #050505 47%, #0a0d04 100%)",
       }}
     >
-      <div style={{ display: "grid", gridTemplateColumns: "minmax(0, 1.05fr) minmax(560px, 0.95fr)", minHeight: 740 }}>
-        <div style={{ padding: "76px 56px 46px" }}>
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "minmax(0, 1fr) minmax(460px, 0.9fr)", minHeight: isMobile ? "auto" : 620 }}>
+        <div style={{ padding: isMobile ? "34px 20px 28px" : "56px 42px 38px" }}>
           <h1
             style={{
               margin: 0,
-              fontSize: "clamp(68px,7vw,114px)",
-              lineHeight: 0.88,
+              fontSize: isMobile ? "clamp(36px,10vw,52px)" : "clamp(46px,5.6vw,82px)",
+              lineHeight: 0.92,
               fontWeight: 900,
               letterSpacing: "-0.08em",
               textTransform: "uppercase",
@@ -146,9 +219,9 @@ function Hero({ setCurrentPage }) {
             PARA O SEU NEGÓCIO
           </h1>
 
-          <div style={{ width: 180, height: 5, background: colors.lime, borderRadius: 999, marginTop: 34 }} />
+          <div style={{ width: isMobile ? 110 : 140, height: 4, background: colors.lime, borderRadius: 999, marginTop: 24 }} />
 
-          <p style={{ margin: "38px 0 0", color: colors.text, fontSize: 19, lineHeight: 1.7, maxWidth: 640 }}>
+          <p style={{ margin: "24px 0 0", color: colors.text, fontSize: isMobile ? 15 : 17, lineHeight: 1.7, maxWidth: 640 }}>
             Packs de 24 unidades com os melhores preços
             <br />
             e entrega rápida na sua zona.
@@ -157,59 +230,56 @@ function Hero({ setCurrentPage }) {
           <button
             onClick={() => setCurrentPage("catalogo")}
             style={{
-              marginTop: 38,
+              marginTop: 28,
               display: "inline-flex",
               alignItems: "center",
-              gap: 14,
+              gap: 12,
               background: colors.lime,
               color: "#050505",
               border: "none",
-              borderRadius: 18,
-              padding: "18px 26px",
+              borderRadius: 16,
+              padding: isMobile ? "14px 18px" : "16px 22px",
               fontWeight: 900,
-              fontSize: 18,
+              fontSize: isMobile ? 15 : 18,
               cursor: "pointer",
               boxShadow: "0 12px 28px rgba(215,255,0,0.2)",
             }}
           >
             <Package size={18} />
             VER CATÁLOGO
-            <ArrowRight size={20} />
+            <ArrowRight size={18} />
           </button>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 18, marginTop: 54 }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, minmax(0, 1fr))", gap: 14, marginTop: 28 }}>
             {[
               [Package, "PACKS", "DE 24 UNIDADES"],
               [Truck, "ENTREGA", "RÁPIDA"],
               [ShieldCheck, "PREÇOS", "COMPETITIVOS"],
             ].map(([Icon, title, text]) => (
-              <div key={title} style={{ display: "flex", gap: 14, alignItems: "center" }}>
-                <div style={{ width: 48, height: 48, borderRadius: 14, background: colors.panelSoft, border: `1px solid ${colors.border}`, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <Icon size={22} color={colors.lime} />
+              <div key={title} style={{ display: "flex", gap: 12, alignItems: "center" }}>
+                <div style={{ width: 44, height: 44, borderRadius: 12, background: colors.panelSoft, border: `1px solid ${colors.border}`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                  <Icon size={20} color={colors.lime} />
                 </div>
                 <div>
-                  <div style={{ fontSize: 18, fontWeight: 900, textTransform: "uppercase", lineHeight: 1.05 }}>{title}</div>
-                  <div style={{ fontSize: 18, fontWeight: 900, textTransform: "uppercase", lineHeight: 1.05 }}>{text}</div>
+                  <div style={{ fontSize: isMobile ? 15 : 18, fontWeight: 900, textTransform: "uppercase", lineHeight: 1.05 }}>{title}</div>
+                  <div style={{ fontSize: isMobile ? 15 : 18, fontWeight: 900, textTransform: "uppercase", lineHeight: 1.05 }}>{text}</div>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        <div style={{ position: "relative", minHeight: 740 }}>
-          <div style={{ position: "absolute", right: 28, top: 108, width: 520, height: 520, border: `2px solid ${colors.limeBorder}`, borderRadius: 56, transform: "skew(-28deg)" }} />
-          <div style={{ position: "absolute", left: 20, bottom: 50, width: 640, height: 240, borderRadius: "50%", background: "rgba(0,0,0,0.58)", filter: "blur(18px)" }} />
-          <img src="/images/guarana.png" alt="Guaraná" style={{ position: "absolute", left: 88, bottom: 84, height: 380, filter: "drop-shadow(0 34px 30px rgba(0,0,0,0.62))" }} />
-          <img src="/images/revo.png" alt="Revo" style={{ position: "absolute", left: 350, top: 302, height: 170, transform: "rotate(-18deg)", filter: "drop-shadow(0 28px 24px rgba(0,0,0,0.6))" }} />
-          <img src="/images/cocacola.png" alt="Coca-Cola" style={{ position: "absolute", right: 210, top: 364, height: 188, filter: "drop-shadow(0 28px 24px rgba(0,0,0,0.6))" }} />
-          <img src="/images/nestea.png" alt="Nestea" style={{ position: "absolute", right: 56, top: 346, height: 198, filter: "drop-shadow(0 28px 24px rgba(0,0,0,0.6))" }} />
+        <div style={{ position: "relative", minHeight: isMobile ? 260 : 620, padding: isMobile ? "0 12px 24px" : 0 }}>
+          {!isMobile && <div style={{ position: "absolute", right: 36, top: 86, width: 440, height: 420, border: `2px solid ${colors.limeBorder}`, borderRadius: 48, transform: "skew(-28deg)" }} />}
+          <div style={{ position: "absolute", left: isMobile ? 20 : 40, bottom: isMobile ? 10 : 40, width: isMobile ? 280 : 520, height: isMobile ? 90 : 180, borderRadius: "50%", background: "rgba(0,0,0,0.48)", filter: "blur(16px)" }} />
+          <img src="/images/refrigerantes.png" alt="Refrigerantes" style={{ position: isMobile ? "relative" : "absolute", right: isMobile ? "auto" : 10, bottom: isMobile ? "auto" : 48, margin: isMobile ? "0 auto" : 0, display: "block", maxWidth: isMobile ? "100%" : "92%", maxHeight: isMobile ? 260 : 500, objectFit: "contain", filter: "drop-shadow(0 28px 26px rgba(0,0,0,0.6))" }} />
         </div>
       </div>
     </section>
   );
 }
 
-function InfoStrip() {
+function InfoStrip({ isMobile }) {
   const items = [
     { icon: MapPin, title: "ZONA DE ENTREGA", text: "Costa da Caparica\ne Almada" },
     { icon: MessageCircle, title: "ENCOMENDAS", text: "Encomende de forma rápida\ne simples pelo WhatsApp" },
@@ -219,15 +289,15 @@ function InfoStrip() {
 
   return (
     <section style={{ ...shellCard, marginTop: 24, overflow: "hidden" }}>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, minmax(0, 1fr))", background: colors.panelSoft }}>
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fit, minmax(240px, 1fr))", background: colors.panelSoft }}>
         {items.map(({ icon: Icon, title, text }, index) => (
-          <div key={title} style={{ padding: 28, display: "flex", gap: 16, alignItems: "flex-start", minHeight: 136, borderRight: index < items.length - 1 ? `1px solid ${colors.border}` : "none" }}>
-            <div style={{ width: 52, height: 52, borderRadius: 16, background: colors.panel, border: `1px solid ${colors.border}`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-              <Icon size={22} color={colors.lime} />
+          <div key={title} style={{ padding: isMobile ? 20 : 28, display: "flex", gap: 16, alignItems: "flex-start", minHeight: isMobile ? "auto" : 136, borderRight: !isMobile && index < items.length - 1 ? `1px solid ${colors.border}` : "none", borderBottom: isMobile && index < items.length - 1 ? `1px solid ${colors.border}` : "none" }}>
+            <div style={{ width: 48, height: 48, borderRadius: 14, background: colors.panel, border: `1px solid ${colors.border}`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+              <Icon size={20} color={colors.lime} />
             </div>
             <div>
-              <div style={{ fontSize: 15, fontWeight: 900, textTransform: "uppercase", letterSpacing: "0.06em" }}>{title}</div>
-              <div style={{ marginTop: 8, fontSize: 16, lineHeight: 1.6, color: colors.text, whiteSpace: "pre-line" }}>{text}</div>
+              <div style={{ fontSize: 14, fontWeight: 900, textTransform: "uppercase", letterSpacing: "0.06em" }}>{title}</div>
+              <div style={{ marginTop: 8, fontSize: 15, lineHeight: 1.6, color: colors.text, whiteSpace: "pre-line" }}>{text}</div>
             </div>
           </div>
         ))}
@@ -255,19 +325,20 @@ function CatalogSection({
   totalWithVat,
   sendWhatsApp,
   clearCart,
+  isMobile,
 }) {
   return (
     <section id="catalogo" style={{ marginTop: 40 }}>
       <div style={{ textAlign: "center", marginBottom: 26 }}>
-        <h2 style={{ margin: 0, fontSize: "clamp(40px,5vw,60px)", fontWeight: 900, letterSpacing: "-0.06em", textTransform: "uppercase" }}>CATÁLOGO</h2>
+        <h2 style={{ margin: 0, fontSize: isMobile ? "clamp(28px,8vw,38px)" : "clamp(34px,4.2vw,50px)", fontWeight: 900, letterSpacing: "-0.06em", textTransform: "uppercase" }}>CATÁLOGO</h2>
         <div style={{ width: 120, height: 4, background: colors.lime, borderRadius: 999, margin: "14px auto 0" }} />
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "minmax(0, 1.7fr) minmax(340px, 0.8fr)", gap: 22, alignItems: "start" }}>
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "minmax(0, 1.55fr) minmax(320px, 0.85fr)", gap: 20, alignItems: "start" }}>
         <div>
           <div style={{ ...shellCard, padding: 22, marginBottom: 22, background: colors.panelSoft }}>
-            <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
-              <div style={{ position: "relative", flex: "1 1 280px" }}>
+            <div style={{ display: "grid", gap: 12, alignItems: "start" }}>
+              <div style={{ position: "relative", width: "100%" }}>
                 <Search size={16} color={colors.muted} style={{ position: "absolute", left: 14, top: 18 }} />
                 <input
                   value={search}
@@ -299,18 +370,18 @@ function CatalogSection({
             </div>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(5, minmax(0, 1fr))", gap: 22 }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(auto-fit, minmax(220px, 1fr))", gap: 18 }}>
             {filteredProducts.map((product) => (
-              <div key={product.id} style={{ ...shellCard, padding: 20, background: colors.panelSoft, borderRadius: 18 }}>
-                <div style={{ height: 270, display: "flex", alignItems: "center", justifyContent: "center", background: colors.panel, borderRadius: 16, border: `1px solid ${colors.border}`, marginBottom: 18 }}>
-                  <img src={product.img} alt={product.name} style={{ maxWidth: "100%", maxHeight: 190, objectFit: "contain", filter: "drop-shadow(0 24px 26px rgba(0,0,0,0.5))" }} />
+              <div key={product.id} style={{ ...shellCard, padding: isMobile ? 14 : 20, background: colors.panelSoft, borderRadius: 18 }}>
+                <div style={{ height: isMobile ? 150 : 220, display: "flex", alignItems: "center", justifyContent: "center", background: colors.panel, borderRadius: 16, border: `1px solid ${colors.border}`, marginBottom: 14 }}>
+                  <img src={product.img} alt={product.name} style={{ maxWidth: "100%", maxHeight: isMobile ? 120 : 190, objectFit: "contain", filter: "drop-shadow(0 24px 26px rgba(0,0,0,0.5))" }} />
                 </div>
-                <h3 style={{ margin: 0, fontSize: 18, fontWeight: 900, textTransform: "uppercase", minHeight: 48 }}>{product.name}</h3>
-                <p style={{ margin: "10px 0 0", color: colors.text, fontSize: 15, lineHeight: 1.5, whiteSpace: "pre-line", minHeight: 48 }}>{product.subtitle || product.description}</p>
-                <div style={{ marginTop: 14, color: colors.lime, fontSize: 20, fontWeight: 900 }}>{formatPrice(product.price)}</div>
+                <h3 style={{ margin: 0, fontSize: isMobile ? 15 : 18, fontWeight: 800, textTransform: "uppercase", minHeight: isMobile ? 36 : 48 }}>{product.name}</h3>
+                <p style={{ margin: "8px 0 0", color: colors.text, fontSize: isMobile ? 13 : 15, lineHeight: 1.5, whiteSpace: "pre-line", minHeight: isMobile ? 34 : 48 }}>{product.subtitle || product.description}</p>
+                <div style={{ marginTop: 12, color: colors.lime, fontSize: isMobile ? 16 : 18, fontWeight: 800 }}>{formatPrice(product.price)}</div>
                 <button
                   onClick={() => add(product)}
-                  style={{ width: "100%", marginTop: 18, background: "transparent", color: colors.lime, border: `1px solid ${colors.limeBorder}`, borderRadius: 14, padding: "14px 16px", fontWeight: 800, fontSize: 15, cursor: "pointer" }}
+                  style={{ width: "100%", marginTop: 14, background: "transparent", color: colors.lime, border: `1px solid ${colors.limeBorder}`, borderRadius: 12, padding: isMobile ? "12px 10px" : "14px 16px", fontWeight: 800, fontSize: isMobile ? 13 : 15, cursor: "pointer" }}
                 >
                   ADICIONAR
                 </button>
@@ -319,11 +390,11 @@ function CatalogSection({
           </div>
         </div>
 
-        <aside style={{ ...shellCard, padding: 24, position: "sticky", top: 20, background: colors.panelSoft }}>
+        <aside style={{ ...shellCard, padding: isMobile ? 18 : 24, position: isMobile ? "static" : "sticky", top: 20, background: colors.panelSoft }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
             <div>
               <div style={{ color: colors.muted, fontSize: 12, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.1em" }}>Carrinho</div>
-              <h3 style={{ margin: "8px 0 0", fontSize: 30, fontWeight: 800 }}>Resumo do pedido</h3>
+              <h3 style={{ margin: "8px 0 0", fontSize: isMobile ? 24 : 30, fontWeight: 800 }}>Resumo do pedido</h3>
             </div>
             <div style={{ padding: "9px 13px", borderRadius: 999, background: colors.panel, border: `1px solid ${colors.border}`, fontWeight: 700 }}>
               {cart.reduce((sum, item) => sum + item.qty, 0)} packs
@@ -359,8 +430,10 @@ function CatalogSection({
           </div>
 
           <div style={{ display: "grid", gap: 10, marginTop: 18 }}>
-            <input value={clientName} onChange={(e) => setClientName(e.target.value)} placeholder="Nome" style={{ height: 50, borderRadius: 12, border: `1px solid ${colors.border}`, background: colors.panel, color: colors.text, padding: "0 14px", fontSize: 14, outline: "none" }} />
-            <textarea value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Notas do pedido, morada, horário de entrega, referência, etc." style={{ minHeight: 100, borderRadius: 12, border: `1px solid ${colors.border}`, background: colors.panel, color: colors.text, padding: 14, fontSize: 14, outline: "none", resize: "vertical" }} />
+            <label style={{ fontSize: 13, color: colors.muted, fontWeight: 700 }}>Cliente / Estabelecimento</label>
+            <input value={clientName} onChange={(e) => setClientName(e.target.value)} placeholder="Nome do cliente ou do estabelecimento" style={{ height: 50, borderRadius: 12, border: `1px solid ${colors.border}`, background: colors.panel, color: colors.text, padding: "0 14px", fontSize: 14, outline: "none" }} />
+            <label style={{ fontSize: 13, color: colors.muted, fontWeight: 700 }}>Morada e indicações de entrega</label>
+            <textarea value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Morada de entrega, horário pretendido, referência do pedido ou outras indicações" style={{ minHeight: 100, borderRadius: 12, border: `1px solid ${colors.border}`, background: colors.panel, color: colors.text, padding: 14, fontSize: 14, outline: "none", resize: "vertical" }} />
           </div>
 
           <div style={{ marginTop: 18, padding: 18, borderRadius: 18, background: colors.text, color: "#0f172a" }}>
@@ -370,7 +443,7 @@ function CatalogSection({
             </div>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "end", marginTop: 10 }}>
               <span style={{ fontSize: 13, color: "#64748b" }}>Total com IVA</span>
-              <span style={{ fontSize: 32, fontWeight: 800 }}>{formatPrice(totalWithVat)}</span>
+              <span style={{ fontSize: isMobile ? 26 : 32, fontWeight: 800 }}>{formatPrice(totalWithVat)}</span>
             </div>
           </div>
 
@@ -384,14 +457,14 @@ function CatalogSection({
   );
 }
 
-function FooterSection() {
+function FooterSection({ isMobile }) {
   return (
     <section id="contactos" style={{ marginTop: 42 }}>
-      <div style={{ ...shellCard, padding: 34 }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1.15fr 0.95fr 0.7fr 0.9fr", gap: 26, alignItems: "start" }}>
+      <div style={{ ...shellCard, padding: isMobile ? 20 : 34 }}>
+        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.15fr 0.95fr 0.7fr 0.9fr", gap: 26, alignItems: "start" }}>
           <div>
             <Brand />
-            <p style={{ margin: "18px 0 0", color: colors.text, fontSize: 18, lineHeight: 1.8, maxWidth: 420 }}>
+            <p style={{ margin: "18px 0 0", color: colors.text, fontSize: isMobile ? 16 : 18, lineHeight: 1.8, maxWidth: 420 }}>
               Fornecimento de bebidas em packs de 24 unidades para cafés, restaurantes, bares e outros estabelecimentos.
             </p>
             <div style={{ display: "flex", gap: 14, marginTop: 24 }}>
@@ -404,21 +477,21 @@ function FooterSection() {
           </div>
 
           <div>
-            <h3 style={{ margin: 0, color: colors.lime, fontSize: 30, fontWeight: 900, textTransform: "uppercase" }}>CONTACTOS</h3>
+            <h3 style={{ margin: 0, color: colors.lime, fontSize: isMobile ? 24 : 30, fontWeight: 900, textTransform: "uppercase" }}>CONTACTOS</h3>
             <div style={{ display: "grid", gap: 14, marginTop: 20 }}>
-              <div style={{ display: "inline-flex", alignItems: "center", gap: 12, color: colors.text, fontSize: 17 }}>
+              <div style={{ display: "inline-flex", alignItems: "center", gap: 12, color: colors.text, fontSize: isMobile ? 15 : 17 }}>
                 <Phone size={18} color={colors.lime} />
                 {PHONE_DISPLAY}
               </div>
-              <div style={{ display: "inline-flex", alignItems: "center", gap: 12, color: colors.text, fontSize: 17 }}>
+              <div style={{ display: "inline-flex", alignItems: "center", gap: 12, color: colors.text, fontSize: isMobile ? 15 : 17 }}>
                 <MessageCircle size={18} color={colors.lime} />
                 {PHONE_DISPLAY}
               </div>
-              <div style={{ display: "inline-flex", alignItems: "center", gap: 12, color: colors.text, fontSize: 17 }}>
+              <div style={{ display: "inline-flex", alignItems: "center", gap: 12, color: colors.text, fontSize: isMobile ? 15 : 17 }}>
                 <Mail size={18} color={colors.lime} />
                 geral@pack24.pt
               </div>
-              <div style={{ display: "inline-flex", alignItems: "center", gap: 12, color: colors.text, fontSize: 17 }}>
+              <div style={{ display: "inline-flex", alignItems: "center", gap: 12, color: colors.text, fontSize: isMobile ? 15 : 17 }}>
                 <MapPin size={18} color={colors.lime} />
                 Costa da Caparica e Almada
               </div>
@@ -426,8 +499,8 @@ function FooterSection() {
           </div>
 
           <div>
-            <h3 style={{ margin: 0, color: colors.lime, fontSize: 30, fontWeight: 900, textTransform: "uppercase" }}>PÁGINAS</h3>
-            <div style={{ display: "grid", gap: 14, marginTop: 20, fontSize: 17, color: colors.text }}>
+            <h3 style={{ margin: 0, color: colors.lime, fontSize: isMobile ? 24 : 30, fontWeight: 900, textTransform: "uppercase" }}>PÁGINAS</h3>
+            <div style={{ display: "grid", gap: 14, marginTop: 20, fontSize: isMobile ? 15 : 17, color: colors.text }}>
               <div>Início</div>
               <div>Catálogo</div>
               <div>Contacto</div>
@@ -435,8 +508,8 @@ function FooterSection() {
           </div>
 
           <div>
-            <h3 style={{ margin: 0, color: colors.lime, fontSize: 30, fontWeight: 900, textTransform: "uppercase" }}>SIGA-NOS</h3>
-            <p style={{ margin: "20px 0 0", color: colors.text, fontSize: 17, lineHeight: 1.7 }}>
+            <h3 style={{ margin: 0, color: colors.lime, fontSize: isMobile ? 24 : 30, fontWeight: 900, textTransform: "uppercase" }}>SIGA-NOS</h3>
+            <p style={{ margin: "20px 0 0", color: colors.text, fontSize: isMobile ? 15 : 17, lineHeight: 1.7 }}>
               Acompanhe as novidades e promoções no Instagram.
             </p>
             <div style={{ marginTop: 20, display: "inline-flex", alignItems: "center", gap: 12, padding: "14px 18px", borderRadius: 14, border: `1px solid ${colors.limeBorder}`, color: colors.lime, fontWeight: 800 }}>
@@ -451,6 +524,7 @@ function FooterSection() {
 }
 
 export default function App() {
+  const isMobile = useIsMobile();
   const [currentPage, setCurrentPage] = useState("inicio");
   const [cart, setCart] = useState([]);
   const [search, setSearch] = useState("");
@@ -505,13 +579,13 @@ export default function App() {
 
   return (
     <div style={{ minHeight: "100vh", background: colors.bg, color: colors.text, fontFamily: "Inter, Arial, sans-serif" }}>
-      <div style={{ maxWidth: 1560, margin: "0 auto", padding: 18 }}>
-        <Header currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      <div style={{ maxWidth: 1420, margin: "0 auto", padding: isMobile ? 12 : 18 }}>
+        <Header currentPage={currentPage} setCurrentPage={setCurrentPage} isMobile={isMobile} />
 
         {currentPage === "inicio" ? (
           <>
-            <Hero setCurrentPage={setCurrentPage} />
-            <InfoStrip />
+            <Hero setCurrentPage={setCurrentPage} isMobile={isMobile} />
+            <InfoStrip isMobile={isMobile} />
           </>
         ) : (
           <CatalogSection
@@ -533,10 +607,11 @@ export default function App() {
             totalWithVat={totalWithVat}
             sendWhatsApp={sendWhatsApp}
             clearCart={clearCart}
+            isMobile={isMobile}
           />
         )}
 
-        <FooterSection />
+        <FooterSection isMobile={isMobile} />
 
         <footer style={{ textAlign: "center", color: colors.muted, fontSize: 15, padding: "28px 8px 8px", borderTop: `1px solid ${colors.border}`, marginTop: 28 }}>
           © 2026 pack24.pt – Todos os direitos reservados.
