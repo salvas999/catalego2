@@ -29,7 +29,7 @@ const styles = {
   container: {
     maxWidth: 1440,
     margin: "0 auto",
-    padding: "24px",
+    padding: "16px",
   },
   card: {
     background: "#ffffff",
@@ -68,6 +68,11 @@ const styles = {
     fontSize: 16,
     cursor: "pointer",
   },
+  autoGrid: (minWidth = 320) => ({
+    display: "grid",
+    gridTemplateColumns: `repeat(auto-fit, minmax(${minWidth}px, 1fr))`,
+    gap: 22,
+  }),
 };
 
 const formatPrice = (value) => `€${value.toFixed(2)}`;
@@ -83,20 +88,22 @@ function Navbar({ currentPage, setCurrentPage }) {
         alignItems: "center",
         marginBottom: 22,
         position: "sticky",
-        top: 14,
+        top: 10,
         zIndex: 10,
         backdropFilter: "blur(12px)",
         background: "rgba(255,255,255,0.92)",
+        gap: 16,
+        flexWrap: "wrap",
       }}
     >
       <div>
         <p style={{ margin: 0, fontSize: 12, color: "#64748b", textTransform: "uppercase", letterSpacing: "0.18em", fontWeight: 700 }}>
-          Produtos disponíveis B2B
+          Catálogo B2B
         </p>
-        <h1 style={{ margin: "6px 0 0", fontSize: 34, fontWeight: 900, letterSpacing: "-0.05em" }}>Pedido Direto</h1>
+        <h1 style={{ margin: "6px 0 0", fontSize: "clamp(26px, 5vw, 34px)", fontWeight: 900, letterSpacing: "-0.05em" }}>Pedido Direto</h1>
       </div>
 
-      <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
+      <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap", width: "100%", maxWidth: 560, justifyContent: "flex-end" }}>
         <button
           onClick={() => setCurrentPage("info")}
           style={{
@@ -104,6 +111,7 @@ function Navbar({ currentPage, setCurrentPage }) {
             background: currentPage === "info" ? "#0f172a" : "white",
             color: currentPage === "info" ? "white" : "#0f172a",
             border: currentPage === "info" ? "1px solid #0f172a" : "1px solid #dbe3ee",
+            flex: "1 1 140px",
           }}
         >
           Informações
@@ -115,11 +123,12 @@ function Navbar({ currentPage, setCurrentPage }) {
             background: currentPage === "catalogo" ? "#0f172a" : "white",
             color: currentPage === "catalogo" ? "white" : "#0f172a",
             border: currentPage === "catalogo" ? "1px solid #0f172a" : "1px solid #dbe3ee",
+            flex: "1 1 140px",
           }}
         >
           Catálogo
         </button>
-        <button onClick={() => window.open(`https://wa.me/${PHONE}`, "_blank")} style={styles.buttonPrimary}>
+        <button onClick={() => window.open(`https://wa.me/${PHONE}`, "_blank")} style={{ ...styles.buttonPrimary, flex: "1 1 180px" }}>
           Falar no WhatsApp
         </button>
       </div>
@@ -142,12 +151,12 @@ function InfoPage({ setCurrentPage }) {
         }}
       >
         <div style={{ position: "absolute", right: -70, top: -70, width: 240, height: 240, borderRadius: "50%", background: "rgba(34,197,94,0.14)", filter: "blur(12px)" }} />
-        <div style={{ position: "relative", zIndex: 1, display: "grid", gridTemplateColumns: "1.25fr 0.85fr", gap: 24, alignItems: "center" }}>
+        <div style={{ position: "relative", zIndex: 1, ...styles.autoGrid(320), alignItems: "center" }}>
           <div>
             <div style={{ display: "inline-flex", padding: "8px 12px", borderRadius: 999, background: "rgba(255,255,255,0.08)", fontSize: 13, fontWeight: 700 }}>
               Encomendas rápidas para o seu negócio
             </div>
-            <h2 style={{ margin: "20px 0 0", fontSize: 58, lineHeight: 1.03, fontWeight: 900, letterSpacing: "-0.06em", maxWidth: 760 }}>
+            <h2 style={{ margin: "20px 0 0", fontSize: "clamp(34px, 7vw, 58px)", lineHeight: 1.03, fontWeight: 900, letterSpacing: "-0.06em", maxWidth: 760 }}>
               Bebidas por pack de 24, com encomenda simples e entrega combinada consigo.
             </h2>
             <p style={{ margin: "18px 0 0", fontSize: 18, lineHeight: 1.75, color: "#cbd5e1", maxWidth: 760 }}>
@@ -181,9 +190,9 @@ function InfoPage({ setCurrentPage }) {
         </div>
       </section>
 
-      <section style={{ display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: 22, marginBottom: 22 }}>
+      <section style={{ ...styles.autoGrid(320), marginBottom: 22 }}>
         <div style={{ ...styles.card, padding: 28 }}>
-          <h3 style={{ margin: 0, fontSize: 34, fontWeight: 900, letterSpacing: "-0.05em" }}>Como fazer a sua encomenda</h3>
+          <h3 style={{ margin: 0, fontSize: "clamp(26px, 5vw, 34px)", fontWeight: 900, letterSpacing: "-0.05em" }}>Como fazer a sua encomenda</h3>
           <div style={{ display: "grid", gap: 14, marginTop: 18 }}>
             {[
               { title: "1. Escolhe os produtos", text: "Aceda ao catálogo e veja todos os produtos disponíveis." },
@@ -280,15 +289,15 @@ function CatalogPage({ cart, setCart, search, setSearch, selectedCategory, setSe
       <section style={{ ...styles.card, padding: 22, marginBottom: 22 }}>
         <div style={{ display: "flex", justifyContent: "space-between", gap: 20, alignItems: "center", flexWrap: "wrap" }}>
           <div>
-            <h3 style={{ margin: 0, fontSize: 34, fontWeight: 900, letterSpacing: "-0.05em" }}>Catálogo</h3>
+            <h3 style={{ margin: 0, fontSize: "clamp(26px, 5vw, 34px)", fontWeight: 900, letterSpacing: "-0.05em" }}>Catálogo</h3>
             <p style={{ margin: "8px 0 0", color: "#64748b" }}>Todos os produtos são vendidos em packs de 24 unidades.</p>
           </div>
-          <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap", width: "100%" }}>
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Pesquisar produto..."
-              style={{ height: 50, minWidth: 240, borderRadius: 16, border: "1px solid #dbe3ee", padding: "0 16px", fontSize: 15, outline: "none" }}
+              style={{ height: 50, minWidth: 0, flex: "1 1 220px", borderRadius: 16, border: "1px solid #dbe3ee", padding: "0 16px", fontSize: 15, outline: "none" }}
             />
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
               {CATEGORIES.map((category) => (
@@ -313,8 +322,8 @@ function CatalogPage({ cart, setCart, search, setSearch, selectedCategory, setSe
         </div>
       </section>
 
-      <div style={{ display: "grid", gridTemplateColumns: "1.6fr 0.9fr", gap: 22 }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 18 }}>
+      <div style={{ ...styles.autoGrid(320), alignItems: "start" }}>
+        <div style={{ ...styles.autoGrid(260) }}>
           {filteredProducts.map((p) => (
             <div
               key={p.id}
@@ -341,15 +350,15 @@ function CatalogPage({ cart, setCart, search, setSearch, selectedCategory, setSe
                 />
               </div>
 
-              <h4 style={{ margin: 0, fontSize: 30, fontWeight: 900, letterSpacing: "-0.05em", lineHeight: 1.04 }}>{p.name}</h4>
+              <h4 style={{ margin: 0, fontSize: "clamp(24px, 4vw, 30px)", fontWeight: 900, letterSpacing: "-0.05em", lineHeight: 1.04 }}>{p.name}</h4>
               <p style={{ margin: "8px 0 0", color: "#64748b", fontSize: 15, fontWeight: 700 }}>Pack de 24 unidades</p>
               <p style={{ margin: "10px 0 0", color: "#475569", lineHeight: 1.65 }}>{p.description}</p>
 
               <div style={{ marginTop: 16, padding: 16, borderRadius: 20, background: "#f8fafc" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "end", gap: 12 }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "end", gap: 12, flexWrap: "wrap" }}>
                   <div>
                     <p style={{ margin: 0, fontSize: 12, color: "#64748b", textTransform: "uppercase", letterSpacing: "0.12em", fontWeight: 700 }}>Sem IVA</p>
-                    <p style={{ margin: "6px 0 0", fontSize: 32, fontWeight: 900, letterSpacing: "-0.06em" }}>{formatPrice(p.price)}</p>
+                    <p style={{ margin: "6px 0 0", fontSize: "clamp(24px, 4vw, 32px)", fontWeight: 900, letterSpacing: "-0.06em" }}>{formatPrice(p.price)}</p>
                   </div>
                   <div style={{ textAlign: "right" }}>
                     <p style={{ margin: 0, fontSize: 12, color: "#64748b", textTransform: "uppercase", letterSpacing: "0.12em", fontWeight: 700 }}>Com IVA</p>
@@ -366,11 +375,11 @@ function CatalogPage({ cart, setCart, search, setSearch, selectedCategory, setSe
         </div>
 
         <aside>
-          <div style={{ ...styles.card, background: "#0f172a", color: "white", padding: 22, position: "sticky", top: 98 }}>
+          <div style={{ ...styles.card, background: "#0f172a", color: "white", padding: 22, position: "sticky", top: 84 }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "start", gap: 12 }}>
               <div>
                 <p style={{ margin: 0, color: "#94a3b8", fontSize: 13, textTransform: "uppercase", letterSpacing: "0.14em", fontWeight: 700 }}>Resumo da encomenda</p>
-                <h3 style={{ margin: "8px 0 0", fontSize: 38, fontWeight: 900, letterSpacing: "-0.05em" }}>A sua encomenda</h3>
+                <h3 style={{ margin: "8px 0 0", fontSize: "clamp(28px, 5vw, 38px)", fontWeight: 900, letterSpacing: "-0.05em" }}>A sua encomenda</h3>
               </div>
               <div style={{ padding: "10px 14px", borderRadius: 16, background: "rgba(255,255,255,0.08)", fontWeight: 800 }}>{totalPacks} packs</div>
             </div>
@@ -392,7 +401,7 @@ function CatalogPage({ cart, setCart, search, setSearch, selectedCategory, setSe
                         <button onClick={() => removeItem(p.id)} style={{ background: "transparent", color: "#fca5a5", border: "none", cursor: "pointer", fontWeight: 700 }}>Remover</button>
                       </div>
 
-                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 14, gap: 12 }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 14, gap: 12, flexWrap: "wrap" }}>
                         <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
                           <button onClick={() => decreaseQty(p.id)} style={{ ...styles.buttonLight, padding: "10px 12px", background: "rgba(255,255,255,0.06)", color: "white", border: "1px solid rgba(255,255,255,0.12)" }}>−</button>
                           <div style={{ minWidth: 42, textAlign: "center", fontWeight: 800 }}>{p.qty}</div>
@@ -431,7 +440,7 @@ function CatalogPage({ cart, setCart, search, setSearch, selectedCategory, setSe
               </div>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "end", marginTop: 10 }}>
                 <span style={{ color: "#64748b", fontSize: 14 }}>Total com IVA</span>
-                <span style={{ fontWeight: 900, fontSize: 34, letterSpacing: "-0.05em" }}>{formatPrice(totalIVA)}</span>
+                <span style={{ fontWeight: 900, fontSize: "clamp(26px, 5vw, 34px)", letterSpacing: "-0.05em" }}>{formatPrice(totalIVA)}</span>
               </div>
             </div>
 
