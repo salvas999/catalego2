@@ -13,7 +13,6 @@ import {
   Truck,
   Menu,
   X,
-  Instagram,
 } from "lucide-react";
 
 const PRODUCTS = [
@@ -556,7 +555,7 @@ export default function App() {
                   Acompanhe as novidades e promoções no Instagram.
                 </p>
                 <div style={{ marginTop: 20, display: "inline-flex", alignItems: "center", gap: 12, padding: "14px 18px", borderRadius: 14, border: `1px solid ${colors.limeBorder}`, color: colors.lime, fontWeight: 800 }}>
-                  <Instagram size={18} />
+                  <MessageCircle size={18} />
                   @pack24.pt
                 </div>
               </div>
