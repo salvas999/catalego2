@@ -13,6 +13,7 @@ import {
   Truck,
   Menu,
   X,
+  Instagram,
 } from "lucide-react";
 
 const PRODUCTS = [
@@ -27,6 +28,8 @@ const PRODUCTS = [
 
 const PHONE = "351933499207";
 const PHONE_DISPLAY = "933 499 207";
+const PHONE_2 = "351938113585";
+const PHONE_DISPLAY_2 = "938 113 585";
 const IVA = 0.23;
 const CATEGORIES = ["Todos", ...new Set(PRODUCTS.map((p) => p.category))];
 
@@ -534,6 +537,7 @@ export default function App() {
                 <h3 style={{ margin: 0, color: colors.lime, fontSize: isMobile ? 24 : 30, fontWeight: 900, textTransform: "uppercase" }}>CONTACTOS</h3>
                 <div style={{ display: "grid", gap: 14, marginTop: 20 }}>
                   <div style={{ display: "inline-flex", alignItems: "center", gap: 12, color: colors.text, fontSize: isMobile ? 15 : 17 }}><Phone size={18} color={colors.lime} />{PHONE_DISPLAY}</div>
+                  <div style={{ display: "inline-flex", alignItems: "center", gap: 12, color: colors.text, fontSize: isMobile ? 15 : 17 }}><Phone size={18} color={colors.lime} />{PHONE_DISPLAY_2}</div>
                   <div style={{ display: "inline-flex", alignItems: "center", gap: 12, color: colors.text, fontSize: isMobile ? 15 : 17 }}><MessageCircle size={18} color={colors.lime} />{PHONE_DISPLAY}</div>
                   <div style={{ display: "inline-flex", alignItems: "center", gap: 12, color: colors.text, fontSize: isMobile ? 15 : 17 }}><Mail size={18} color={colors.lime} />geral@pack24.pt</div>
                   <div style={{ display: "inline-flex", alignItems: "center", gap: 12, color: colors.text, fontSize: isMobile ? 15 : 17 }}><MapPin size={18} color={colors.lime} />Costa da Caparica e Almada</div>
@@ -555,7 +559,7 @@ export default function App() {
                   Acompanhe as novidades e promoções no Instagram.
                 </p>
                 <div style={{ marginTop: 20, display: "inline-flex", alignItems: "center", gap: 12, padding: "14px 18px", borderRadius: 14, border: `1px solid ${colors.limeBorder}`, color: colors.lime, fontWeight: 800 }}>
-                  <MessageCircle size={18} />
+                  <Instagram size={18} />
                   @pack24.pt
                 </div>
               </div>
