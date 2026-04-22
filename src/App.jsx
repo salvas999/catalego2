@@ -154,7 +154,19 @@ export default function App() {
   });
 
   return (
-    <div style={{ minHeight: "100vh", background: colors.bg, color: colors.text, fontFamily: "Inter, Arial, sans-serif" }}>
+    <>
+      <style>{`
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { background: #000; overflow-x: hidden; }
+        body { margin: 0; }
+
+        @keyframes floatCan {
+          0% { transform: translateY(0px); }
+          50% { transform: translateY(-12px); }
+          100% { transform: translateY(0px); }
+        }
+      `}</style>
+      <div style={{ minHeight: "100vh", background: colors.bg, color: colors.text, fontFamily: "Inter, Arial, sans-serif" }}>
       <div style={{ maxWidth: 1420, margin: "0 auto", padding: isMobile ? 12 : 18 }}>
         <header
           style={{
@@ -338,7 +350,24 @@ export default function App() {
                 <div style={{ position: "relative", minHeight: isMobile ? 260 : 620, padding: isMobile ? "0 12px 24px" : 0 }}>
                   {!isMobile && <div style={{ position: "absolute", right: 36, top: 86, width: 440, height: 420, border: `2px solid ${colors.limeBorder}`, borderRadius: 48, transform: "skew(-28deg)" }} />}
                   <div style={{ position: "absolute", left: isMobile ? 20 : 40, bottom: isMobile ? 10 : 40, width: isMobile ? 280 : 520, height: isMobile ? 90 : 180, borderRadius: "50%", background: "rgba(0,0,0,0.48)", filter: "blur(16px)" }} />
-                  <img src="/images/refrigerantes.png" alt="Refrigerantes" onClick={() => setCurrentPage("catalogo")} style={{ position: isMobile ? "relative" : "absolute", right: isMobile ? "auto" : 10, bottom: isMobile ? "auto" : 48, margin: isMobile ? "0 auto" : 0, display: "block", maxWidth: isMobile ? "100%" : "92%", maxHeight: isMobile ? 260 : 500, objectFit: "contain", filter: "drop-shadow(0 28px 26px rgba(0,0,0,0.6))", cursor: "pointer" }} />
+                  <img
+  src="/images/refrigerantes.png"
+  alt="Refrigerantes"
+  onClick={() => setCurrentPage("catalogo")}
+  style={{
+    position: isMobile ? "relative" : "absolute",
+    right: isMobile ? "auto" : 10,
+    bottom: isMobile ? "auto" : 48,
+    margin: isMobile ? "0 auto" : 0,
+    display: "block",
+    maxWidth: isMobile ? "100%" : "92%",
+    maxHeight: isMobile ? 260 : 500,
+    objectFit: "contain",
+    filter: "drop-shadow(0 28px 26px rgba(0,0,0,0.6)) drop-shadow(0 0 25px rgba(163,230,53,0.15))",
+    cursor: "pointer",
+    animation: "floatCan 4s ease-in-out infinite"
+  }}
+/>
                 </div>
               </div>
             </section>
@@ -585,5 +614,6 @@ export default function App() {
         </footer>
       </div>
     </div>
+    </>
   );
 }
