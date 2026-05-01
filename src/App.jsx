@@ -135,7 +135,8 @@ export default function App() {
 
     cart.forEach((item) => {
       const subtotalWithoutVat = item.price * item.qty;
-      const subtotalWithVat = subtotalWithoutVat * (1 + IVA);
+      const ivaRate = item.name === "Água das Pedras" ? 0.13 : IVA_DEFAULT;
+      const subtotalWithVat = subtotalWithoutVat * (1 + ivaRate);
       message += `• ${item.name} — ${item.qty} pack(s) de ${item.units} unidades\n`;
       message += `  Sem IVA: ${formatPrice(subtotalWithoutVat)}\n`;
       message += `  Com IVA: ${formatPrice(subtotalWithVat)}\n\n`;
@@ -513,7 +514,8 @@ export default function App() {
                     ) : (
                       cart.map((item) => {
                         const subtotalWithoutVat = item.price * item.qty;
-                        const subtotalWithVat = subtotalWithoutVat * (1 + IVA);
+      const ivaRate = item.name === "Água das Pedras" ? 0.13 : IVA_DEFAULT;
+      const subtotalWithVat = subtotalWithoutVat * (1 + ivaRate);
 
                         return (
                           <div key={item.id} style={{ padding: 16, borderRadius: 14, background: colors.panel, border: `1px solid ${colors.border}` }}>
