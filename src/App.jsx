@@ -31,11 +31,12 @@ const PRODUCTS = [
   { id: 8, name: "Água", price: 3.12, units: 24, img: "/images/agua.png", category: "Águas" },
   { id: 9, name: "Água das Pedras", price: 10.08, units: 24, img: "/images/agua-pedras.png", category: "Águas" },
   { id: 10, name: "Revo", price: 10.32, units: 24, img: "/images/revo.png", category: "Energéticas" },
-  { id: 11, name: "Red Bull", price: 22.8, units: 24, img: "/images/redbull.png", category: "Energéticas" },
-  { id: 12, name: "Nestea Limão", price: 9.6, units: 24, img: "/images/nestea.png", category: "Ice Tea" },
-  { id: 13, name: "Nestea Maracujá", price: 9.6, units: 24, img: "/images/nestea-maracuja.png", category: "Ice Tea" },
-  { id: 14, name: "Fanta", price: 11.28, units: 24, img: "/images/fanta.png", category: "Refrigerantes" },
-  { id: 15, name: "Super Bock 1L", price: 7.8, units: 6, img: "/images/superbock-1l.png", category: "Cervejas" },
+
+  // BREVE
+  { id: 11, name: "Red Bull", price: 22.8, units: 24, img: "/images/redbull.png", category: "Energéticas", comingSoon: true },
+  { id: 12, name: "Fanta", price: 11.28, units: 24, img: "/images/fanta.png", category: "Refrigerantes", comingSoon: true },
+  { id: 13, name: "Sumol Laranja", price: 13.2, units: 24, img: "/images/sumol-laranja.png", category: "Refrigerantes", comingSoon: true },
+  { id: 14, name: "Sumol Ananás", price: 13.2, units: 24, img: "/images/sumol-ananas.png", category: "Refrigerantes", comingSoon: true },
 ];
 
 const PHONE = "351933499207";
@@ -471,12 +472,18 @@ export default function App() {
                             </div>
                           </div>
 
+                          {product.comingSoon ? (
+                          <div style={{ width: "100%", marginTop: 14, background: "transparent", color: colors.muted, border: `1px dashed ${colors.border}`, borderRadius: 12, padding: isMobile ? "12px 10px" : "14px 16px", fontWeight: 800, fontSize: isMobile ? 13 : 15, textAlign: "center" }}>
+                            BREVEMENTE
+                          </div>
+                        ) : (
                           <button
                             onClick={() => add(product)}
                             style={{ width: "100%", marginTop: 14, background: colors.lime, color: "#050505", border: `1px solid ${colors.lime}`, borderRadius: 12, padding: isMobile ? "12px 10px" : "14px 16px", fontWeight: 800, fontSize: isMobile ? 13 : 15, cursor: "pointer" }}
                           >
                             ADICIONAR
                           </button>
+                        )}
                         </div>
                       );
                     })}
