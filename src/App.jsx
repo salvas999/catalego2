@@ -29,7 +29,7 @@ const PRODUCTS = [
   { id: 6, name: "7Up", price: 12, units: 24, img: "/images/7up.png", category: "Refrigerantes" },
   { id: 7, name: "Guaraná", price: 12.96, units: 24, img: "/images/guarana.png", category: "Refrigerantes" },
   { id: 8, name: "Água", price: 3.12, units: 24, img: "/images/agua.png", category: "Águas" },
-  { id: 9, name: "Água das Pedras", price: 10.08, units: 24, img: "/images/agua-pedras.png", category: "Águas" },
+  { id: 9, name: "Água das Pedras", price: 10.32, units: 24, img: "/images/agua-pedras.png", category: "Águas" },
   { id: 10, name: "Revo", price: 10.32, units: 24, img: "/images/revo.png", category: "Energéticas" },
 
   // BREVE
@@ -44,7 +44,7 @@ const PHONE_DISPLAY = "933 499 207";
 const PHONE_2 = "351938113585";
 const PHONE_DISPLAY_2 = "938 113 585";
 const ORDER_PHONE = PHONE_2;
-const IVA = 0.23;
+const IVA_DEFAULT = 0.23;
 const CATEGORIES = ["Todos", ...new Set(PRODUCTS.map((p) => p.category))];
 
 const colors = {
@@ -123,7 +123,10 @@ export default function App() {
   const clearCart = () => setCart([]);
 
   const totalWithoutVat = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-  const totalWithVat = totalWithoutVat * (1 + IVA);
+  const totalWithVat = cart.reduce((sum, item) => {
+    const ivaRate = item.name === "Água das Pedras" ? 0.13 : IVA_DEFAULT;
+    return sum + item.price * item.qty * (1 + ivaRate);
+  }, 0);
 
   const sendWhatsApp = () => {
     if (!cart.length) return;
@@ -453,7 +456,8 @@ export default function App() {
                   <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(auto-fit, minmax(220px, 1fr))", gap: 18 }}>
                     {filteredProducts.map((product) => {
                       const priceWithoutVat = product.price;
-                      const priceWithVat = product.price * (1 + IVA);
+                      const ivaRate = product.name === "Água das Pedras" ? 0.13 : IVA_DEFAULT;
+                      const priceWithVat = product.price * (1 + ivaRate);
 
                       return (
                         <div key={product.id} style={{ ...shellCard, padding: isMobile ? 14 : 20, background: colors.panelSoft, borderRadius: 18 }}>
