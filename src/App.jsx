@@ -35,8 +35,8 @@ const PRODUCTS = [
   // BREVE
   { id: 11, name: "Red Bull", price: 22.8, units: 24, img: "/images/redbull.png", category: "Energéticas", comingSoon: true },
   { id: 12, name: "Fanta", price: 11.28, units: 24, img: "/images/fanta.png", category: "Refrigerantes", comingSoon: true },
-  { id: 13, name: "Sumol Laranja", price: 13.2, units: 24, img: "/images/sumol-laranja.png", category: "Refrigerantes", comingSoon: true },
-  { id: 14, name: "Sumol Ananás", price: 13.2, units: 24, img: "/images/sumol-ananas.png", category: "Refrigerantes", comingSoon: true },
+  { id: 13, name: "Sumol Laranja", price: 13.92, units: 24, img: "/images/sumol-laranja.png", category: "Refrigerantes" },
+  { id: 14, name: "Sumol Ananás", price: 13.92, units: 24, img: "/images/sumol-ananas.png", category: "Refrigerantes" },
 ];
 
 const PHONE = "351933499207";
