@@ -28,8 +28,10 @@ const PRODUCTS = [
   { id: 5, name: "Lipton Manga", price: 13.68, units: 24, img: "/images/lipton-manga.png", category: "Ice Tea" },
   { id: 6, name: "7Up", price: 12, units: 24, img: "/images/7up.png", category: "Refrigerantes" },
   { id: 7, name: "Guaraná", price: 12.96, units: 24, img: "/images/guarana.png", category: "Refrigerantes" },
-  { id: 8, name: "Água", price: 3.12, units: 24, img: "/images/agua.png", category: "Águas" },
-  { id: 9, name: "Água das Pedras", price: 10.32, units: 24, img: "/images/agua-pedras.png", category: "Águas" },
+  { id: 8, name: "Água 33cl H2OPE Caramulo", price: 3.36, units: 24, img: "/images/agua-33cl.png", category: "Águas" },
+  { id: 9, name: "Água 50cl H2OPE Caramulo", price: 3.84, units: 24, img: "/images/agua-50cl.png", category: "Águas" },
+  { id: 10, name: "Água 1.5L H2OPE Caramulo", price: 1.74, units: 6, img: "/images/agua-15l.png", category: "Águas" },
+  { id: 11, name: "Água das Pedras", price: 10.32, units: 24, img: "/images/agua-pedras.png", category: "Águas" },
   { id: 10, name: "Revo", price: 10.32, units: 24, img: "/images/revo.png", category: "Energéticas" },
 
   // BREVE
@@ -124,7 +126,7 @@ export default function App() {
 
   const totalWithoutVat = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
   const totalWithVat = cart.reduce((sum, item) => {
-    const ivaRate = item.name === "Água das Pedras" ? 0.13 : IVA_DEFAULT;
+    const ivaRate = item.category === "Águas" ? 0.13 : IVA_DEFAULT;
     return sum + item.price * item.qty * (1 + ivaRate);
   }, 0);
 
@@ -135,7 +137,7 @@ export default function App() {
 
     cart.forEach((item) => {
       const subtotalWithoutVat = item.price * item.qty;
-      const ivaRate = item.name === "Água das Pedras" ? 0.13 : IVA_DEFAULT;
+      const ivaRate = item.category === "Águas" ? 0.13 : IVA_DEFAULT;
       const subtotalWithVat = subtotalWithoutVat * (1 + ivaRate);
       message += `• ${item.name} — ${item.qty} pack(s) de ${item.units} unidades\n`;
       message += `  Sem IVA: ${formatPrice(subtotalWithoutVat)}\n`;
@@ -457,7 +459,7 @@ export default function App() {
                   <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(auto-fit, minmax(220px, 1fr))", gap: 18 }}>
                     {filteredProducts.map((product) => {
                       const priceWithoutVat = product.price;
-                      const ivaRate = product.name === "Água das Pedras" ? 0.13 : IVA_DEFAULT;
+                      const ivaRate = product.category === "Águas" ? 0.13 : IVA_DEFAULT;
                       const priceWithVat = product.price * (1 + ivaRate);
 
                       return (
@@ -514,7 +516,7 @@ export default function App() {
                     ) : (
                       cart.map((item) => {
                         const subtotalWithoutVat = item.price * item.qty;
-      const ivaRate = item.name === "Água das Pedras" ? 0.13 : IVA_DEFAULT;
+      const ivaRate = item.category === "Águas" ? 0.13 : IVA_DEFAULT;
       const subtotalWithVat = subtotalWithoutVat * (1 + ivaRate);
 
                         return (
