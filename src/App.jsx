@@ -32,14 +32,14 @@ const PRODUCTS = [
   { id: 9, name: "Água 50cl H2OPE Caramulo", price: 3.84, units: 24, img: "/images/agua-50cl.png", category: "Águas" },
   { id: 10, name: "Água 1.5L H2OPE Caramulo", price: 1.74, units: 6, img: "/images/agua-15l.png", category: "Águas" },
   { id: 11, name: "Água das Pedras", price: 10.32, units: 24, img: "/images/agua-pedras.png", category: "Águas" },
-  { id: 12.5, name: "Água das Pedras Limão", price: 10.8, units: 24, img: "/images/pedras-limao.png", category: "Águas" },
-  { id: 10, name: "Revo", price: 10.32, units: 24, img: "/images/revo.png", category: "Energéticas" },
+  { id: 12, name: "Água das Pedras Limão", price: 10.8, units: 24, img: "/images/pedras-limao.png", category: "Águas" },
+  { id: 13, name: "Revo", price: 10.32, units: 24, img: "/images/revo.png", category: "Energéticas" },
 
   // BREVE
-  { id: 11, name: "Red Bull", price: 22.8, units: 24, img: "/images/redbull.png", category: "Energéticas" },
-  { id: 12, name: "Fanta", price: 12.72, units: 24, img: "/images/fanta.png", category: "Refrigerantes" },
-  { id: 13, name: "Sumol Laranja", price: 13.92, units: 24, img: "/images/sumol-laranja.png", category: "Refrigerantes" },
-  { id: 14, name: "Sumol Ananás", price: 13.92, units: 24, img: "/images/sumol-ananas.png", category: "Refrigerantes" },
+  { id: 14, name: "Red Bull", price: 22.8, units: 24, img: "/images/redbull.png", category: "Energéticas" },
+  { id: 15, name: "Fanta", price: 12.72, units: 24, img: "/images/fanta.png", category: "Refrigerantes" },
+  { id: 16, name: "Sumol Laranja", price: 13.92, units: 24, img: "/images/sumol-laranja.png", category: "Refrigerantes" },
+  { id: 17, name: "Sumol Ananás", price: 13.92, units: 24, img: "/images/sumol-ananas.png", category: "Refrigerantes" },
 ];
 
 const PHONE = "351933499207";
