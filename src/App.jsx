@@ -60,7 +60,7 @@ const CAMPAIGNS = [
   {
     title: "🎁 OFERTA REVO",
     description:
-      "Na compra de 10 packs de Água 50cl H2OPE, oferta de 1 pack de Revo.",
+      "Na compra de 15 packs de Água 50cl H2OPE, oferta de 1 pack de Revo.",
   },
   {
     title: "🔥 10 + 1 GRÁTIS",
@@ -170,8 +170,8 @@ export default function App() {
     message += `  🎁 OFERTA: ${freeQty} pack(s) de ${item.name}\n`;
   }
 
-  if (item.offerRevo && item.qty >= 10) {
-    const freeRevo = Math.floor(item.qty / 10);
+  if (item.offerRevo && item.qty >= 15) {
+    const freeRevo = Math.floor(item.qty / 15);
     message += `  🎁 OFERTA: ${freeRevo} pack(s) REVO\n`;
   }
 
@@ -605,7 +605,7 @@ export default function App() {
       marginBottom: 10,
     }}
   >
-    🎁 Oferta 1 Pack Revo na compra de 10 packs
+    🎁 Oferta 1 Pack Revo na compra de 15 packs
   </div>
 )}
 {product.offerSame && (
@@ -694,7 +694,7 @@ export default function App() {
     </div>
   )}
 
-  {item.offerRevo && item.qty >= 10 && (
+  {item.offerRevo && item.qty >= 15 && (
     <div
       style={{
         color: colors.lime,
