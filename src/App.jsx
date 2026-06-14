@@ -82,7 +82,8 @@ const colors = {
 };
 
 const formatPrice = (value) => `€${Number(value).toFixed(2)}`;
-const productDescription = (product) => `Pack de ${product.units} unidades`;
+const productDescription = (product) =>
+  product.description || `Pack de ${product.units} unidades`;
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
