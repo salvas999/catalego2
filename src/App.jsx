@@ -21,25 +21,25 @@ const Truck = (props) => <IconBase {...props}><path d="M3 7h11v8H3z" /><path d="
 const X = (props) => <IconBase {...props}><path d="M18 6 6 18" /><path d="m6 6 12 12" /></IconBase>;
 
 const PRODUCTS = [
-  { id: 1, name: "Coca-Cola", price: 13.2, units: 24, img: "/images/cocacola.png", category: "Refrigerantes" },
-  { id: 2, name: "Coca-Cola Zero", price: 13.2, units: 24, img: "/images/cocacola-zero.png", category: "Refrigerantes" },
-  { id: 3, name: "Lipton Limão", price: 13.68, units: 24, img: "/images/lipton-limao.png", category: "Ice Tea" },
+  { id: 1, name: "Coca-Cola" offerSame: true, price: 13.2, units: 24, img: "/images/cocacola.png", category: "Refrigerantes" },
+  { id: 2, name: "Coca-Cola Zero", offerSame: true, price: 13.2, units: 24, img: "/images/cocacola-zero.png", category: "Refrigerantes" },
+  { id: 3, name: "Lipton Limão", offerSame: true, price: 13.68, units: 24, img: "/images/lipton-limao.png", category: "Ice Tea" },
   { id: 4, name: "Lipton Pêssego", price: 13.68, units: 24, img: "/images/lipton-pessego.png", category: "Ice Tea" },
-  { id: 5, name: "Lipton Manga", price: 13.68, units: 24, img: "/images/lipton-manga.png", category: "Ice Tea" },
-  { id: 6, name: "7Up", price: 12.48, units: 24, img: "/images/7up.png", category: "Refrigerantes" },
-  { id: 7, name: "Guaraná", price: 13.2, units: 24, img: "/images/guarana.png", category: "Refrigerantes" },
-  { id: 8, name: "Água 33cl H2OPE Caramulo", price: 3.36, units: 24, img: "/images/agua-33cl.png", category: "Águas" },
-  { id: 9, name: "Água 50cl H2OPE Caramulo", price: 3.84, units: 24, img: "/images/agua-50cl.png", category: "Águas" },
-  { id: 10, name: "Água 1.5L H2OPE Caramulo", price: 1.74, units: 6, img: "/images/agua-15l.png", category: "Águas" },
-  { id: 11, name: "Água das Pedras", price: 10.32, units: 24, img: "/images/agua-pedras.png", category: "Águas" },
+  { id: 5, name: "Lipton Manga", offerSame: true, price: 13.68, units: 24, img: "/images/lipton-manga.png", category: "Ice Tea" },
+  { id: 6, name: "7Up", price: 12.48, offerSame: true, units: 24, img: "/images/7up.png", category: "Refrigerantes" },
+  { id: 7, name: "Guaraná", price: 13.2, offerSame: true, units: 24, img: "/images/guarana.png", category: "Refrigerantes" },
+  { id: 8, name: "Água 33cl H2OPE Caramulo", offerSame: true, price: 3.36, units: 24, img: "/images/agua-33cl.png", category: "Águas" },
+  { id: 9, name: "Água 50cl H2OPE Caramulo", price: 3.84, offerRevo: true, units: 24, img: "/images/agua-50cl.png", category: "Águas" },
+  { id: 10, name: "Água 1.5L H2OPE Caramulo", offerSame: true, price: 1.74, units: 6, img: "/images/agua-15l.png", category: "Águas" },
+  { id: 11, name: "Água das Pedras", offerSame: true, price: 10.32, units: 24, img: "/images/agua-pedras.png", category: "Águas" },
   { id: 12, name: "Água das Pedras Limão", price: 10.8, units: 24, img: "/images/pedras-limao.png", category: "Águas" },
-  { id: 13, name: "Revo", price: 8.13, promo: true, units: 24, img: "/images/revo.png", category: "Energéticas" },
+  { id: 13, name: "Revo", price: 8.13, offerSame: true, promo: true, units: 24, img: "/images/revo.png", category: "Energéticas" },
 
   // BREVE
-  { id: 14, name: "Red Bull", price: 22.8, units: 24, img: "/images/redbull.png", category: "Energéticas" },
-  { id: 15, name: "Fanta", price: 12.72, units: 24, img: "/images/fanta.png", category: "Refrigerantes" },
-  { id: 16, name: "Sumol Laranja", price: 13.92, units: 24, img: "/images/sumol-laranja.png", category: "Refrigerantes" },
-  { id: 17, name: "Sumol Ananás", price: 13.92, units: 24, img: "/images/sumol-ananas.png", category: "Refrigerantes" },
+  { id: 14, name: "Red Bull", price: 22.8, offerSame: true, units: 24, img: "/images/redbull.png", category: "Energéticas" },
+  { id: 15, name: "Fanta", price: 12.72, offerSame: true, units: 24, img: "/images/fanta.png", category: "Refrigerantes" },
+  { id: 16, name: "Sumol Laranja", price: 13.92, offerSame: true, units: 24, img: "/images/sumol-laranja.png", category: "Refrigerantes" },
+  { id: 17, name: "Sumol Ananás", price: 13.92, offerSame: true, units: 24, img: "/images/sumol-ananas.png", category: "Refrigerantes" },
 ];
 
 const PHONE = "351933499207";
@@ -580,6 +580,30 @@ export default function App() {
     🔥 PROMOÇÃO
   </div>
 )}
+{product.offerRevo && (
+  <div
+    style={{
+      color: colors.lime,
+      fontSize: 11,
+      fontWeight: 700,
+      marginBottom: 10,
+    }}
+  >
+    🎁 Oferta 1 Pack Revo na compra de 10 packs
+  </div>
+)}
+{product.offerSame && (
+  <div
+    style={{
+      color: colors.lime,
+      fontSize: 11,
+      fontWeight: 700,
+      marginBottom: 10,
+    }}
+  >
+    🎁 Oferta 1 pack na compra de 10
+  </div>
+)}
                           <div style={{ height: isMobile ? 150 : 220, display: "flex", alignItems: "center", justifyContent: "center", background: colors.panel, borderRadius: 16, border: `1px solid ${colors.border}`, marginBottom: 14 }}>
                             <img src={product.img} alt={product.name} loading="lazy" style={{ maxWidth: "100%", maxHeight: isMobile ? 120 : 190, objectFit: "contain", filter: "drop-shadow(0 24px 26px rgba(0,0,0,0.5))" }} />
                           </div>
@@ -639,8 +663,45 @@ export default function App() {
                           <div key={item.id} style={{ padding: 16, borderRadius: 14, background: colors.panel, border: `1px solid ${colors.border}` }}>
                             <div style={{ display: "flex", justifyContent: "space-between", gap: 10 }}>
                               <div>
-                                <div style={{ fontWeight: 700 }}>{item.name}</div>
-                                <div style={{ color: colors.muted, fontSize: 13 }}>Pack de {item.units} unidades</div>
+<div>
+  <div style={{ fontWeight: 700 }}>{item.name}</div>
+
+  {item.qty >= 10 && item.offerSame && (
+    <div
+      style={{
+        color: colors.lime,
+        fontSize: 12,
+        marginTop: 4,
+      }}
+    >
+      🎁 Oferta: {Math.floor(item.qty / 10)} pack(s)
+    </div>
+  )}
+
+  {item.offerRevo && item.qty >= 10 && (
+    <div
+      style={{
+        color: colors.lime,
+        fontSize: 12,
+        marginTop: 4,
+      }}
+    >
+      🎁 Oferta: {Math.floor(item.qty / 10)} Pack Revo
+    </div>
+  )}
+</div>                                <div style={{ color: colors.muted, fontSize: 13 }}>Pack de {item.units} unidades</div>
+                                {item.offerSame && (
+                                  <div
+                                    style={{
+                                      color: colors.lime,
+                                      fontSize: 11,
+                                      fontWeight: 700,
+                                      marginBottom: 10,
+                                    }}
+                                  >
+                                    🎁 Oferta 1 pack na compra de 10
+                                  </div>
+                                )}
                               </div>
                               <button onClick={() => removeItem(item.id)} style={{ background: "transparent", color: "#fca5a5", border: "none", cursor: "pointer" }}>Remover</button>
                             </div>
