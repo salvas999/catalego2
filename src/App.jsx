@@ -40,7 +40,7 @@ const PRODUCTS = [
   { id: 15, name: "Fanta", price: 12.72, offerSame: true, units: 24, img: "/images/fanta.png", category: "Refrigerantes" },
   { id: 16, name: "Sumol Laranja", price: 13.92,  units: 24, img: "/images/sumol-laranja.png", category: "Refrigerantes" },
   { id: 17, name: "Sumol Ananás", price: 13.92,  units: 24, img: "/images/sumol-ananas.png", category: "Refrigerantes" },
-  { id: 18, name: "Expositor ChupaChups",  promo: true, price: 25.00,  units: 1, img: "/images/chupas.png", category: "A Mais" },
+  { id: 18, name: "Expositor ChupaChups (200und)",  promo: true, price: 25.00,  units: 1, img: "/images/chupas.png", category: "A Mais" },
   { id: 19, name: "Nestea Limão", price: 5.50,  promo: true, units: 24, img: "/images/nestealimao.png", category: "Ice Tea", description: "⚠️ Promoção - validade termina este mês"},
 ];
 
