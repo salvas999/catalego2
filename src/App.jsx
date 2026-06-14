@@ -21,7 +21,7 @@ const Truck = (props) => <IconBase {...props}><path d="M3 7h11v8H3z" /><path d="
 const X = (props) => <IconBase {...props}><path d="M18 6 6 18" /><path d="m6 6 12 12" /></IconBase>;
 
 const PRODUCTS = [
-  { id: 1, name: "Coca-Cola", offerSame: true, price: 13.2, units: 24, img: "/images/cocacola.png", category: "Refrigerantes" },
+  { id: 1, name: "Coca-Cola", price: 13.2, units: 24, img: "/images/cocacola.png", category: "Refrigerantes" },
   { id: 2, name: "Coca-Cola Zero", offerSame: true, price: 13.2, units: 24, img: "/images/cocacola-zero.png", category: "Refrigerantes" },
   { id: 3, name: "Lipton Limão", offerSame: true, price: 13.68, units: 24, img: "/images/lipton-limao.png", category: "Ice Tea" },
   { id: 4, name: "Lipton Pêssego", price: 13.68, units: 24, img: "/images/lipton-pessego.png", category: "Ice Tea" },
@@ -31,7 +31,7 @@ const PRODUCTS = [
   { id: 8, name: "Água 33cl H2OPE Caramulo", offerSame: true, price: 3.36, units: 24, img: "/images/agua-33cl.png", category: "Águas" },
   { id: 9, name: "Água 50cl H2OPE Caramulo", price: 3.84, offerRevo: true, units: 24, img: "/images/agua-50cl.png", category: "Águas" },
   { id: 10, name: "Água 1.5L H2OPE Caramulo", offerSame: true, price: 1.74, units: 6, img: "/images/agua-15l.png", category: "Águas" },
-  { id: 11, name: "Água das Pedras", offerSame: true, price: 10.32, units: 24, img: "/images/agua-pedras.png", category: "Águas" },
+  { id: 11, name: "Água das Pedras", price: 10.32, units: 24, img: "/images/agua-pedras.png", category: "Águas" },
   { id: 12, name: "Água das Pedras Limão", price: 10.8, units: 24, img: "/images/pedras-limao.png", category: "Águas" },
   { id: 13, name: "Revo", price: 8.13, offerSame: true, promo: true, units: 24, img: "/images/revo.png", category: "Energéticas" },
 
