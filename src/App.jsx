@@ -33,7 +33,7 @@ const PRODUCTS = [
   { id: 10, name: "Água 1.5L H2OPE Caramulo", price: 1.74, units: 6, img: "/images/agua-15l.png", category: "Águas" },
   { id: 11, name: "Água das Pedras", price: 10.32, units: 24, img: "/images/agua-pedras.png", category: "Águas" },
   { id: 12, name: "Água das Pedras Limão", price: 10.8, units: 24, img: "/images/pedras-limao.png", category: "Águas" },
-  { id: 13, name: "Revo", price: 10.32, units: 24, img: "/images/revo.png", category: "Energéticas" },
+  { id: 13, name: "Revo", price: 8.13, promo: true, units: 24, img: "/images/revo.png", category: "Energéticas" },
 
   // BREVE
   { id: 14, name: "Red Bull", price: 22.8, units: 24, img: "/images/redbull.png", category: "Energéticas" },
@@ -564,6 +564,22 @@ export default function App() {
 
                       return (
                         <div key={product.id} style={{ ...shellCard, padding: isMobile ? 14 : 20, background: colors.panelSoft, borderRadius: 18 }}>
+                          {product.promo && (
+  <div
+    style={{
+      background: colors.lime,
+      color: "#000",
+      fontWeight: 900,
+      fontSize: 11,
+      padding: "6px 10px",
+      borderRadius: 999,
+      display: "inline-block",
+      marginBottom: 10,
+    }}
+  >
+    🔥 PROMOÇÃO
+  </div>
+)}
                           <div style={{ height: isMobile ? 150 : 220, display: "flex", alignItems: "center", justifyContent: "center", background: colors.panel, borderRadius: 16, border: `1px solid ${colors.border}`, marginBottom: 14 }}>
                             <img src={product.img} alt={product.name} loading="lazy" style={{ maxWidth: "100%", maxHeight: isMobile ? 120 : 190, objectFit: "contain", filter: "drop-shadow(0 24px 26px rgba(0,0,0,0.5))" }} />
                           </div>
