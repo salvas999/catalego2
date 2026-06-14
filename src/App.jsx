@@ -21,7 +21,7 @@ const Truck = (props) => <IconBase {...props}><path d="M3 7h11v8H3z" /><path d="
 const X = (props) => <IconBase {...props}><path d="M18 6 6 18" /><path d="m6 6 12 12" /></IconBase>;
 
 const PRODUCTS = [
-  { id: 1, name: "Coca-Cola", price: 13.2, units: 24, img: "/images/cocacola.png", category: "Refrigerantes" },
+  { id: 1, name: "Coca-Cola", offerSame: true, price: 13.2, units: 24, img: "/images/cocacola.png", category: "Refrigerantes" },
   { id: 2, name: "Coca-Cola Zero", offerSame: true, price: 13.2, units: 24, img: "/images/cocacola-zero.png", category: "Refrigerantes" },
   { id: 3, name: "Lipton Limão", offerSame: true, price: 13.68, units: 24, img: "/images/lipton-limao.png", category: "Ice Tea" },
   { id: 4, name: "Lipton Pêssego", price: 13.68, units: 24, img: "/images/lipton-pessego.png", category: "Ice Tea" },
