@@ -25,7 +25,7 @@ const PRODUCTS = [
   { id: 2, name: "Coca-Cola Zero", offerSame: true, price: 13.2, units: 24, img: "/images/cocacola-zero.png", category: "Refrigerantes" },
   { id: 3, name: "Lipton Limão", offerSame: true, price: 13.68, units: 24, img: "/images/lipton-limao.png", category: "Ice Tea" },
   { id: 4, name: "Lipton Pêssego", price: 13.68, units: 24, img: "/images/lipton-pessego.png", category: "Ice Tea" },
-  { id: 5, name: "Lipton Manga", offerSame: true, price: 13.68, units: 24, img: "/images/lipton-manga.png", category: "Ice Tea" },
+  { id: 5, name: "Lipton Manga", price: 13.68, units: 24, img: "/images/lipton-manga.png", category: "Ice Tea" },
   { id: 6, name: "7Up", price: 12.48, offerSame: true, units: 24, img: "/images/7up.png", category: "Refrigerantes" },
   { id: 7, name: "Guaraná", price: 13.2, offerSame: true, units: 24, img: "/images/guarana.png", category: "Refrigerantes" },
   { id: 8, name: "Água 33cl H2OPE Caramulo", offerSame: true, price: 3.36, units: 24, img: "/images/agua-33cl.png", category: "Águas" },
@@ -36,10 +36,12 @@ const PRODUCTS = [
   { id: 13, name: "Revo", price: 8.13, offerSame: true, promo: true, units: 24, img: "/images/revo.png", category: "Energéticas" },
 
   // BREVE
-  { id: 14, name: "Red Bull", price: 22.8, offerSame: true, units: 24, img: "/images/redbull.png", category: "Energéticas" },
+  { id: 14, name: "Red Bull", price: 22.8, units: 24, img: "/images/redbull.png", category: "Energéticas" },
   { id: 15, name: "Fanta", price: 12.72, offerSame: true, units: 24, img: "/images/fanta.png", category: "Refrigerantes" },
-  { id: 16, name: "Sumol Laranja", price: 13.92, offerSame: true, units: 24, img: "/images/sumol-laranja.png", category: "Refrigerantes" },
-  { id: 17, name: "Sumol Ananás", price: 13.92, offerSame: true, units: 24, img: "/images/sumol-ananas.png", category: "Refrigerantes" },
+  { id: 16, name: "Sumol Laranja", price: 13.92,  units: 24, img: "/images/sumol-laranja.png", category: "Refrigerantes" },
+  { id: 17, name: "Sumol Ananás", price: 13.92,  units: 24, img: "/images/sumol-ananas.png", category: "Refrigerantes" },
+  { id: 18, name: "Expositor ChupaChups",  promo: true, price: 25.00,  units: 1, img: "/images/chupas.png", category: "A Mais" },
+  { id: 19, name: "Nestea Limão", price: 5.50,  promo: true, units: 24, img: "/images/nestealimao.png", category: "Ice Tea", description: "⚠️ Promoção - validade termina este mês"},
 ];
 
 const PHONE = "351933499207";
@@ -153,14 +155,27 @@ export default function App() {
 
     let message = "Olá, quero fazer uma encomenda:\n\n";
 
-    cart.forEach((item) => {
-      const subtotalWithoutVat = item.price * item.qty;
-      const ivaRate = item.category === "Águas" ? 0.13 : IVA_DEFAULT;
-      const subtotalWithVat = subtotalWithoutVat * (1 + ivaRate);
-      message += `• ${item.name} — ${item.qty} pack(s) de ${item.units} unidades\n`;
-      message += `  Sem IVA: ${formatPrice(subtotalWithoutVat)}\n`;
-      message += `  Com IVA: ${formatPrice(subtotalWithVat)}\n\n`;
-    });
+  cart.forEach((item) => {
+  const subtotalWithoutVat = item.price * item.qty;
+  const ivaRate = item.category === "Águas" ? 0.13 : IVA_DEFAULT;
+  const subtotalWithVat = subtotalWithoutVat * (1 + ivaRate);
+
+  message += `• ${item.name} — ${item.qty} pack(s) de ${item.units} unidades\n`;
+  message += `  Sem IVA: ${formatPrice(subtotalWithoutVat)}\n`;
+  message += `  Com IVA: ${formatPrice(subtotalWithVat)}\n`;
+
+  if (item.offerSame && item.qty >= 10) {
+    const freeQty = Math.floor(item.qty / 10);
+    message += `  🎁 OFERTA: ${freeQty} pack(s) de ${item.name}\n`;
+  }
+
+  if (item.offerRevo && item.qty >= 10) {
+    const freeRevo = Math.floor(item.qty / 10);
+    message += `  🎁 OFERTA: ${freeRevo} pack(s) REVO\n`;
+  }
+
+  message += `\n`;
+});
 
     message += `Total sem IVA: ${formatPrice(totalWithoutVat)}\n`;
     message += `Total com IVA: ${formatPrice(totalWithVat)}\n`;
