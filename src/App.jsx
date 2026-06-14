@@ -50,6 +50,23 @@ const ORDER_PHONE = PHONE_2;
 const IVA_DEFAULT = 0.23;
 const CATEGORIES = ["Todos", ...new Set(PRODUCTS.map((p) => p.category))];
 
+const CAMPAIGNS = [
+  {
+    title: "⚡ REVO A 10€",
+    description: "Pack Revo por apenas 10,00€ com IVA incluído.",
+  },
+  {
+    title: "🎁 OFERTA REVO",
+    description:
+      "Na compra de 10 packs de Água 50cl H2OPE, oferta de 1 pack de Revo.",
+  },
+  {
+    title: "🔥 10 + 1 GRÁTIS",
+    description:
+      "Na compra de 10 packs do mesmo produto, oferta de 1 pack igual.",
+  },
+];
+
 const colors = {
   bg: "#030303",
   panel: "#070707",
@@ -189,6 +206,21 @@ export default function App() {
 
       <div style={{ minHeight: "100vh", background: colors.bg, color: colors.text, fontFamily: "Inter, Arial, sans-serif" }}>
         <div style={{ maxWidth: 1420, margin: "0 auto", padding: isMobile ? 12 : 18 }}>
+          
+          <div
+  style={{
+    background: colors.lime,
+    color: "#000",
+    textAlign: "center",
+    fontWeight: 900,
+    padding: "10px 15px",
+    borderRadius: 12,
+    marginBottom: 15,
+  }}
+>
+  🚚 ENTREGA GRATUITA • ⚡ REVO A 10€ C/ IVA • 🎁 OFERTA 10+1
+</div>
+
           <header
             style={{
               display: "flex",
@@ -287,6 +319,73 @@ export default function App() {
               </>
             )}
           </header>
+          <section
+  style={{
+    marginTop: 24,
+    display: "grid",
+    gap: 18,
+  }}
+>
+  <div
+    style={{
+      textAlign: "center",
+      marginBottom: 10,
+    }}
+  >
+    <h2
+      style={{
+        color: colors.lime,
+        fontWeight: 900,
+        fontSize: isMobile ? 32 : 48,
+        letterSpacing: "-0.05em",
+      }}
+    >
+      CAMPANHAS PACK24
+    </h2>
+  </div>
+
+  <div
+    style={{
+      display: "grid",
+      gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
+      gap: 18,
+    }}
+  >
+    {CAMPAIGNS.map((campaign) => (
+      <div
+        key={campaign.title}
+        style={{
+          ...shellCard,
+          padding: 24,
+          background:
+            "linear-gradient(135deg, rgba(184,212,0,0.18), rgba(184,212,0,0.05))",
+          border: `1px solid ${colors.limeBorder}`,
+        }}
+      >
+        <h3
+          style={{
+            color: colors.lime,
+            fontSize: 24,
+            fontWeight: 900,
+            marginBottom: 12,
+          }}
+        >
+          {campaign.title}
+        </h3>
+
+        <p
+          style={{
+            color: colors.text,
+            lineHeight: 1.7,
+            fontSize: 15,
+          }}
+        >
+          {campaign.description}
+        </p>
+      </div>
+    ))}
+  </div>
+</section>
 
           {currentPage === "inicio" ? (
             <>
