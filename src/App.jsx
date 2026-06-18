@@ -21,7 +21,7 @@ const Truck = (props) => <IconBase {...props}><path d="M3 7h11v8H3z" /><path d="
 const X = (props) => <IconBase {...props}><path d="M18 6 6 18" /><path d="m6 6 12 12" /></IconBase>;
 
 const PRODUCTS = [
-  { id: 1, name: "Coca-Cola", offerSame: true, price: 13.2, units: 24, img: "/images/cocacola.png", category: "Refrigerantes" },
+  { id: 1, name: "Coca-Cola", price: 13.2, units: 24, img: "/images/cocacola.png", category: "Refrigerantes" },
   { id: 2, name: "Coca-Cola Zero", offerSame: true, price: 13.2, units: 24, img: "/images/cocacola-zero.png", category: "Refrigerantes" },
   { id: 3, name: "Lipton Limão", offerSame: true, price: 13.68, units: 24, img: "/images/lipton-limao.png", category: "Ice Tea" },
   { id: 4, name: "Lipton Pêssego", price: 13.68, units: 24, img: "/images/lipton-pessego.png", category: "Ice Tea" },
@@ -41,7 +41,13 @@ const PRODUCTS = [
   { id: 16, name: "Sumol Laranja", price: 13.92,  units: 24, img: "/images/sumol-laranja.png", category: "Refrigerantes" },
   { id: 17, name: "Sumol Ananás", price: 13.92,  units: 24, img: "/images/sumol-ananas.png", category: "Refrigerantes" },
   { id: 18, name: "Expositor ChupaChups (200und)",  promo: true, price: 25.00,  units: 1, img: "/images/chupas.png", category: "A Mais" },
-  { id: 19, name: "Nestea Limão", price: 5.00,  promo: true, units: 24, img: "/images/nestealimao.png", category: "Ice Tea", description: "⚠️ Promoção - validade termina este mês"},
+  { id: 19, name: "Nestea Limão", price: 5.50,  promo: true, units: 24, img: "/images/nestealimao.png", category: "Ice Tea", description: "⚠️ Promoção - validade termina este mês"},
+  { id: 20, name: "Sagres Média 33cl)", price: 14.88,  units: 24, img: "/images/sagres-media.png", category: "Cerveja" },
+  { id: 21, name: "Super Bock Média 33cl", price: 14.16,  units: 24, img: "/images/superbock-media.png", category: "Cerveja" },
+  { id: 22, name: "Sagres Mini 20cl", price: 10.32,  units: 30, img: "/images/sagres-mini.png", category: "Cerveja" },
+  { id: 23, name: "Super Bock Mini 20cl", price: 9.36,  units: 30, img: "/images/superbock-mini.png", category: "Cerveja" },
+  { id: 24, name: "Sagres 1L", price: 8.34,  units: 6, img: "/images/sagres-1l.png", category: "Cerveja" },
+  { id: 25, name: "Heineken 25cl", price: 12.48,  units: 24, img: "/images/heineken-25cl.png", category: "Cerveja" },
 ];
 
 const PHONE = "351933499207";
