@@ -23,9 +23,9 @@ const X = (props) => <IconBase {...props}><path d="M18 6 6 18" /><path d="m6 6 1
 const PRODUCTS = [
   { id: 1, name: "Coca-Cola", price: 13.2, units: 24, img: "/images/cocacola.png", category: "Refrigerantes" },
   { id: 2, name: "Coca-Cola Zero", offerSame: true, price: 13.2, units: 24, img: "/images/cocacola-zero.png", category: "Refrigerantes" },
-  { id: 3, name: "Lipton Limão", offerSame: true, price: 13.68, units: 24, img: "/images/lipton-limao.png", category: "Ice Tea" },
-  { id: 4, name: "Lipton Pêssego", price: 13.68, volta: true, units: 24, img: "/images/lipton-pessego.png", category: "Ice Tea" },
-  { id: 5, name: "Lipton Manga", price: 13.68, units: 24, img: "/images/lipton-manga.png", category: "Ice Tea" },
+  { id: 3, name: "Lipton Limão", offerSame: true, price: 13.92, units: 24, img: "/images/lipton-limao.png", category: "Ice Tea" },
+  { id: 4, name: "Lipton Pêssego", price: 13.92, volta: true, units: 24, img: "/images/lipton-pessego.png", category: "Ice Tea" },
+  { id: 5, name: "Lipton Manga", price: 13.92, units: 24, img: "/images/lipton-manga.png", category: "Ice Tea" },
   { id: 6, name: "7Up", price: 12.48, offerSame: true, units: 24, img: "/images/7up.png", category: "Refrigerantes" },
   { id: 7, name: "Guaraná", price: 13.2, offerSame: true, units: 24, img: "/images/guarana.png", category: "Refrigerantes" },
   { id: 8, name: "Água 33cl H2OPE Caramulo", offerSame: true, price: 3.36, units: 24, img: "/images/agua-33cl.png", category: "Águas" },
