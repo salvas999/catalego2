@@ -33,7 +33,7 @@ const PRODUCTS = [
   { id: 10, name: "Água 1.5L H2OPE Caramulo", offerSame: true, price: 1.74, units: 6, img: "/images/agua-15l.png", category: "Águas" },
   { id: 11, name: "Água das Pedras", price: 10.32, units: 24, img: "/images/agua-pedras.png", category: "Águas" },
   { id: 12, name: "Água das Pedras Limão", price: 10.8, units: 24, img: "/images/pedras-limao.png", category: "Águas" },
-  { id: 13, name: "Revo", price: 8.13, offerSame: true, promo: true, units: 24, img: "/images/revo.png", category: "Energéticas" },
+  { id: 13, name: "Revo", price: 9.6, offerSame: true, promo: true, units: 24, img: "/images/revo.png", category: "Energéticas" },
 
   // BREVE
   { id: 14, name: "Red Bull", price: 22.8, units: 24, img: "/images/redbull.png", category: "Energéticas" },
@@ -230,19 +230,7 @@ export default function App() {
       <div style={{ minHeight: "100vh", background: colors.bg, color: colors.text, fontFamily: "Inter, Arial, sans-serif" }}>
         <div style={{ maxWidth: 1420, margin: "0 auto", padding: isMobile ? 12 : 18 }}>
           
-          <div
-  style={{
-    background: colors.lime,
-    color: "#000",
-    textAlign: "center",
-    fontWeight: 900,
-    padding: "10px 15px",
-    borderRadius: 12,
-    marginBottom: 15,
-  }}
->
-  🚚 ENTREGA GRATUITA • ⚡ REVO A 10€ C/ IVA • 🎁 OFERTA 10+1
-</div>
+  
 
           <header
             style={{
