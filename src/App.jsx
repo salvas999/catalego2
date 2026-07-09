@@ -44,7 +44,7 @@ const PRODUCTS = [
   { id: 20, name: "Sagres Média 33cl)", price: 14.88,  units: 24, img: "/images/sagres-media.png", category: "Cerveja" },
   { id: 21, name: "Super Bock Média 33cl", price: 14.16,  units: 24, img: "/images/superbock-media.png", category: "Cerveja" },
   { id: 22, name: "Sagres Mini 25cl", price: 12.9,  units: 30, img: "/images/sagres-mini.png", category: "Cerveja" },
-  { id: 23, name: "Super Bock Mini 20cl", price: 9.36,  units: 30, img: "/images/superbock-mini.png", category: "Cerveja" },
+  { id: 23, name: "Super Bock Mini 20cl", price: 9.36,  units: 24, img: "/images/superbock-mini.png", category: "Cerveja" },
   { id: 24, name: "Sagres 1L", price: 8.34,  units: 6, img: "/images/sagres-1l.png", category: "Cerveja" },
   { id: 25, name: "Heineken 25cl", price: 12.48,  units: 24, img: "/images/heineken-25cl.png", category: "Cerveja" },
   { id: 26, name: "Frize Limão", price: 11.04, units: 24, img: "/images/frize-limao.png", category: "Àguas" },
