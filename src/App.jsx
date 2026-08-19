@@ -157,6 +157,9 @@ export default function App() {
     const ivaRate = item.category === "Águas" ? 0.13 : IVA_DEFAULT;
     return sum + item.price * item.qty * (1 + ivaRate);
   }, 0);
+  const ivaRate = item.category === "Leite" ? 0.06 : IVA_DEFAULT;
+    return sum + item.price * item.qty * (1 + ivaRate);
+  }, 0);
 
   const sendWhatsApp = () => {
     if (!cart.length) return;
