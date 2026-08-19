@@ -33,21 +33,23 @@ const PRODUCTS = [
   { id: 10, name: "Água 1.5L H2OPE Caramulo", offerSame: true, price: 1.74, units: 6, img: "/images/agua-15l.png", category: "Águas" },
   { id: 11, name: "Água das Pedras", price: 10.32, units: 24, img: "/images/agua-pedras.png", category: "Águas" },
   { id: 12, name: "Água das Pedras Limão", price: 10.8, units: 24, img: "/images/pedras-limao.png", category: "Águas" },
-  { id: 13, name: "Revo", price: 9.6, offerSame: true, promo: true, units: 24, img: "/images/revo.png", category: "Energéticas" },
+  { id: 13, name: "Revo", price: 9.6, offerSame: true, promo: false, units: 24, img: "/images/revo.png", category: "Energéticas" },
 
   // BREVE
   { id: 14, name: "Red Bull", price: 22.8, units: 24, img: "/images/redbull.png", category: "Energéticas" },
   { id: 15, name: "Fanta", price: 12.72, offerSame: true, units: 24, img: "/images/fanta.png", category: "Refrigerantes" },
   { id: 16, name: "Sumol Laranja", price: 13.92, volta: true,  units: 24, img: "/images/sumol-laranja.png", category: "Refrigerantes" },
   { id: 17, name: "Sumol Ananás", price: 13.92,  units: 24, img: "/images/sumol-ananas.png", category: "Refrigerantes" },
-  { id: 18, name: "Expositor ChupaChups (200und)",  promo: true, price: 25.00,  units: 1, img: "/images/chupas.png", category: "A Mais" },
+  { id: 18, name: "Expositor ChupaChups (200und)",  promo: false, price: 25.00,  units: 1, img: "/images/chupas.png", category: "A Mais" },
   { id: 20, name: "Sagres Média 33cl)", price: 14.88,  units: 24, img: "/images/sagres-media.png", category: "Cerveja" },
   { id: 21, name: "Super Bock Média 33cl", price: 14.16,  units: 24, img: "/images/superbock-media.png", category: "Cerveja" },
   { id: 22, name: "Sagres Mini 25cl", price: 12.9,  units: 30, img: "/images/sagres-mini.png", category: "Cerveja" },
   { id: 23, name: "Super Bock Mini 20cl", price: 9.36,  units: 24, img: "/images/superbock-mini.png", category: "Cerveja" },
   { id: 24, name: "Sagres 1L", price: 8.34,  units: 6, img: "/images/sagres-1l.png", category: "Cerveja" },
   { id: 25, name: "Heineken 25cl", price: 12.48,  units: 24, img: "/images/heineken-25cl.png", category: "Cerveja" },
-  { id: 26, name: "Frize Limão", price: 11.04, units: 24, img: "/images/frize-limao.png", category: "Àguas" },
+  { id: 26, name: "Frize Limão", price: 11.04, units: 24, img: "/images/frize-limao.png", category: "Águas" },
+  { id: 27, name: "UCAL Leite Com Chocolate", price: 14,74, units: 24, img: "/images/ucal.png", category: "A Mais" },
+
 ];
 
 const PHONE = "351933499207";
