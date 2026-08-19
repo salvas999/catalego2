@@ -152,15 +152,22 @@ export default function App() {
 
   const clearCart = () => setCart([]);
 
-  const totalWithoutVat = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-  const totalWithVat = cart.reduce((sum, item) => {
-    const ivaRate = item.category === "Águas" ? 0.13 : IVA_DEFAULT;
-    return sum + item.price * item.qty * (1 + ivaRate);
-  }, 0);
-  const ivaRate = item.category === "Leite" ? 0.06 : IVA_DEFAULT;
-    return sum + item.price * item.qty * (1 + ivaRate);
-  }, 0);
+  const totalWithoutVat = cart.reduce(
+  (sum, item) => sum + item.price * item.qty,
+  0
+);
 
+const totalWithVat = cart.reduce((sum, item) => {
+  let ivaRate = IVA_DEFAULT;
+
+  if (item.category === "Águas") {
+    ivaRate = 0.13;
+  } else if (item.category === "Leite") {
+    ivaRate = 0.06;
+  }
+
+  return sum + item.price * item.qty * (1 + ivaRate);
+}, 0);
   const sendWhatsApp = () => {
     if (!cart.length) return;
 
