@@ -48,7 +48,7 @@ const PRODUCTS = [
   { id: 24, name: "Sagres 1L", price: 8.34,  units: 6, img: "/images/sagres-1l.png", category: "Cerveja" },
   { id: 25, name: "Heineken 25cl", price: 12.48,  units: 24, img: "/images/heineken-25cl.png", category: "Cerveja" },
   { id: 26, name: "Frize Limão", price: 11.04, units: 24, img: "/images/frize-limao.png", category: "Águas" },
-  { id: 27, name: "UCAL Leite Com Chocolate", price: 14,74, units: 24, img: "/images/ucal.png", category: "A Mais" },
+  { id: 27, name: "UCAL Leite Com Chocolate", price: 14.64, units: 24, img: "/images/ucal.png", category: "A Mais" },
 ];
 
 const PHONE = "351933499207";
