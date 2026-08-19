@@ -512,12 +512,19 @@ const totalWithVat = cart.reduce((sum, item) => {
                   </div>
 
                   <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(auto-fit, minmax(220px, 1fr))", gap: 18 }}>
-                    {filteredProducts.map((product) => {
-                      const priceWithoutVat = product.price;
-                      const ivaRate = product.category === "Águas" ? 0.13 : IVA_DEFAULT;
-                      const priceWithVat = product.price * (1 + ivaRate);
+  {filteredProducts.map((product) => {
+    const priceWithoutVat = product.price;
 
-                      return (
+    const ivaRate =
+      product.category === "Águas"
+        ? 0.13
+        : product.category === "Leite"
+        ? 0.06
+        : IVA_DEFAULT;
+
+    const priceWithVat = product.price * (1 + ivaRate);
+
+    return (
                         <div key={product.id} style={{ ...shellCard, padding: isMobile ? 14 : 20, background: colors.panelSoft, borderRadius: 18 }}>
  
  {product.volta && (
@@ -602,11 +609,18 @@ const totalWithVat = cart.reduce((sum, item) => {
                       </div>
                     ) : (
                       cart.map((item) => {
-                        const subtotalWithoutVat = item.price * item.qty;
-      const ivaRate = item.category === "Águas" ? 0.13 : IVA_DEFAULT;
-      const subtotalWithVat = subtotalWithoutVat * (1 + ivaRate);
+  const subtotalWithoutVat = item.price * item.qty;
 
-                        return (
+  const ivaRate =
+    item.category === "Águas"
+      ? 0.13
+      : item.category === "Leite"
+      ? 0.06
+      : IVA_DEFAULT;
+
+  const subtotalWithVat = subtotalWithoutVat * (1 + ivaRate);
+
+  return (
                           <div key={item.id} style={{ padding: 16, borderRadius: 14, background: colors.panel, border: `1px solid ${colors.border}` }}>
                             <div style={{ display: "flex", justifyContent: "space-between", gap: 10 }}>
                               <div>
