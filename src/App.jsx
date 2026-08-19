@@ -32,7 +32,7 @@ const PRODUCTS = [
   { id: 9, name: "Água 50cl H2OPE Caramulo", price: 3.84, offerRevo: true, units: 24, img: "/images/agua-50cl.png", category: "Águas" },
   { id: 10, name: "Água 1.5L H2OPE Caramulo", offerSame: true, price: 1.74, units: 6, img: "/images/agua-15l.png", category: "Águas" },
   { id: 11, name: "Água das Pedras", price: 10.32, units: 24, img: "/images/agua-pedras.png", category: "Águas" },
-  { id: 12, name: "Água das Pedras Limão", price: 10.8, units: 24, img: "/images/pedras-limao.png", category: "Águas" },
+  { id: 12, name: "Água das Pedras Limão", price: 10.8, units: 24, img: "/images/pedras-limao.png", category: "Aguas" },
   { id: 13, name: "Revo", price: 9.6, offerSame: true, promo: false, units: 24, img: "/images/revo.png", category: "Energéticas" },
 
   // BREVE
@@ -47,7 +47,7 @@ const PRODUCTS = [
   { id: 23, name: "Super Bock Mini 20cl", price: 9.36,  units: 24, img: "/images/superbock-mini.png", category: "Cerveja" },
   { id: 24, name: "Sagres 1L", price: 8.34,  units: 6, img: "/images/sagres-1l.png", category: "Cerveja" },
   { id: 25, name: "Heineken 25cl", price: 12.48,  units: 24, img: "/images/heineken-25cl.png", category: "Cerveja" },
-  { id: 26, name: "Frize Limão", price: 11.04, units: 24, img: "/images/frize-limao.png", category: "Águas" },
+  { id: 26, name: "Frize Limão", price: 11.04, units: 24, img: "/images/frize-limao.png", category: "Aguas" },
   { id: 27, name: "UCAL Leite Com Chocolate", price: 14.64, units: 24, img: "/images/ucal.png", category: "A Mais" },
 ];
 
