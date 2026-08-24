@@ -23,14 +23,14 @@ const X = (props) => <IconBase {...props}><path d="M18 6 6 18" /><path d="m6 6 1
 const PRODUCTS = [
   { id: 1, name: "Coca-Cola", price: 13.2, units: 24, img: "/images/cocacola.png", category: "Refrigerantes" },
   { id: 2, name: "Coca-Cola Zero", offerSame: true, price: 13.2, units: 24, img: "/images/cocacola-zero.png", category: "Refrigerantes" },
-  { id: 3, name: "Lipton Limão", offerSame: true, price: 13.92, units: 24, img: "/images/lipton-limao.png", category: "Ice Tea" },
+  { id: 3, name: "Lipton Limão", offerSame: true, volta: true, price: 13.92, units: 24, img: "/images/lipton-limao.png", category: "Ice Tea" },
   { id: 4, name: "Lipton Pêssego", price: 13.92, volta: true, units: 24, img: "/images/lipton-pessego.png", category: "Ice Tea" },
-  { id: 5, name: "Lipton Manga", price: 13.92, units: 24, img: "/images/lipton-manga.png", category: "Ice Tea" },
+  { id: 5, name: "Lipton Manga", price: 13.92, volta: true, units: 24, img: "/images/lipton-manga.png", category: "Ice Tea" },
   { id: 6, name: "7Up", price: 12.48, offerSame: true, units: 24, img: "/images/7up.png", category: "Refrigerantes" },
-  { id: 7, name: "Guaraná", price: 13.2, offerSame: true, units: 24, img: "/images/guarana.png", category: "Refrigerantes" },
+  { id: 7, name: "Guaraná", price: 13.2, volta: true, offerSame: true, units: 24, img: "/images/guarana.png", category: "Refrigerantes" },
   { id: 8, name: "Água 33cl H2OPE Caramulo", offerSame: true, price: 3.36, units: 24, img: "/images/agua-33cl.png", category: "Águas" },
-  { id: 9, name: "Água 50cl H2OPE Caramulo", price: 3.84, offerRevo: true, units: 24, img: "/images/agua-50cl.png", category: "Águas" },
-  { id: 10, name: "Água 1.5L H2OPE Caramulo", offerSame: true, price: 1.74, units: 6, img: "/images/agua-15l.png", category: "Águas" },
+  { id: 9, name: "Água 50cl H2OPE Caramulo", price: 3.84, volta: true, offerRevo: true, units: 24, img: "/images/agua-50cl.png", category: "Águas" },
+  { id: 10, name: "Água 1.5L H2OPE Caramulo", offerSame: true, volta: true, price: 1.74, units: 6, img: "/images/agua-15l.png", category: "Águas" },
   { id: 11, name: "Água das Pedras", price: 10.32, units: 24, img: "/images/agua-pedras.png", category: "Águas" },
   { id: 12, name: "Água das Pedras Limão", price: 10.8, units: 24, img: "/images/pedras-limao.png", category: "Aguas Sabores" },
   { id: 13, name: "Revo", price: 9.6, offerSame: true, promo: false, units: 24, img: "/images/revo.png", category: "Energéticas" },
@@ -39,7 +39,7 @@ const PRODUCTS = [
   { id: 14, name: "Red Bull", price: 22.8, units: 24, img: "/images/redbull.png", category: "Energéticas" },
   { id: 15, name: "Fanta", price: 12.72, offerSame: true, units: 24, img: "/images/fanta.png", category: "Refrigerantes" },
   { id: 16, name: "Sumol Laranja", price: 13.92, volta: true,  units: 24, img: "/images/sumol-laranja.png", category: "Refrigerantes" },
-  { id: 17, name: "Sumol Ananás", price: 13.92,  units: 24, img: "/images/sumol-ananas.png", category: "Refrigerantes" },
+  { id: 17, name: "Sumol Ananás", price: 13.92, volta: true, units: 24, img: "/images/sumol-ananas.png", category: "Refrigerantes" },
   { id: 18, name: "Expositor ChupaChups (200und)",  promo: false, price: 25.00,  units: 1, img: "/images/chupas.png", category: "A Mais" },
   { id: 20, name: "Sagres Média 33cl)", price: 14.88,  units: 24, img: "/images/sagres-media.png", category: "Cerveja" },
   { id: 21, name: "Super Bock Média 33cl", price: 14.16,  units: 24, img: "/images/superbock-media.png", category: "Cerveja" },
@@ -59,22 +59,6 @@ const ORDER_PHONE = PHONE_2;
 const IVA_DEFAULT = 0.23;
 const CATEGORIES = ["Todos", ...new Set(PRODUCTS.map((p) => p.category))];
 
-const CAMPAIGNS = [
-  {
-    title: "⚡ REVO A 10€",
-    description: "Pack Revo por apenas 10,00€ com IVA incluído.",
-  },
-  {
-    title: "🎁 OFERTA REVO",
-    description:
-      "Na compra de 15 packs de Água 50cl H2OPE, oferta de 1 pack de Revo.",
-  },
-  {
-    title: "🔥 10 + 1 GRÁTIS",
-    description:
-      "Na compra de 10 packs do mesmo produto, oferta de 1 pack igual.",
-  },
-];
 
 const colors = {
   bg: "#030303",
