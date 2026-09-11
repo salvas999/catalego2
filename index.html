@@ -1,43 +1,202 @@
-<!DOCTYPE html>
-<html lang="pt">
+<!doctype html>
+<html lang="pt-PT">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- TÍTULO (aparece no Google) -->
-    <title>PACK24 | Fornecimento de Bebidas para Negócios</title>
-
-    <!-- DESCRIÇÃO (aparece no Google) -->
+    <meta name="theme-color" content="#0a0a0a" />
     <meta
       name="description"
-      content="Distribuição de bebidas em packs de 24 unidades para cafés, bares e restaurantes. Entrega rápida na Costa da Caparica e Margem Sul. PACK24."
+      content="PACK24 — distribuição de bebidas para estabelecimentos na Margem Sul. Escolha os produtos e prepare a encomenda por WhatsApp."
     />
-
-    <!-- KEYWORDS (extra SEO) -->
-    <meta
-      name="keywords"
-      content="bebidas, distribuição, packs 24, restaurantes, cafés, fornecedores bebidas, margem sul, pack24"
+    <title>PACK24 — Distribuição de bebidas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Manrope:wght@700;800&amp;display=swap"
+      rel="stylesheet"
     />
-
-    <!-- FAVICON (logo no browser/google) -->
-    <link rel="icon" type="image/png" href="/images/logo.png" />
-
-    <!-- OPEN GRAPH (quando partilhas link no WhatsApp/Instagram) -->
-    <meta property="og:title" content="PACK24" />
-    <meta
-      property="og:description"
-      content="Fornecimento de bebidas para o seu negócio com entrega rápida."
-    />
-    <meta property="og:image" content="https://pack24.pt/images/logo.png" />
-    <meta property="og:url" content="https://pack24.pt" />
-    <meta property="og:type" content="website" />
-
-    <!-- CORES MOBILE -->
-    <meta name="theme-color" content="#000000" />
+    <link rel="stylesheet" href="styles.css" />
   </head>
-
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <header class="topbar">
+      <a class="brand" href="#inicio" aria-label="PACK24, voltar ao início">
+        <span class="brand-main">PACK<span>24</span></span>
+        <span class="brand-sub">DISTRIBUIÇÃO<sup>®</sup></span>
+      </a>
+      <button class="cart-trigger cart-trigger--top" type="button" data-open-cart aria-label="Abrir pedido">
+        <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 3h2l2.4 11.3a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L20.5 7H6"/><circle cx="10" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>
+        <span>Pedido</span>
+        <strong data-cart-count>0</strong>
+      </button>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio">
+        <div class="hero-copy">
+          <div class="eyebrow"><i></i> Fornecedor local para empresas</div>
+          <h1>Distribuição de bebidas para <em>o seu negócio.</em></h1>
+          <p>Preços competitivos, serviço próximo e entrega direta para cafés, restaurantes, bares e eventos na Margem Sul.</p>
+          <div class="hero-actions">
+            <a class="primary-action" href="#catalogo">
+              Começar encomenda
+              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+            </a>
+            <a class="secondary-action" href="https://wa.me/351938113585" target="_blank" rel="noreferrer">Falar connosco</a>
+          </div>
+          <ul class="trust-list" aria-label="Vantagens">
+            <li><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg> Preços transparentes</li>
+            <li><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg> Entrega local</li>
+            <li><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg> Pedido por WhatsApp</li>
+          </ul>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="route-line route-line--one"></div>
+          <div class="route-line route-line--two"></div>
+          <div class="hero-card">
+            <span class="hero-card-label">REPOSIÇÃO SEM COMPLICAÇÕES</span>
+            <strong>Escolhe.<br />Confirma.<br />Recebe.</strong>
+            <small>Encomenda preparada online<br />e confirmada por WhatsApp.</small>
+          </div>
+          <div class="pack-shape pack-shape--one"><b>24</b></div>
+          <div class="pack-shape pack-shape--two"><b>PACK</b></div>
+          <div class="delivery-chip"><i></i> Almada · Caparica · Seixal</div>
+        </div>
+        <div class="service-strip">
+          <div><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2"/></svg><span><b>Zona de entrega</b>Costa da Caparica e Margem Sul</span></div>
+          <div><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M21 15a4 4 0 0 1-4 4H8l-5 2 2-5a7 7 0 1 1 16-1Z"/></svg><span><b>Encomendas</b>Rápidas e simples por WhatsApp</span></div>
+          <div><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span><b>Horário</b>Segunda a sábado · 8h–20h</span></div>
+          <div><svg aria-hidden="true" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/></svg><span><b>Pagamento</b>Na entrega ou por transferência</span></div>
+        </div>
+      </section>
+
+      <section class="catalog" id="catalogo">
+        <div class="volta-notice">
+          <div class="volta-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M20 7v5a8 8 0 0 1-14.9 4M4 17v-5A8 8 0 0 1 18.9 8"/><path d="m17 4 2 4 4-2M7 20l-2-4-4 2"/></svg>
+          </div>
+          <div><strong>Atenção ao sistema VOLTA</strong><span>A maioria das referências pode utilizar embalagens retornáveis. O valor do vasilhame é confirmado no pedido e recuperado na devolução.</span></div>
+          <span class="volta-badge">VASILHAME RETORNÁVEL</span>
+        </div>
+        <div class="section-heading">
+          <div>
+            <span class="section-kicker">CATÁLOGO</span>
+            <h2>O que precisa hoje?</h2>
+          </div>
+          <p>Preço por pack e por unidade, sempre com e sem o IVA aplicável.</p>
+        </div>
+
+        <div class="catalog-tools">
+          <label class="search-box">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+            <span class="sr-only">Pesquisar produtos</span>
+            <input id="search" type="search" placeholder="Pesquisar bebida..." autocomplete="off" />
+            <kbd>⌘ K</kbd>
+          </label>
+          <div class="filters" id="filters" aria-label="Filtrar por categoria"></div>
+        </div>
+
+        <div class="results-meta" aria-live="polite"><span id="result-count"></span><span>Pack e unidade · Com e sem IVA</span></div>
+        <div class="product-grid" id="product-grid"></div>
+        <div class="empty-state" id="empty-state" hidden>
+          <strong>Nenhum produto encontrado</strong>
+          <span>Tente outro nome ou escolha “Todos”.</span>
+          <button type="button" id="clear-filters">Limpar pesquisa</button>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-main">
+        <div class="footer-brand">
+          <a class="brand brand--footer" href="#inicio"><span class="brand-main">PACK<span>24</span></span><span class="brand-sub">DISTRIBUIÇÃO<sup>®</sup></span></a>
+          <p>Distribuição de bebidas para cafés, restaurantes, bares e eventos na Margem Sul.</p>
+          <a class="footer-whatsapp" href="https://wa.me/351938113585" target="_blank" rel="noreferrer">Encomendar por WhatsApp</a>
+        </div>
+        <div class="footer-column">
+          <strong>Navegação</strong>
+          <a href="#inicio">Início</a>
+          <a href="#catalogo">Catálogo</a>
+          <a href="#catalogo">Preparar encomenda</a>
+        </div>
+        <div class="footer-column">
+          <strong>Contactos</strong>
+          <a href="tel:+351933499207">933 499 207</a>
+          <a href="tel:+351938113585">938 113 585</a>
+          <a href="https://wa.me/351938113585" target="_blank" rel="noreferrer">WhatsApp: 938 113 585</a>
+          <a href="mailto:geral@pack24.pt">geral@pack24.pt</a>
+        </div>
+        <div class="footer-column">
+          <strong>Segue a PACK24</strong>
+          <a href="https://www.instagram.com/pack24.pt/" target="_blank" rel="noreferrer">Instagram @pack24.pt</a>
+          <a href="https://pack24.pt" target="_blank" rel="noreferrer">www.pack24.pt</a>
+          <span>Margem Sul, Portugal</span>
+        </div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 PACK24 DISTRIBUIÇÃO® — marca registada no INPI.</span><span>Preços sujeitos a confirmação de stock e vasilhame.</span></div>
+    </footer>
+
+    <button class="mobile-cart" type="button" data-open-cart hidden>
+      <span><strong data-mobile-count>0</strong> <span data-mobile-label>produtos</span></span>
+      <span>Ver pedido <b data-mobile-total>0,00 €</b></span>
+    </button>
+
+    <div class="drawer-shell" id="cart-shell" hidden>
+      <button class="drawer-backdrop" type="button" data-close-cart aria-label="Fechar pedido"></button>
+      <aside class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+        <div class="drawer-head">
+          <div>
+            <span>O SEU PEDIDO</span>
+            <h2 id="cart-title">Pronto para enviar</h2>
+          </div>
+          <button class="icon-button" type="button" data-close-cart aria-label="Fechar">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg>
+          </button>
+        </div>
+
+        <div class="cart-items" id="cart-items"></div>
+        <div class="cart-empty" id="cart-empty">
+          <div><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 3h2l2.4 11.3a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.6L20.5 7H6"/><circle cx="10" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg></div>
+          <strong>O pedido está vazio</strong>
+          <span>Adicione os produtos de que precisa.</span>
+          <button type="button" data-close-cart>Escolher produtos</button>
+        </div>
+
+        <div class="cart-checkout" id="cart-checkout" hidden>
+          <div class="totals">
+            <div><span>Subtotal sem IVA</span><strong id="subtotal-ex">0,00 €</strong></div>
+            <div><span>IVA</span><strong id="vat-total">0,00 €</strong></div>
+            <div id="volta-total-row" hidden><span>Depósito VOLTA</span><strong id="volta-total">0,00 €</strong></div>
+            <div class="total-final"><span>Total com IVA</span><strong id="total-inc">0,00 €</strong></div>
+            <div class="quote-note" id="quote-note" hidden></div>
+          </div>
+          <div class="customer-fields">
+            <label>Nome / estabelecimento <input id="customer-name" type="text" placeholder="Ex.: Café Central" maxlength="80" /></label>
+            <label>Localidade <input id="customer-location" type="text" placeholder="Ex.: Sobreda" maxlength="80" /></label>
+          </div>
+          <button class="whatsapp-action" type="button" id="whatsapp-action">
+            <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4A8 8 0 1 1 20 11.5Z"/><path d="M9 8.5c.5 3 2 4.5 5 5l1-1"/></svg>
+            Preparar no WhatsApp
+          </button>
+          <p class="checkout-note">Poderá rever a mensagem antes de a enviar. A encomenda só fica confirmada após resposta da PACK24.</p>
+        </div>
+      </aside>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <aside class="promo-popup" id="promo-popup" hidden aria-labelledby="promo-title">
+      <button class="promo-close" type="button" id="promo-close" aria-label="Fechar aviso">×</button>
+      <span class="promo-kicker">PROMOÇÕES PACK24</span>
+      <strong id="promo-title">Receba preços e novidades</strong>
+      <p>Deixe um contacto para receber campanhas dirigidas ao seu estabelecimento.</p>
+      <form id="lead-form">
+        <label><span>Estabelecimento <small>(opcional)</small></span><input id="lead-business" type="text" maxlength="80" placeholder="Ex.: Café Central" /></label>
+        <label><span>Email ou telemóvel</span><input id="lead-contact" type="text" maxlength="100" required placeholder="email@exemplo.pt ou 9xx xxx xxx" /></label>
+        <label class="consent-field"><input id="lead-consent" type="checkbox" required /><span>Autorizo a PACK24 a contactar-me sobre preços e promoções.</span></label>
+        <button type="submit">Quero receber promoções</button>
+        <span class="lead-status" id="lead-status" role="status" aria-live="polite"></span>
+      </form>
+      <small class="promo-note">O contacto fica guardado de forma privada na área de Potenciais clientes da PACK24.</small>
+    </aside>
+    <script src="app.js"></script>
   </body>
 </html>
