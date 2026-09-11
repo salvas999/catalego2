@@ -22,33 +22,29 @@ const X = (props) => <IconBase {...props}><path d="M18 6 6 18" /><path d="m6 6 1
 
 const PRODUCTS = [
   { id: 1, name: "Coca-Cola", price: 13.2, units: 24, img: "/images/cocacola.png", category: "Refrigerantes" },
-  { id: 2, name: "Coca-Cola Zero", offerSame: false, price: 13.2, units: 24, img: "/images/cocacola-zero.png", category: "Refrigerantes" },
-  { id: 3, name: "Lipton Limão", offerSame: false, volta: true, price: 13.92, units: 24, img: "/images/lipton-limao.png", category: "Ice Tea" },
+  { id: 2, name: "Coca-Cola Zero", price: 13.2, units: 24, img: "/images/cocacola-zero.png", category: "Refrigerantes" },
+  { id: 3, name: "Lipton Limão", price: 13.92, volta: true, units: 24, img: "/images/lipton-limao.png", category: "Ice Tea" },
   { id: 4, name: "Lipton Pêssego", price: 13.92, volta: true, units: 24, img: "/images/lipton-pessego.png", category: "Ice Tea" },
   { id: 5, name: "Lipton Manga", price: 13.92, volta: true, units: 24, img: "/images/lipton-manga.png", category: "Ice Tea" },
-  { id: 6, name: "7Up", price: 12.48, offerSame: false, units: 24, img: "/images/7up.png", category: "Refrigerantes" },
-  { id: 7, name: "Guaraná", price: 13.2, volta: true, offerSame: false, units: 24, img: "/images/guarana.png", category: "Refrigerantes" },
-  { id: 8, name: "Água 33cl H2OPE Caramulo", offerSame: false, price: 3.36, units: 24, img: "/images/agua-33cl.png", category: "Águas" },
-  { id: 9, name: "Água 50cl H2OPE Caramulo", price: 3.84, volta: true, offerRevo: false, units: 24, img: "/images/agua-50cl.png", category: "Águas" },
-  { id: 10, name: "Água 1.5L H2OPE Caramulo", offerSame: false, volta: true, price: 1.74, units: 6, img: "/images/agua-15l.png", category: "Águas" },
+  { id: 6, name: "7Up", price: 12.48, units: 24, img: "/images/7up.png", category: "Refrigerantes" },
+  { id: 7, name: "Guaraná", price: 13.2, volta: true, units: 24, img: "/images/guarana.png", category: "Refrigerantes" },
+  { id: 9, name: "Água 50cl H2OPE Caramulo", price: 3.84, volta: true, units: 24, img: "/images/agua-50cl.png", category: "Águas" },
+  { id: 10, name: "Água 1.5L H2OPE Caramulo", volta: true, price: 1.74, units: 6, img: "/images/agua-15l.png", category: "Águas" },
   { id: 11, name: "Água das Pedras", price: 10.32, units: 24, img: "/images/agua-pedras.png", category: "Águas" },
-  { id: 12, name: "Água das Pedras Limão", price: 10.8, units: 24, img: "/images/pedras-limao.png", category: "Aguas Sabores" },
-  { id: 13, name: "Revo", price: 9.6, offerSame: false, promo: false, units: 24, img: "/images/revo.png", category: "Energéticas" },
-
-  // BREVE
+  { id: 12, name: "Água das Pedras Limão", price: 10.8, units: 24, img: "/images/pedras-limao.png", category: "Águas Sabores" },
+  { id: 13, name: "Revo", price: 9.6, units: 24, img: "/images/revo.png", category: "Energéticas" },
   { id: 14, name: "Red Bull", price: 22.8, units: 24, img: "/images/redbull.png", category: "Energéticas" },
-  { id: 15, name: "Fanta", price: 12.72, offerSame: false, units: 24, img: "/images/fanta.png", category: "Refrigerantes" },
+  { id: 15, name: "Fanta", price: 12.72, units: 24, img: "/images/fanta.png", category: "Refrigerantes" },
   { id: 16, name: "Sumol Laranja", price: 13.92, volta: true,  units: 24, img: "/images/sumol-laranja.png", category: "Refrigerantes" },
   { id: 17, name: "Sumol Ananás", price: 13.92, volta: true, units: 24, img: "/images/sumol-ananas.png", category: "Refrigerantes" },
-  { id: 18, name: "Expositor ChupaChups (200und)",  promo: false, price: 25.00,  units: 1, img: "/images/chupas.png", category: "A Mais" },
-  { id: 20, name: "Sagres Média 33cl)", price: 14.88,  units: 24, img: "/images/sagres-media.png", category: "Cerveja" },
+  { id: 20, name: "Sagres Média 33cl", price: 14.88, units: 24, img: "/images/sagres-media.png", category: "Cerveja" },
   { id: 21, name: "Super Bock Média 33cl", price: 14.16,  units: 24, img: "/images/superbock-media.png", category: "Cerveja" },
-  { id: 22, name: "Sagres Mini 25cl", price: 12.9,  units: 30, img: "/images/sagres-mini.png", category: "Cerveja" },
-  { id: 23, name: "Super Bock Mini 20cl", price: 9.36,  units: 24, img: "/images/superbock-mini.png", category: "Cerveja" },
+  { id: 22, name: "Sagres Mini 25cl", price: 12.9, units: 30, img: "/images/sagres-mini.png", category: "Cerveja" },
+  { id: 23, name: "Super Bock Mini 20cl", price: 9.36, units: 24, img: "/images/superbock-mini.png", category: "Cerveja" },
   { id: 24, name: "Sagres 1L", price: 8.34,  units: 6, img: "/images/sagres-1l.png", category: "Cerveja" },
   { id: 25, name: "Heineken 25cl", price: 12.48,  units: 24, img: "/images/heineken-25cl.png", category: "Cerveja" },
-  { id: 26, name: "Frize Limão", price: 11.04, units: 24, img: "/images/frize-limao.png", category: "Aguas Sabores" },
-  { id: 27, name: "UCAL Leite Com Chocolate", price: 14.40, units: 24, img: "/images/ucal.png", category: "Leite", iva: 0.06},
+  { id: 26, name: "Frize Limão", price: 11.04, units: 24, img: "/images/frize-limao.png", category: "Águas Sabores" },
+  { id: 27, name: "UCAL Leite com Chocolate", price: 14.4, units: 24, img: "/images/ucal.png", category: "Leite", iva: 0.06 },
 ];
 
 const PHONE = "351933499207";
@@ -59,6 +55,22 @@ const ORDER_PHONE = PHONE_2;
 const IVA_DEFAULT = 0.23;
 const CATEGORIES = ["Todos", ...new Set(PRODUCTS.map((p) => p.category))];
 
+const CAMPAIGNS = [
+  {
+    title: "⚡ REVO A 10€",
+    description: "Pack Revo por apenas 10,00€ com IVA incluído.",
+  },
+  {
+    title: "🎁 OFERTA REVO",
+    description:
+      "Na compra de 15 packs de Água 50cl H2OPE, oferta de 1 pack de Revo.",
+  },
+  {
+    title: "🔥 10 + 1 GRÁTIS",
+    description:
+      "Na compra de 10 packs do mesmo produto, oferta de 1 pack igual.",
+  },
+];
 
 const colors = {
   bg: "#030303",
@@ -75,6 +87,7 @@ const colors = {
 const formatPrice = (value) => `€${Number(value).toFixed(2)}`;
 const productDescription = (product) =>
   product.description || `Pack de ${product.units} unidades`;
+const productVat = (product) => product.iva ?? (product.category === "Águas" ? 0.13 : IVA_DEFAULT);
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
@@ -93,15 +106,26 @@ export default function App() {
   const isMobile = useIsMobile();
   const [currentPage, setCurrentPage] = useState("inicio");
   const [menuOpen, setMenuOpen] = useState(false);
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(() => {
+    try { return JSON.parse(localStorage.getItem("pack24-cart") || "[]"); }
+    catch { return []; }
+  });
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Todos");
   const [clientName, setClientName] = useState("");
   const [notes, setNotes] = useState("");
+  const [promoName, setPromoName] = useState("");
+  const [promoContact, setPromoContact] = useState("");
+  const [promoConsent, setPromoConsent] = useState(false);
+  const [promoStatus, setPromoStatus] = useState("");
 
   useEffect(() => {
     document.title = "PACK24";
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("pack24-cart", JSON.stringify(cart));
+  }, [cart]);
 
   const filteredProducts = useMemo(() => {
     const normalizedSearch = search.toLowerCase().trim();
@@ -136,22 +160,32 @@ export default function App() {
 
   const clearCart = () => setCart([]);
 
-  const totalWithoutVat = cart.reduce(
-  (sum, item) => sum + item.price * item.qty,
-  0
-);
+  const subscribePromotions = async (event) => {
+    event.preventDefault();
+    setPromoStatus("A enviar…");
+    try {
+      const apiBase = (import.meta.env.VITE_OPERATIONS_API_URL || "https://operacoes.pack24.pt").replace(/\/$/, "");
+      const response = await fetch(`${apiBase}/api/promotion-leads`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ business_name: promoName, contact: promoContact, consent: promoConsent, source: "pack24.pt", website: "" }),
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(data.error || "Não foi possível guardar o contacto.");
+      setPromoStatus("Contacto guardado. Obrigado!");
+      setPromoName(""); setPromoContact(""); setPromoConsent(false);
+    } catch (error) {
+      setPromoStatus(error.message);
+    }
+  };
 
-const totalWithVat = cart.reduce((sum, item) => {
-  let ivaRate = IVA_DEFAULT;
+  const totalWithoutVat = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+  const totalWithVat = cart.reduce((sum, item) => {
+    const ivaRate = productVat(item);
+    return sum + item.price * item.qty * (1 + ivaRate);
+  }, 0);
+  const totalDeposit = cart.reduce((sum, item) => sum + (item.volta ? item.units * 0.10 * item.qty : 0), 0);
 
-  if (item.category === "Águas") {
-    ivaRate = 0.13;
-  } else if (item.category === "Leite") {
-    ivaRate = 0.06;
-  }
-
-  return sum + item.price * item.qty * (1 + ivaRate);
-}, 0);
   const sendWhatsApp = () => {
     if (!cart.length) return;
 
@@ -159,12 +193,13 @@ const totalWithVat = cart.reduce((sum, item) => {
 
   cart.forEach((item) => {
   const subtotalWithoutVat = item.price * item.qty;
-  const ivaRate = item.category === "Águas" ? 0.13 : IVA_DEFAULT;
+  const ivaRate = productVat(item);
   const subtotalWithVat = subtotalWithoutVat * (1 + ivaRate);
 
   message += `• ${item.name} — ${item.qty} pack(s) de ${item.units} unidades\n`;
   message += `  Sem IVA: ${formatPrice(subtotalWithoutVat)}\n`;
   message += `  Com IVA: ${formatPrice(subtotalWithVat)}\n`;
+  if (item.volta) message += `  Depósito VOLTA: ${formatPrice(item.units * 0.10 * item.qty)}\n`;
 
   if (item.offerSame && item.qty >= 10) {
     const freeQty = Math.floor(item.qty / 10);
@@ -181,6 +216,7 @@ const totalWithVat = cart.reduce((sum, item) => {
 
     message += `Total sem IVA: ${formatPrice(totalWithoutVat)}\n`;
     message += `Total com IVA: ${formatPrice(totalWithVat)}\n`;
+    if (totalDeposit) message += `Depósito VOLTA: ${formatPrice(totalDeposit)}\nTotal estimado: ${formatPrice(totalWithVat + totalDeposit)}\n`;
 
     if (clientName.trim()) message += `Nome: ${clientName.trim()}\n`;
     if (notes.trim()) message += `Morada / Notas: ${notes.trim()}\n`;
@@ -224,7 +260,19 @@ const totalWithVat = cart.reduce((sum, item) => {
       <div style={{ minHeight: "100vh", background: colors.bg, color: colors.text, fontFamily: "Inter, Arial, sans-serif" }}>
         <div style={{ maxWidth: 1420, margin: "0 auto", padding: isMobile ? 12 : 18 }}>
           
-  
+          <div
+  style={{
+    background: colors.lime,
+    color: "#000",
+    textAlign: "center",
+    fontWeight: 900,
+    padding: "10px 15px",
+    borderRadius: 12,
+    marginBottom: 15,
+  }}
+>
+  🚚 DISTRIBUIÇÃO NA MARGEM SUL • PREÇOS COM E SEM IVA • ENCOMENDA POR WHATSAPP
+</div>
 
           <header
             style={{
@@ -349,19 +397,18 @@ const totalWithVat = cart.reduce((sum, item) => {
                         maxWidth: 780,
                       }}
                     >
-                      FORNECIMENTO
+                      BEBIDAS PARA
                       <br />
-                      DE <span style={{ color: colors.lime }}>BEBIDAS</span>
+                      O SEU <span style={{ color: colors.lime }}>NEGÓCIO</span>
                       <br />
-                      PARA O SEU NEGÓCIO
+                      NA MARGEM SUL
                     </h1>
 
                     <div style={{ width: isMobile ? 110 : 140, height: 4, background: colors.lime, borderRadius: 999, marginTop: 24 }} />
 
                     <p style={{ margin: "24px 0 0", color: colors.text, fontSize: isMobile ? 15 : 17, lineHeight: 1.7, maxWidth: 640 }}>
-                      Packs de 24 unidades com os melhores preços
-                      <br />
-                      e entrega rápida na sua zona.
+                      Distribuição profissional para cafés, restaurantes e bares,
+                      com preços transparentes e encomenda simples por WhatsApp.
                     </p>
 
                     <button
@@ -457,6 +504,7 @@ const totalWithVat = cart.reduce((sum, item) => {
               <div style={{ textAlign: "center", marginBottom: 26 }}>
                 <h2 style={{ margin: 0, fontSize: isMobile ? "clamp(28px,8vw,38px)" : "clamp(34px,4.2vw,50px)", fontWeight: 900, letterSpacing: "-0.06em", textTransform: "uppercase" }}>CATÁLOGO</h2>
                 <div style={{ width: 120, height: 4, background: colors.lime, borderRadius: 999, margin: "14px auto 0" }} />
+                <p style={{ color: colors.muted, marginTop: 16 }}>Muitos produtos estão incluídos no sistema VOLTA. O depósito de 0,10 € por unidade é indicado em cada artigo aplicável.</p>
               </div>
 
               <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "minmax(0, 1.55fr) minmax(320px, 0.85fr)", gap: 20, alignItems: "start" }}>
@@ -496,19 +544,12 @@ const totalWithVat = cart.reduce((sum, item) => {
                   </div>
 
                   <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(auto-fit, minmax(220px, 1fr))", gap: 18 }}>
-  {filteredProducts.map((product) => {
-    const priceWithoutVat = product.price;
+                    {filteredProducts.map((product) => {
+                      const priceWithoutVat = product.price;
+                      const ivaRate = productVat(product);
+                      const priceWithVat = product.price * (1 + ivaRate);
 
-    const ivaRate =
-      product.category === "Águas"
-        ? 0.13
-        : product.category === "Leite"
-        ? 0.06
-        : IVA_DEFAULT;
-
-    const priceWithVat = product.price * (1 + ivaRate);
-
-    return (
+                      return (
                         <div key={product.id} style={{ ...shellCard, padding: isMobile ? 14 : 20, background: colors.panelSoft, borderRadius: 18 }}>
  
  {product.volta && (
@@ -543,7 +584,7 @@ const totalWithVat = cart.reduce((sum, item) => {
   </div>
 )}
                           <div style={{ height: isMobile ? 150 : 220, display: "flex", alignItems: "center", justifyContent: "center", background: colors.panel, borderRadius: 16, border: `1px solid ${colors.border}`, marginBottom: 14 }}>
-                            <img src={product.img} alt={product.name} loading="lazy" style={{ maxWidth: "100%", maxHeight: isMobile ? 120 : 190, objectFit: "contain", filter: "drop-shadow(0 24px 26px rgba(0,0,0,0.5))" }} />
+                            <img src={product.img} alt={product.name} loading="lazy" onError={(event) => { event.currentTarget.onerror = null; event.currentTarget.src = "/images/logo.png"; }} style={{ maxWidth: "100%", maxHeight: isMobile ? 120 : 190, objectFit: "contain", filter: "drop-shadow(0 24px 26px rgba(0,0,0,0.5))" }} />
                           </div>
 
                           <h3 style={{ margin: 0, fontSize: isMobile ? 15 : 18, fontWeight: 800, textTransform: "uppercase", minHeight: isMobile ? 36 : 48 }}>{product.name}</h3>
@@ -593,18 +634,11 @@ const totalWithVat = cart.reduce((sum, item) => {
                       </div>
                     ) : (
                       cart.map((item) => {
-  const subtotalWithoutVat = item.price * item.qty;
+                        const subtotalWithoutVat = item.price * item.qty;
+      const ivaRate = productVat(item);
+      const subtotalWithVat = subtotalWithoutVat * (1 + ivaRate);
 
-  const ivaRate =
-    item.category === "Águas"
-      ? 0.13
-      : item.category === "Leite"
-      ? 0.06
-      : IVA_DEFAULT;
-
-  const subtotalWithVat = subtotalWithoutVat * (1 + ivaRate);
-
-  return (
+                        return (
                           <div key={item.id} style={{ padding: 16, borderRadius: 14, background: colors.panel, border: `1px solid ${colors.border}` }}>
                             <div style={{ display: "flex", justifyContent: "space-between", gap: 10 }}>
                               <div>
@@ -684,6 +718,7 @@ const totalWithVat = cart.reduce((sum, item) => {
                       <span style={{ fontSize: 13, color: "#64748b" }}>Total com IVA</span>
                       <span style={{ fontSize: isMobile ? 26 : 32, fontWeight: 800 }}>{formatPrice(totalWithVat)}</span>
                     </div>
+                    {totalDeposit > 0 && <><div style={{ display: "flex", justifyContent: "space-between", marginTop: 10, fontSize: 13 }}><span>Depósito VOLTA</span><span style={{ fontWeight: 700 }}>{formatPrice(totalDeposit)}</span></div><div style={{ display: "flex", justifyContent: "space-between", marginTop: 10, paddingTop: 10, borderTop: "1px solid #cbd5e1" }}><strong>Total estimado</strong><strong>{formatPrice(totalWithVat + totalDeposit)}</strong></div></>}
                   </div>
 
                   <div style={{ display: "grid", gap: 10, marginTop: 14 }}>
@@ -694,6 +729,24 @@ const totalWithVat = cart.reduce((sum, item) => {
               </div>
             </section>
           )}
+
+          <section style={{ ...shellCard, marginTop: 42, padding: isMobile ? 20 : 34, background: "linear-gradient(120deg, #0a0a0a, #101a06)" }}>
+            <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 28, alignItems: "center" }}>
+              <div>
+                <div style={{ color: colors.lime, fontSize: 12, fontWeight: 900, letterSpacing: "0.12em" }}>PROMOÇÕES PACK24</div>
+                <h2 style={{ margin: "10px 0", fontSize: isMobile ? 28 : 38 }}>Receber promoções</h2>
+                <p style={{ margin: 0, color: colors.muted, lineHeight: 1.6 }}>Deixe o seu contacto. Os dados ficam guardados de forma segura e visíveis apenas no painel protegido de operações da PACK24.</p>
+              </div>
+              <form onSubmit={subscribePromotions} style={{ display: "grid", gap: 10 }}>
+                <input value={promoName} onChange={(event) => setPromoName(event.target.value)} placeholder="Nome do estabelecimento" maxLength={120} style={{ height: 48, borderRadius: 12, border: `1px solid ${colors.border}`, background: colors.panel, color: colors.text, padding: "0 14px" }} />
+                <input required value={promoContact} onChange={(event) => setPromoContact(event.target.value)} placeholder="Email ou número de telemóvel" maxLength={180} style={{ height: 48, borderRadius: 12, border: `1px solid ${colors.border}`, background: colors.panel, color: colors.text, padding: "0 14px" }} />
+                <label style={{ display: "flex", gap: 10, alignItems: "flex-start", color: colors.muted, fontSize: 12, lineHeight: 1.5 }}><input required type="checkbox" checked={promoConsent} onChange={(event) => setPromoConsent(event.target.checked)} style={{ width: 18, height: 18 }} /><span>Autorizo a PACK24 a guardar este contacto e a enviar-me informações sobre preços e promoções. Posso retirar o consentimento a qualquer momento.</span></label>
+                <button type="submit" style={{ height: 48, border: 0, borderRadius: 12, background: colors.lime, color: "#050505", fontWeight: 900, cursor: "pointer" }}>RECEBER PROMOÇÕES</button>
+                {promoStatus && <div role="status" style={{ color: promoStatus.includes("Obrigado") ? colors.lime : colors.text, fontSize: 13 }}>{promoStatus}</div>}
+                <input name="website" tabIndex="-1" autoComplete="off" aria-hidden="true" style={{ position: "absolute", left: "-9999px" }} />
+              </form>
+            </div>
+          </section>
 
           <section id="contactos" style={{ marginTop: 42 }}>
             <div style={{ ...shellCard, padding: isMobile ? 20 : 34 }}>
@@ -759,7 +812,7 @@ const totalWithVat = cart.reduce((sum, item) => {
           </section>
 
           <footer style={{ textAlign: "center", color: colors.muted, fontSize: 15, padding: "28px 8px 8px", borderTop: `1px solid ${colors.border}`, marginTop: 28 }}>
-            © 2026 pack24.pt – Todos os direitos reservados.
+            © 2026 PACK24 DISTRIBUIÇÃO® — marca registada no INPI. Todos os direitos reservados.
           </footer>
         </div>
       </div>
