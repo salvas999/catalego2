@@ -72,7 +72,11 @@ svg { width: 1.25em; fill: none; stroke: currentColor; stroke-width: 1.8; stroke
 }
 .hero-copy { max-width: 670px; position: relative; z-index: 2; }
 .eyebrow { color: #c9ccc4; font-size: 13px; text-transform: uppercase; font-weight: 700; letter-spacing: 1.6px; display: flex; align-items: center; gap: 9px; }
-.eyebrow i { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 5px rgba(163,230,53,.13); }
+.eyebrow i { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 0 rgba(163,230,53,.55); animation: online-pulse 1.8s ease-out infinite; }
+@keyframes online-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(163,230,53,.62), 0 0 10px rgba(163,230,53,.6); }
+  70%, 100% { box-shadow: 0 0 0 9px rgba(163,230,53,0), 0 0 16px rgba(163,230,53,.25); }
+}
 .hero h1 { font: 800 clamp(44px, 5.1vw, 76px)/.99 "Manrope", sans-serif; letter-spacing: clamp(-4.5px, -.06em, -2.6px); margin: 26px 0 24px; }
 .hero h1 em { font-style: normal; color: var(--green); }
 .hero-copy > p { color: #bfc1bb; font-size: clamp(17px, 1.35vw, 20px); line-height: 1.55; max-width: 570px; margin: 0 0 34px; }
@@ -142,9 +146,9 @@ svg { width: 1.25em; fill: none; stroke: currentColor; stroke-width: 1.8; stroke
 .product-visual { height: 145px; border-radius: 15px; background: var(--product-bg); overflow: hidden; display: grid; place-items: center; position: relative; }
 .product-visual::before { content: ""; position: absolute; width: 110px; height: 110px; background: white; opacity: .22; border-radius: 50%; right: -35px; top: -35px; }
 .product-visual::after { content: "24"; position: absolute; font: 800 80px/1 "Manrope"; color: rgba(255,255,255,.16); left: -7px; bottom: -13px; letter-spacing: -8px; }
-.product-visual--photo { background: #050505; }
+.product-visual--photo { background: #f7f8f3; border: 1px solid #eceee6; }
 .product-visual--photo::before, .product-visual--photo::after { display: none; }
-.product-photo { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center; border-radius: inherit; }
+.product-photo { width: 100%; height: 100%; display: block; object-fit: contain; object-position: center; padding: 9px; border-radius: inherit; }
 .bottle { width: 65px; height: 108px; background: var(--product-color); border-radius: 19px 19px 12px 12px; position: relative; z-index: 2; display: grid; place-items: center; color: white; box-shadow: 7px 12px 20px rgba(0,0,0,.16); transform: rotate(3deg); border: 1px solid rgba(255,255,255,.25); }
 .bottle::before { content: ""; position: absolute; width: 24px; height: 8px; border-radius: 3px 3px 0 0; background: var(--product-cap, #ddd); top: -5px; }
 .bottle b { max-width: 55px; text-align: center; font: 800 11px/1.05 "Manrope"; letter-spacing: -.3px; text-transform: uppercase; }
