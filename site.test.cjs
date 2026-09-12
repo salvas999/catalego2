@@ -19,12 +19,21 @@ function parseEuro(text) {
     url: "https://pack24-private.test/",
     virtualConsole
   });
+  const analyticsRequests = [];
+  dom.window.fetch = async (url, options) => {
+    analyticsRequests.push({ url, options });
+    return { ok: true };
+  };
   dom.window.eval(script);
   const { document } = dom.window;
   const click = selector => document.querySelector(selector).click();
   const count = selector => document.querySelectorAll(selector).length;
 
   assert.equal(count(".product-card"), 24, "Mostra as 24 referências atuais do catálogo");
+  assert.equal(analyticsRequests[0].url, "https://api.pack24.pt/api/site-analytics/track", "Medição anónima é enviada para Operações");
+  const analyticsPayload = JSON.parse(analyticsRequests[0].options.body);
+  assert.equal(analyticsPayload.event, "pageview");
+  assert.equal(analyticsPayload.source, "direto");
   assert.ok(document.querySelector("#promo-trigger"), "Botão para reabrir promoções existe");
   await new Promise(resolve => dom.window.setTimeout(resolve, 4600));
   assert.equal(document.querySelector("#promo-popup").hidden, false, "Notificação de promoções abre automaticamente");

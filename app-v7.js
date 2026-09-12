@@ -237,6 +237,51 @@ function prepareWhatsApp() {
   window.open(url, "_blank", "noopener,noreferrer");
 }
 
+const ANALYTICS_API_URL = "https://api.pack24.pt/api/site-analytics/track";
+const ANALYTICS_SESSION_KEY = "pack24-analytics-session";
+
+function analyticsSessionId() {
+  let id = sessionStorage.getItem(ANALYTICS_SESSION_KEY);
+  if (!id) {
+    id = window.crypto?.randomUUID?.().replaceAll("-", "") || `${Date.now().toString(36)}${Math.random().toString(36).slice(2)}${Math.random().toString(36).slice(2)}`;
+    sessionStorage.setItem(ANALYTICS_SESSION_KEY, id);
+  }
+  return id;
+}
+
+function analyticsSource() {
+  const params = new URLSearchParams(location.search);
+  const campaign = (params.get("utm_source") || "").toLowerCase();
+  if (campaign) return campaign.slice(0, 60);
+  if (params.has("gclid")) return "google";
+  if (params.has("fbclid")) return "facebook";
+  const host = (() => { try { return new URL(document.referrer).hostname.toLowerCase(); } catch (_) { return ""; } })();
+  if (!host) return "direto";
+  if (host.includes("google")) return "google";
+  if (host.includes("instagram")) return "instagram";
+  if (host.includes("facebook") || host === "fb.com") return "facebook";
+  if (host.includes("whatsapp")) return "whatsapp";
+  if (host.includes("bing")) return "bing";
+  if (host === location.hostname) return "direto";
+  return "outro";
+}
+
+function analyticsDevice() {
+  if (/ipad|tablet/i.test(navigator.userAgent)) return "tablet";
+  if (/mobile|android|iphone/i.test(navigator.userAgent)) return "telemóvel";
+  return "computador";
+}
+
+function trackSite(event = "heartbeat") {
+  const payload = { session_id: analyticsSessionId(), event, path: `${location.pathname}${location.hash}`, source: analyticsSource(), referrer: document.referrer, device_type: analyticsDevice() };
+  fetch(ANALYTICS_API_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload), keepalive: true }).catch(() => {});
+}
+
+trackSite("pageview");
+window.setInterval(() => { if (!document.hidden) trackSite("heartbeat"); }, 30000);
+window.addEventListener("hashchange", () => trackSite("pageview"));
+document.addEventListener("visibilitychange", () => { if (!document.hidden) trackSite("heartbeat"); });
+
 const LEAD_API_URL = "https://api.pack24.pt/api/promotion-leads";
 
 async function savePromotionLead(event) {
