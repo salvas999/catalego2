@@ -104,7 +104,11 @@ svg { width: 1.25em; fill: none; stroke: currentColor; stroke-width: 1.8; stroke
 .pack-shape--two::before { content: ""; width: 38px; height: 10px; background: #3e3e3e; border-radius: 3px; position: absolute; top: 7px; }
 .pack-shape--two b { font-size: 13px; letter-spacing: 2px; }
 .delivery-chip { position: absolute; z-index: 8; bottom: 30px; left: 1%; background: white; color: #111; font-size: 12px; font-weight: 700; padding: 13px 16px; border-radius: 999px; box-shadow: var(--shadow); }
-.delivery-chip i { width: 8px; height: 8px; border-radius: 50%; background: var(--green-dark); display: inline-block; margin-right: 6px; }
+.delivery-chip i { width: 8px; height: 8px; border-radius: 50%; background: var(--green-dark); display: inline-block; margin-right: 6px; box-shadow: 0 0 0 0 rgba(115,170,28,.55); animation: area-online-pulse 1.8s ease-out infinite; }
+@keyframes area-online-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(115,170,28,.65), 0 0 8px rgba(115,170,28,.55); }
+  70%, 100% { box-shadow: 0 0 0 8px rgba(115,170,28,0), 0 0 13px rgba(115,170,28,.22); }
+}
 .route-line { position: absolute; border: 1px dashed #555; border-radius: 50%; z-index: 1; opacity: .55; }
 .route-line--one { width: 370px; height: 205px; left: -3%; top: 190px; transform: rotate(18deg); border-left-color: transparent; border-bottom-color: transparent; }
 .route-line--two { width: 230px; height: 110px; right: 2%; bottom: 20px; transform: rotate(-20deg); border-top-color: transparent; }
@@ -143,12 +147,12 @@ svg { width: 1.25em; fill: none; stroke: currentColor; stroke-width: 1.8; stroke
 .product-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
 .product-card { background: var(--white); min-width: 0; border: 1px solid #e3e4dd; border-radius: var(--radius); padding: 17px; display: flex; flex-direction: column; transition: transform .16s ease, box-shadow .16s ease; }
 .product-card:hover { transform: translateY(-3px); box-shadow: 0 15px 36px rgba(0,0,0,.07); }
-.product-visual { height: 145px; border-radius: 15px; background: var(--product-bg); overflow: hidden; display: grid; place-items: center; position: relative; }
+.product-visual { height: 180px; border-radius: 15px; background: var(--product-bg); overflow: hidden; display: grid; place-items: center; position: relative; }
 .product-visual::before { content: ""; position: absolute; width: 110px; height: 110px; background: white; opacity: .22; border-radius: 50%; right: -35px; top: -35px; }
 .product-visual::after { content: "24"; position: absolute; font: 800 80px/1 "Manrope"; color: rgba(255,255,255,.16); left: -7px; bottom: -13px; letter-spacing: -8px; }
 .product-visual--photo { background: #f7f8f3; border: 1px solid #eceee6; }
 .product-visual--photo::before, .product-visual--photo::after { display: none; }
-.product-photo { width: 100%; height: 100%; display: block; object-fit: contain; object-position: center; padding: 9px; border-radius: inherit; }
+.product-visual--photo > .product-photo { width: calc(100% - 20px) !important; height: calc(100% - 20px) !important; max-width: 100% !important; max-height: 100% !important; display: block; object-fit: contain !important; object-position: 50% 50% !important; margin: auto !important; padding: 0 !important; border-radius: 10px; }
 .bottle { width: 65px; height: 108px; background: var(--product-color); border-radius: 19px 19px 12px 12px; position: relative; z-index: 2; display: grid; place-items: center; color: white; box-shadow: 7px 12px 20px rgba(0,0,0,.16); transform: rotate(3deg); border: 1px solid rgba(255,255,255,.25); }
 .bottle::before { content: ""; position: absolute; width: 24px; height: 8px; border-radius: 3px 3px 0 0; background: var(--product-cap, #ddd); top: -5px; }
 .bottle b { max-width: 55px; text-align: center; font: 800 11px/1.05 "Manrope"; letter-spacing: -.3px; text-transform: uppercase; }
@@ -294,7 +298,7 @@ body.drawer-open { overflow: hidden; }
   .results-meta span:last-child { display: none; }
   .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
   .product-card { padding: 11px; border-radius: 16px; }
-  .product-visual { height: 116px; border-radius: 11px; }
+  .product-visual { height: 145px; border-radius: 11px; }
   .bottle { transform: scale(.83) rotate(3deg); }
   .product-card h3 { font-size: 14px; min-height: 34px; }
   .product-meta { font-size: 8.5px; }

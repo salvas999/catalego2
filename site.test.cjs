@@ -12,7 +12,7 @@ function parseEuro(text) {
   const virtualConsole = new VirtualConsole();
   virtualConsole.on("jsdomError", error => browserErrors.push(error.message));
   const html = fs.readFileSync(path.join(__dirname, "index.html"), "utf8");
-  const script = fs.readFileSync(path.join(__dirname, "app-v3.js"), "utf8");
+  const script = fs.readFileSync(path.join(__dirname, "app-v5.js"), "utf8");
   const dom = new JSDOM(html, {
     runScripts: "outside-only",
     pretendToBeVisual: true,
@@ -90,7 +90,7 @@ function parseEuro(text) {
   document.querySelector("#lead-consent").checked = true;
   document.querySelector("#lead-form").dispatchEvent(new dom.window.Event("submit", { bubbles: true, cancelable: true }));
   await new Promise(resolve => dom.window.setTimeout(resolve, 0));
-  assert.equal(leadRequest.url, "https://operacoes.pack24.pt/api/promotion-leads");
+  assert.equal(leadRequest.url, "https://api.pack24.pt/api/promotion-leads");
   const leadPayload = JSON.parse(leadRequest.options.body);
   assert.equal(leadPayload.business_name, "Restaurante Teste");
   assert.equal(leadPayload.contact, "teste@example.pt");

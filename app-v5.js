@@ -235,7 +235,7 @@ function prepareWhatsApp() {
   window.open(url, "_blank", "noopener,noreferrer");
 }
 
-const LEAD_API_URL = "https://operacoes.pack24.pt/api/promotion-leads";
+const LEAD_API_URL = "https://api.pack24.pt/api/promotion-leads";
 
 async function savePromotionLead(event) {
   event.preventDefault();
