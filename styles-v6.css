@@ -152,7 +152,7 @@ svg { width: 1.25em; fill: none; stroke: currentColor; stroke-width: 1.8; stroke
 .product-visual::after { content: "24"; position: absolute; font: 800 80px/1 "Manrope"; color: rgba(255,255,255,.16); left: -7px; bottom: -13px; letter-spacing: -8px; }
 .product-visual--photo { background: #f7f8f3; border: 1px solid #eceee6; }
 .product-visual--photo::before, .product-visual--photo::after { display: none; }
-.product-visual--photo > .product-photo { width: calc(100% - 20px) !important; height: calc(100% - 20px) !important; max-width: 100% !important; max-height: 100% !important; display: block; object-fit: contain !important; object-position: 50% 50% !important; margin: auto !important; padding: 0 !important; border-radius: 10px; }
+.product-visual--photo > .product-photo { position: absolute !important; inset: 10px !important; width: calc(100% - 20px) !important; height: calc(100% - 20px) !important; max-width: none !important; max-height: none !important; display: block; object-fit: contain !important; object-position: 50% 50% !important; margin: 0 !important; padding: 0 !important; border-radius: 10px; }
 .bottle { width: 65px; height: 108px; background: var(--product-color); border-radius: 19px 19px 12px 12px; position: relative; z-index: 2; display: grid; place-items: center; color: white; box-shadow: 7px 12px 20px rgba(0,0,0,.16); transform: rotate(3deg); border: 1px solid rgba(255,255,255,.25); }
 .bottle::before { content: ""; position: absolute; width: 24px; height: 8px; border-radius: 3px 3px 0 0; background: var(--product-cap, #ddd); top: -5px; }
 .bottle b { max-width: 55px; text-align: center; font: 800 11px/1.05 "Manrope"; letter-spacing: -.3px; text-transform: uppercase; }

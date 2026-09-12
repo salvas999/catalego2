@@ -12,7 +12,7 @@ function parseEuro(text) {
   const virtualConsole = new VirtualConsole();
   virtualConsole.on("jsdomError", error => browserErrors.push(error.message));
   const html = fs.readFileSync(path.join(__dirname, "index.html"), "utf8");
-  const script = fs.readFileSync(path.join(__dirname, "app-v5.js"), "utf8");
+  const script = fs.readFileSync(path.join(__dirname, "app-v6.js"), "utf8");
   const dom = new JSDOM(html, {
     runScripts: "outside-only",
     pretendToBeVisual: true,
