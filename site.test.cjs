@@ -12,7 +12,7 @@ function parseEuro(text) {
   const virtualConsole = new VirtualConsole();
   virtualConsole.on("jsdomError", error => browserErrors.push(error.message));
   const html = fs.readFileSync(path.join(__dirname, "index.html"), "utf8");
-  const script = fs.readFileSync(path.join(__dirname, "app-v6.js"), "utf8");
+  const script = fs.readFileSync(path.join(__dirname, "app-v7.js"), "utf8");
   const dom = new JSDOM(html, {
     runScripts: "outside-only",
     pretendToBeVisual: true,
@@ -25,6 +25,13 @@ function parseEuro(text) {
   const count = selector => document.querySelectorAll(selector).length;
 
   assert.equal(count(".product-card"), 24, "Mostra as 24 referências atuais do catálogo");
+  assert.ok(document.querySelector("#promo-trigger"), "Botão para reabrir promoções existe");
+  await new Promise(resolve => dom.window.setTimeout(resolve, 4600));
+  assert.equal(document.querySelector("#promo-popup").hidden, false, "Notificação de promoções abre automaticamente");
+  click("#promo-close");
+  assert.equal(document.querySelector("#promo-trigger").hidden, false, "Botão de promoções fica acessível após fechar");
+  click("#promo-trigger");
+  assert.equal(document.querySelector("#promo-popup").hidden, false, "Notificação pode ser reaberta");
   assert.match(document.querySelector("#result-count").textContent, /24 produtos/);
   assert.equal(document.querySelector('[data-product="chupachups"]'), null, "Expositor Chupa Chups removido");
   assert.equal(document.querySelector('[data-product="h2ope-33"]'), null, "Água 33cl removida");
