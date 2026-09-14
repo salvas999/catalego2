@@ -29,7 +29,7 @@ function parseEuro(text) {
   const click = selector => document.querySelector(selector).click();
   const count = selector => document.querySelectorAll(selector).length;
 
-  assert.equal(count(".product-card"), 24, "Mostra as 24 referências atuais do catálogo");
+  assert.equal(count(".product-card"), 27, "Mostra as 27 referências atuais do catálogo");
   assert.equal(analyticsRequests[0].url, "https://api.pack24.pt/api/site-analytics/track", "Medição anónima é enviada para Operações");
   const analyticsPayload = JSON.parse(analyticsRequests[0].options.body);
   assert.equal(analyticsPayload.event, "pageview");
@@ -41,7 +41,7 @@ function parseEuro(text) {
   assert.equal(document.querySelector("#promo-trigger").hidden, false, "Botão de promoções fica acessível após fechar");
   click("#promo-trigger");
   assert.equal(document.querySelector("#promo-popup").hidden, false, "Notificação pode ser reaberta");
-  assert.match(document.querySelector("#result-count").textContent, /24 produtos/);
+  assert.match(document.querySelector("#result-count").textContent, /27 produtos/);
   assert.equal(document.querySelector('[data-product="chupachups"]'), null, "Expositor Chupa Chups removido");
   assert.equal(document.querySelector('[data-product="h2ope-33"]'), null, "Água 33cl removida");
 
@@ -91,6 +91,12 @@ function parseEuro(text) {
   const water = dom.window.PACK24_TEST.products.find(product => product.id === "h2ope-50");
   assert.equal(dom.window.PACK24_TEST.unitIncVat(water), 4.34, "IVA de água a 13% correto");
   assert.equal(dom.window.PACK24_TEST.voltaDeposit(water), 2.40, "Depósito VOLTA de 0,10 € por unidade correto");
+  const somersbyApple = dom.window.PACK24_TEST.products.find(product => product.id === "somersby-maca");
+  assert.deepEqual([somersbyApple.packUnits, somersbyApple.exVat, somersbyApple.incVat], [24, 19.44, 23.91], "Somersby Maçã com pack e preços corretos");
+  const somersbyBerries = dom.window.PACK24_TEST.products.find(product => product.id === "somersby-frutos-vermelhos");
+  assert.deepEqual([somersbyBerries.packUnits, somersbyBerries.exVat, somersbyBerries.incVat], [15, 12.15, 14.94], "Somersby Frutos Vermelhos com pack e preços corretos");
+  const rodeo = dom.window.PACK24_TEST.products.find(product => product.id === "rodeo");
+  assert.equal(dom.window.PACK24_TEST.voltaDeposit(rodeo), 2.40, "Rodeo inclui VOLTA de 0,10 € por unidade");
   const allPricesComplete = dom.window.PACK24_TEST.products.every(product => [product.exVat, product.incVat, product.unitEx, product.unitInc].every(Number.isFinite));
   assert.equal(allPricesComplete, true, "Todos os produtos têm preço de pack e unitário");
   const allPhotosExist = dom.window.PACK24_TEST.products.every(product => fs.existsSync(path.join(__dirname, "assets", "products", `${product.id}.png`)));
@@ -113,7 +119,7 @@ function parseEuro(text) {
   assert.equal(leadPayload.consent, true);
   assert.match(document.querySelector("#lead-status").textContent, /contacto foi guardado/);
   assert.deepEqual(browserErrors, [], `Erros no navegador: ${browserErrors.join(", ")}`);
-  console.log("PASS: 24 produtos com fotos, pesquisa, carrinho, IVA, VOLTA, WhatsApp e captação consentida validados.");
+  console.log("PASS: 27 produtos com fotos, pesquisa, carrinho, IVA, VOLTA, WhatsApp e captação consentida validados.");
   dom.window.close();
 })().catch(error => {
   console.error(error);
