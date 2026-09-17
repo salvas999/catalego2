@@ -1,6 +1,8 @@
 const products = [
   { id: "coca-cola", name: "Coca-Cola", detail: "33 cl · pack 24", packUnits: 24, category: "Refrigerantes", exVat: 13.20, incVat: 16.24, unitEx: .55, unitInc: .68, vat: .23, color: "#d21f26", bg: "#f4dadd", short: "Coca-Cola" },
   { id: "coca-cola-zero", name: "Coca-Cola Zero", detail: "33 cl · pack 24", packUnits: 24, category: "Refrigerantes", exVat: 13.20, incVat: 16.24, unitEx: .55, unitInc: .68, vat: .23, color: "#141414", bg: "#e0e0dd", short: "Coca Zero" },
+  { id: "coca-cola-2l", name: "Coca-Cola 2L", detail: "2 L · pack 6", packUnits: 6, category: "Refrigerantes", exVat: 8.16, incVat: 10.04, unitEx: 1.36, unitInc: 1.67, vat: .23, color: "#d21f26", bg: "#f4dadd", short: "Coca-Cola" },
+  { id: "coca-cola-zero-2l", name: "Coca-Cola Zero 2L", detail: "2 L · pack 6", packUnits: 6, category: "Refrigerantes", exVat: 8.16, incVat: 10.04, unitEx: 1.36, unitInc: 1.67, vat: .23, color: "#141414", bg: "#e0e0dd", short: "Coca Zero" },
   { id: "lipton-limao", name: "Lipton Limão", detail: "33 cl · pack 24", packUnits: 24, category: "Ice Tea", exVat: 13.92, incVat: 17.12, unitEx: .58, unitInc: .71, vat: .23, volta: true, color: "#e0b900", bg: "#f5eccb", short: "Lipton" },
   { id: "lipton-pessego", name: "Lipton Pêssego", detail: "33 cl · pack 24", packUnits: 24, category: "Ice Tea", exVat: 13.92, incVat: 17.12, unitEx: .58, unitInc: .71, vat: .23, volta: true, color: "#e68a4b", bg: "#f7e4d7", short: "Lipton" },
   { id: "lipton-manga", name: "Lipton Manga", detail: "33 cl · pack 24", packUnits: 24, category: "Ice Tea", exVat: 13.92, incVat: 17.12, unitEx: .58, unitInc: .71, vat: .23, volta: true, color: "#e6a319", bg: "#f7e9cf", short: "Lipton" },

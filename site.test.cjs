@@ -29,7 +29,7 @@ function parseEuro(text) {
   const click = selector => document.querySelector(selector).click();
   const count = selector => document.querySelectorAll(selector).length;
 
-  assert.equal(count(".product-card"), 27, "Mostra as 27 referências atuais do catálogo");
+  assert.equal(count(".product-card"), 29, "Mostra as 29 referências atuais do catálogo");
   assert.equal(analyticsRequests[0].url, "https://api.pack24.pt/api/site-analytics/track", "Medição anónima é enviada para Operações");
   const analyticsPayload = JSON.parse(analyticsRequests[0].options.body);
   assert.equal(analyticsPayload.event, "pageview");
@@ -41,14 +41,14 @@ function parseEuro(text) {
   assert.equal(document.querySelector("#promo-trigger").hidden, false, "Botão de promoções fica acessível após fechar");
   click("#promo-trigger");
   assert.equal(document.querySelector("#promo-popup").hidden, false, "Notificação pode ser reaberta");
-  assert.match(document.querySelector("#result-count").textContent, /27 produtos/);
+  assert.match(document.querySelector("#result-count").textContent, /29 produtos/);
   assert.equal(document.querySelector('[data-product="chupachups"]'), null, "Expositor Chupa Chups removido");
   assert.equal(document.querySelector('[data-product="h2ope-33"]'), null, "Água 33cl removida");
 
   const search = document.querySelector("#search");
   search.value = "coca";
   search.dispatchEvent(new dom.window.Event("input", { bubbles: true }));
-  assert.equal(count(".product-card"), 2, "Pesquisa sem recarregar");
+  assert.equal(count(".product-card"), 4, "Pesquisa sem recarregar");
   search.value = "";
   search.dispatchEvent(new dom.window.Event("input", { bubbles: true }));
 
@@ -119,7 +119,7 @@ function parseEuro(text) {
   assert.equal(leadPayload.consent, true);
   assert.match(document.querySelector("#lead-status").textContent, /contacto foi guardado/);
   assert.deepEqual(browserErrors, [], `Erros no navegador: ${browserErrors.join(", ")}`);
-  console.log("PASS: 27 produtos com fotos, pesquisa, carrinho, IVA, VOLTA, WhatsApp e captação consentida validados.");
+  console.log("PASS: 29 produtos com fotos, pesquisa, carrinho, IVA, VOLTA, WhatsApp e captação consentida validados.");
   dom.window.close();
 })().catch(error => {
   console.error(error);
