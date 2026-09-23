@@ -15,6 +15,7 @@ const products = [
   { id: "pedras-frutos-vermelhos", name: "Água das Pedras Frutos Vermelhos", detail: "25 cl · pack 24", packUnits: 24, category: "Águas Sabores", exVat: 11.52, incVat: 14.17, unitEx: .48, unitInc: .59, vat: .23, color: "#bd3652", bg: "#f0dce1", short: "Pedras" },
   { id: "revo", name: "Revo", detail: "25 cl · pack 24", packUnits: 24, category: "Energéticas", exVat: 9.60, incVat: 11.81, unitEx: .40, unitInc: .49, vat: .23, color: "#172715", bg: "#dce7d8", short: "REVO" },
   { id: "red-bull", name: "Red Bull", detail: "25 cl · pack 24", packUnits: 24, category: "Energéticas", exVat: 22.80, incVat: 28.04, unitEx: .95, unitInc: 1.17, vat: .23, color: "#3154c6", bg: "#dce3f5", short: "Red Bull" },
+  { id: "monster-energy-verde", name: "Monster Energy Verde", detail: "50 cl · pack 24", packUnits: 24, category: "Energéticas", exVat: 22.80, incVat: 28.04, unitEx: .95, unitInc: 1.17, vat: .23, color: "#58b832", bg: "#dcefd5", short: "Monster" },
   { id: "fanta", name: "Fanta", detail: "33 cl · pack 24", packUnits: 24, category: "Refrigerantes", exVat: 12.72, incVat: 15.65, unitEx: .53, unitInc: .65, vat: .23, color: "#ee7519", bg: "#f8e4cf", short: "Fanta" },
   { id: "sumol-laranja", name: "Sumol Laranja", detail: "33 cl · pack 24", packUnits: 24, category: "Refrigerantes", exVat: 13.92, incVat: 17.12, unitEx: .58, unitInc: .71, vat: .23, volta: true, color: "#ed6f1a", bg: "#f7e3d4", short: "Sumol" },
   { id: "sumol-ananas", name: "Sumol Ananás", detail: "33 cl · pack 24", packUnits: 24, category: "Refrigerantes", exVat: 13.92, incVat: 17.12, unitEx: .58, unitInc: .71, vat: .23, volta: true, color: "#5e941d", bg: "#e5eed7", short: "Sumol" },
@@ -28,7 +29,7 @@ const products = [
   { id: "somersby-maca", name: "Somersby Maçã", detail: "33 cl · pack 24", packUnits: 24, category: "Sidras", exVat: 19.44, incVat: 23.91, unitEx: .81, unitInc: 1.00, vat: .23, color: "#5b9a39", bg: "#e4efd9", short: "Somersby" },
   { id: "somersby-frutos-vermelhos", name: "Somersby Frutos Vermelhos", detail: "33 cl · pack 15", packUnits: 15, category: "Sidras", exVat: 12.15, incVat: 14.94, unitEx: .81, unitInc: 1.00, vat: .23, color: "#ad3d54", bg: "#f4dce2", short: "Somersby" },
   { id: "rodeo", name: "Rodeo", detail: "pack 24", packUnits: 24, category: "Energéticas", exVat: 10.08, incVat: 12.40, unitEx: .42, unitInc: .52, vat: .23, volta: true, color: "#e36b4b", bg: "#f6e1da", short: "Rodeo" },
-  { id: "ucal", name: "Ucal Leite com Chocolate", detail: "200 ml · pack 24", packUnits: 24, category: "Leite", exVat: 14.40, incVat: 15.26, unitEx: .60, unitInc: .64, vat: .06, color: "#8d674c", bg: "#eee4dc", short: "Ucal" }
+  { id: "ucal", name: "Ucal Leite com Chocolate", detail: "200 ml · pack 24", packUnits: 24, category: "Leite", exVat: 14.64, incVat: 15.52, unitEx: .61, unitInc: .65, vat: .06, color: "#8d674c", bg: "#eee4dc", short: "Ucal" }
 ];
 
 const state = {

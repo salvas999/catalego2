@@ -29,7 +29,7 @@ function parseEuro(text) {
   const click = selector => document.querySelector(selector).click();
   const count = selector => document.querySelectorAll(selector).length;
 
-  assert.equal(count(".product-card"), 30, "Mostra as 30 referências atuais do catálogo");
+  assert.equal(count(".product-card"), 31, "Mostra as 31 referências atuais do catálogo");
   assert.equal(analyticsRequests[0].url, "https://api.pack24.pt/api/site-analytics/track", "Medição anónima é enviada para Operações");
   const analyticsPayload = JSON.parse(analyticsRequests[0].options.body);
   assert.equal(analyticsPayload.event, "pageview");
@@ -41,7 +41,7 @@ function parseEuro(text) {
   assert.equal(document.querySelector("#promo-trigger").hidden, false, "Botão de promoções fica acessível após fechar");
   click("#promo-trigger");
   assert.equal(document.querySelector("#promo-popup").hidden, false, "Notificação pode ser reaberta");
-  assert.match(document.querySelector("#result-count").textContent, /30 produtos/);
+  assert.match(document.querySelector("#result-count").textContent, /31 produtos/);
   assert.equal(document.querySelector('[data-product="chupachups"]'), null, "Expositor Chupa Chups removido");
   assert.equal(document.querySelector('[data-product="h2ope-33"]'), null, "Água 33cl removida");
 
@@ -97,6 +97,10 @@ function parseEuro(text) {
   assert.deepEqual([somersbyBerries.packUnits, somersbyBerries.exVat, somersbyBerries.incVat], [15, 12.15, 14.94], "Somersby Frutos Vermelhos com pack e preços corretos");
   const rodeo = dom.window.PACK24_TEST.products.find(product => product.id === "rodeo");
   assert.equal(dom.window.PACK24_TEST.voltaDeposit(rodeo), 2.40, "Rodeo inclui VOLTA de 0,10 € por unidade");
+  const monster = dom.window.PACK24_TEST.products.find(product => product.id === "monster-energy-verde");
+  assert.deepEqual([monster.packUnits, monster.exVat, monster.incVat], [24, 22.80, 28.04], "Monster Energy Verde com pack e preços corretos");
+  const ucal = dom.window.PACK24_TEST.products.find(product => product.id === "ucal");
+  assert.deepEqual([ucal.unitEx, ucal.exVat, ucal.incVat], [.61, 14.64, 15.52], "Ucal atualizada em 0,01 € por unidade");
   const allPricesComplete = dom.window.PACK24_TEST.products.every(product => [product.exVat, product.incVat, product.unitEx, product.unitInc].every(Number.isFinite));
   assert.equal(allPricesComplete, true, "Todos os produtos têm preço de pack e unitário");
   const allPhotosExist = dom.window.PACK24_TEST.products.every(product => fs.existsSync(path.join(__dirname, "assets", "products", `${product.id}.png`)));
@@ -119,7 +123,7 @@ function parseEuro(text) {
   assert.equal(leadPayload.consent, true);
   assert.match(document.querySelector("#lead-status").textContent, /contacto foi guardado/);
   assert.deepEqual(browserErrors, [], `Erros no navegador: ${browserErrors.join(", ")}`);
-  console.log("PASS: 30 produtos com fotos, pesquisa, carrinho, IVA, VOLTA, WhatsApp e captação consentida validados.");
+  console.log("PASS: 31 produtos com fotos, pesquisa, carrinho, IVA, VOLTA, WhatsApp e captação consentida validados.");
   dom.window.close();
 })().catch(error => {
   console.error(error);
