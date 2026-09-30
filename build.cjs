@@ -21,8 +21,8 @@ const productsEnd = catalogueSource.indexOf("\n];", productsStart);
 if (productsStart < 0 || productsEnd < 0) throw new Error("Não foi possível gerar os preços do catálogo.");
 const productsLiteral = catalogueSource.slice(productsStart + "const products = ".length, productsEnd + 2);
 const products = Function(`"use strict"; return (${productsLiteral});`)();
-const pricingFeed = products.map(({ id, name, short, packUnits, exVat, incVat, vat, volta, purchaseExVat }) => ({
-  id, name, short, packUnits, exVat, incVat, vat, purchaseExVat: Number.isFinite(Number(purchaseExVat)) ? Number(purchaseExVat) : null, volta: Boolean(volta),
+const pricingFeed = products.map(({ id, name, short, packUnits, exVat, incVat, vat, volta }) => ({
+  id, name, short, packUnits, exVat, incVat, vat, volta: Boolean(volta),
   voltaPerPack: volta ? Number((0.10 * Number(packUnits)).toFixed(2)) : 0
 }));
 fs.writeFileSync(path.join(output, "catalog-prices.json"), `${JSON.stringify(pricingFeed, null, 2)}\n`);

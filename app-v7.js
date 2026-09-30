@@ -28,7 +28,7 @@ const products = [
   { id: "frize-limao", name: "Frize Limão", detail: "25 cl · pack 24", packUnits: 24, category: "Águas Sabores", exVat: 11.04, incVat: 13.58, unitEx: .46, unitInc: .57, vat: .23, color: "#94bd45", bg: "#edf2db", short: "Frize" },
   { id: "somersby-maca", name: "Somersby Maçã", detail: "33 cl · pack 24", packUnits: 24, category: "Sidras", exVat: 19.44, incVat: 23.91, unitEx: .81, unitInc: 1.00, vat: .23, color: "#5b9a39", bg: "#e4efd9", short: "Somersby" },
   { id: "somersby-frutos-vermelhos", name: "Somersby Frutos Vermelhos", detail: "33 cl · pack 15", packUnits: 15, category: "Sidras", exVat: 12.15, incVat: 14.94, unitEx: .81, unitInc: 1.00, vat: .23, color: "#ad3d54", bg: "#f4dce2", short: "Somersby" },
-  { id: "rodeo", name: "Rodeo", detail: "pack 24", packUnits: 24, category: "Energéticas", exVat: 12.00, incVat: 12.00, unitEx: .50, unitInc: .50, vat: 0, purchaseExVat: 7.68, color: "#e36b4b", bg: "#f6e1da", short: "Rodeo" },
+  { id: "rodeo", name: "Rodeo", detail: "pack 24", packUnits: 24, category: "Energéticas", exVat: 10.08, incVat: 12.40, unitEx: .42, unitInc: .52, vat: .23, volta: true, color: "#e36b4b", bg: "#f6e1da", short: "Rodeo" },
   { id: "ucal", name: "Ucal Leite com Chocolate", detail: "200 ml · pack 24", packUnits: 24, category: "Leite", exVat: 14.64, incVat: 15.52, unitEx: .61, unitInc: .65, vat: .06, color: "#8d674c", bg: "#eee4dc", short: "Ucal" }
 ];
 
