@@ -96,7 +96,7 @@ function parseEuro(text) {
   const somersbyBerries = dom.window.PACK24_TEST.products.find(product => product.id === "somersby-frutos-vermelhos");
   assert.deepEqual([somersbyBerries.packUnits, somersbyBerries.exVat, somersbyBerries.incVat], [15, 12.15, 14.94], "Somersby Frutos Vermelhos com pack e preços corretos");
   const rodeo = dom.window.PACK24_TEST.products.find(product => product.id === "rodeo");
-  assert.equal(dom.window.PACK24_TEST.voltaDeposit(rodeo), 2.40, "Rodeo inclui VOLTA de 0,10 € por unidade");
+  assert.deepEqual([rodeo.packUnits, rodeo.exVat, rodeo.incVat, rodeo.unitEx, rodeo.unitInc, rodeo.vat, dom.window.PACK24_TEST.voltaDeposit(rodeo)], [24, 12, 12, .50, .50, 0, 0], "Rodeo sem IVA nem VOLTA, com preço atualizado");
   const monster = dom.window.PACK24_TEST.products.find(product => product.id === "monster-energy-verde");
   assert.deepEqual([monster.packUnits, monster.exVat, monster.incVat], [24, 22.80, 28.04], "Monster Energy Verde com pack e preços corretos");
   const ucal = dom.window.PACK24_TEST.products.find(product => product.id === "ucal");
