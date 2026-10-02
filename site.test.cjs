@@ -29,7 +29,7 @@ function parseEuro(text) {
   const click = selector => document.querySelector(selector).click();
   const count = selector => document.querySelectorAll(selector).length;
 
-  assert.equal(count(".product-card"), 31, "Mostra as 31 referências atuais do catálogo");
+  assert.equal(count(".product-card"), 43, "Mostra as referências atuais e as espirituosas brevemente disponíveis");
   assert.equal(analyticsRequests[0].url, "https://api.pack24.pt/api/site-analytics/track", "Medição anónima é enviada para Operações");
   const analyticsPayload = JSON.parse(analyticsRequests[0].options.body);
   assert.equal(analyticsPayload.event, "pageview");
@@ -41,7 +41,7 @@ function parseEuro(text) {
   assert.equal(document.querySelector("#promo-trigger").hidden, false, "Botão de promoções fica acessível após fechar");
   click("#promo-trigger");
   assert.equal(document.querySelector("#promo-popup").hidden, false, "Notificação pode ser reaberta");
-  assert.match(document.querySelector("#result-count").textContent, /31 produtos/);
+  assert.match(document.querySelector("#result-count").textContent, /43 produtos/);
   assert.equal(document.querySelector('[data-product="chupachups"]'), null, "Expositor Chupa Chups removido");
   assert.equal(document.querySelector('[data-product="h2ope-33"]'), null, "Água 33cl removida");
 
@@ -54,6 +54,10 @@ function parseEuro(text) {
 
   [...document.querySelectorAll("[data-category]")].find(el => el.dataset.category === "Águas").click();
   assert.equal(count(".product-card"), 3, "Filtro por categoria");
+  [...document.querySelectorAll("[data-category]")].find(el => el.dataset.category === "Todos").click();
+  [...document.querySelectorAll("[data-category]")].find(el => el.dataset.category === "Espirituosas").click();
+  assert.equal(count(".product-card"), 11, "Categoria de espirituosas disponível");
+  assert.equal(document.querySelector('[data-product="dyatel-original"] .add-button').disabled, true, "Espirituosas ainda não entram no carrinho");
   [...document.querySelectorAll("[data-category]")].find(el => el.dataset.category === "Todos").click();
 
   click('[data-product="coca-cola"] [data-add]');
@@ -101,10 +105,10 @@ function parseEuro(text) {
   assert.deepEqual([monster.packUnits, monster.exVat, monster.incVat], [24, 22.80, 28.04], "Monster Energy Verde com pack e preços corretos");
   const ucal = dom.window.PACK24_TEST.products.find(product => product.id === "ucal");
   assert.deepEqual([ucal.unitEx, ucal.exVat, ucal.incVat], [.61, 14.64, 15.52], "Ucal atualizada em 0,01 € por unidade");
-  const allPricesComplete = dom.window.PACK24_TEST.products.every(product => [product.exVat, product.incVat, product.unitEx, product.unitInc].every(Number.isFinite));
-  assert.equal(allPricesComplete, true, "Todos os produtos têm preço de pack e unitário");
-  const allPhotosExist = dom.window.PACK24_TEST.products.every(product => fs.existsSync(path.join(__dirname, "assets", "products", `${product.id}.png`)));
-  assert.equal(allPhotosExist, true, "Todos os produtos têm fotografia");
+  const allPricesComplete = dom.window.PACK24_TEST.products.filter(product => !product.comingSoon).every(product => [product.exVat, product.incVat, product.unitEx, product.unitInc].every(Number.isFinite));
+  assert.equal(allPricesComplete, true, "Todos os produtos já vendáveis têm preço de pack e unitário");
+  const allPhotosExist = dom.window.PACK24_TEST.products.filter(product => !product.comingSoon || product.image).every(product => fs.existsSync(path.join(__dirname, "assets", "products", `${product.image || product.id}.png`)));
+  assert.equal(allPhotosExist, true, "Todos os produtos com imagem indicada têm fotografia");
 
   let leadRequest = null;
   dom.window.fetch = async (url, options) => {
@@ -123,7 +127,7 @@ function parseEuro(text) {
   assert.equal(leadPayload.consent, true);
   assert.match(document.querySelector("#lead-status").textContent, /contacto foi guardado/);
   assert.deepEqual(browserErrors, [], `Erros no navegador: ${browserErrors.join(", ")}`);
-  console.log("PASS: 31 produtos com fotos, pesquisa, carrinho, IVA, VOLTA, WhatsApp e captação consentida validados.");
+  console.log("PASS: catálogo, produtos brevemente, pesquisa, carrinho, IVA, VOLTA, WhatsApp e captação consentida validados.");
   dom.window.close();
 })().catch(error => {
   console.error(error);

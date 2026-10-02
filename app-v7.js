@@ -11,8 +11,9 @@ const products = [
   { id: "h2ope-50", name: "Água 50cl H2OPE Caramulo", detail: "50 cl · pack 24", packUnits: 24, category: "Águas", exVat: 3.84, incVat: 4.34, unitEx: .16, unitInc: .18, vat: .13, volta: true, color: "#3889c5", bg: "#dcecf5", short: "H2OPE" },
   { id: "h2ope-150", name: "Água 1,5L H2OPE Caramulo", detail: "1,5 L · pack 6", packUnits: 6, category: "Águas", exVat: 1.74, incVat: 1.97, unitEx: .29, unitInc: .33, vat: .13, volta: true, color: "#2f80bc", bg: "#dcecf5", short: "H2OPE" },
   { id: "pedras", name: "Água das Pedras", detail: "25 cl · pack 24", packUnits: 24, category: "Águas", exVat: 10.56, incVat: 11.93, unitEx: .44, unitInc: .50, vat: .13, color: "#216c51", bg: "#dcebe3", short: "Pedras" },
-  { id: "pedras-limao", name: "Água das Pedras Limão", detail: "25 cl · pack 24", packUnits: 24, category: "Águas Sabores", exVat: 11.52, incVat: 14.17, unitEx: .48, unitInc: .59, vat: .23, color: "#72a92a", bg: "#e6efd8", short: "Pedras" },
+  { id: "pedras-limao", name: "Água das Pedras Limão", detail: "25 cl · pack 24", packUnits: 24, category: "Águas Sabores", exVat: 11.28, incVat: 13.87, unitEx: .47, unitInc: .58, vat: .23, color: "#72a92a", bg: "#e6efd8", short: "Pedras" },
   { id: "pedras-frutos-vermelhos", name: "Água das Pedras Frutos Vermelhos", detail: "25 cl · pack 24", packUnits: 24, category: "Águas Sabores", exVat: 11.52, incVat: 14.17, unitEx: .48, unitInc: .59, vat: .23, color: "#bd3652", bg: "#f0dce1", short: "Pedras" },
+  { id: "pedras-maracuja", name: "Água das Pedras Maracujá", detail: "25 cl · pack 24", packUnits: 24, category: "Águas Sabores", exVat: 11.28, incVat: 13.87, unitEx: .47, unitInc: .58, vat: .23, color: "#9d3c83", bg: "#f4ddeb", short: "Pedras" },
   { id: "revo", name: "Revo", detail: "25 cl · pack 24", packUnits: 24, category: "Energéticas", exVat: 9.60, incVat: 11.81, unitEx: .40, unitInc: .49, vat: .23, color: "#172715", bg: "#dce7d8", short: "REVO" },
   { id: "red-bull", name: "Red Bull", detail: "25 cl · pack 24", packUnits: 24, category: "Energéticas", exVat: 22.08, incVat: 27.16, unitEx: .92, unitInc: 1.13, vat: .23, volta: true, color: "#3154c6", bg: "#dce3f5", short: "Red Bull" },
   { id: "monster-energy-verde", name: "Monster Energy Verde", detail: "50 cl · pack 24", packUnits: 24, category: "Energéticas", exVat: 22.80, incVat: 28.04, unitEx: .95, unitInc: 1.17, vat: .23, color: "#58b832", bg: "#dcefd5", short: "Monster" },
@@ -29,7 +30,18 @@ const products = [
   { id: "somersby-maca", name: "Somersby Maçã", detail: "33 cl · pack 24", packUnits: 24, category: "Sidras", exVat: 19.44, incVat: 23.91, unitEx: .81, unitInc: 1.00, vat: .23, color: "#5b9a39", bg: "#e4efd9", short: "Somersby" },
   { id: "somersby-frutos-vermelhos", name: "Somersby Frutos Vermelhos", detail: "33 cl · pack 15", packUnits: 15, category: "Sidras", exVat: 12.15, incVat: 14.94, unitEx: .81, unitInc: 1.00, vat: .23, color: "#ad3d54", bg: "#f4dce2", short: "Somersby" },
   { id: "rodeo", name: "Rodeo", detail: "pack 24", packUnits: 24, category: "Energéticas", exVat: 10.08, incVat: 12.40, unitEx: .42, unitInc: .52, vat: .23, volta: true, color: "#e36b4b", bg: "#f6e1da", short: "Rodeo" },
-  { id: "ucal", name: "Ucal Leite com Chocolate", detail: "200 ml · pack 24", packUnits: 24, category: "Leite", exVat: 14.64, incVat: 15.52, unitEx: .61, unitInc: .65, vat: .06, color: "#8d674c", bg: "#eee4dc", short: "Ucal" }
+  { id: "ucal", name: "Ucal Leite com Chocolate", detail: "200 ml · pack 24", packUnits: 24, category: "Leite", exVat: 14.64, incVat: 15.52, unitEx: .61, unitInc: .65, vat: .06, color: "#8d674c", bg: "#eee4dc", short: "Ucal" },
+  { id: "dyatel-original", name: "Vodka Dyatel Original", detail: "70 cl · Brevemente", packUnits: 1, category: "Espirituosas", comingSoon: true, image: "dyatel-original", color: "#68728a", bg: "#e8ebf0", short: "Dyatel" },
+  { id: "dyatel-preta", name: "Vodka Dyatel Preta", detail: "70 cl · Brevemente", packUnits: 1, category: "Espirituosas", comingSoon: true, image: "dyatel-preta", color: "#20232c", bg: "#e4e5e8", short: "Dyatel" },
+  { id: "dyatel-caramelo", name: "Vodka Dyatel Caramelo", detail: "70 cl · Brevemente", packUnits: 1, category: "Espirituosas", comingSoon: true, image: "dyatel-caramelo", color: "#b66a1d", bg: "#f3e4d0", short: "Dyatel" },
+  { id: "whisky-william-lawsons", name: "Whisky William Lawson's", detail: "70 cl · Brevemente", packUnits: 1, category: "Espirituosas", comingSoon: true, image: "whisky-william-lawsons", color: "#317744", bg: "#e0eddf", short: "William Lawson's" },
+  { id: "whisky-golden-loch-3-anos", name: "Whisky Golden Loch 3 anos", detail: "70 cl · Brevemente", packUnits: 1, category: "Espirituosas", comingSoon: true, image: "whisky-golden-loch-3-anos", color: "#b6811b", bg: "#f5e9c9", short: "Golden Loch" },
+  { id: "whisky-jb", name: "Whisky J&B", detail: "70 cl · Brevemente", packUnits: 1, category: "Espirituosas", comingSoon: true, image: "whisky-jb", color: "#536d25", bg: "#e5ebd7", short: "J&B" },
+  { id: "rum-magua-branco", name: "Rum Magua Branco", detail: "70 cl · Brevemente", packUnits: 1, category: "Espirituosas", comingSoon: true, image: "rum-magua-branco", color: "#d7d0bf", bg: "#f1efe9", short: "Magua" },
+  { id: "rum-magua-anejo", name: "Rum Magua Añejo", detail: "70 cl · Brevemente", packUnits: 1, category: "Espirituosas", comingSoon: true, image: "rum-magua-anejo", color: "#a26020", bg: "#f3e3d3", short: "Magua" },
+  { id: "tequila-fiesta", name: "Tequila Fiesta", detail: "70 cl · Brevemente", packUnits: 1, category: "Espirituosas", comingSoon: true, image: "tequila-fiesta", color: "#d3d6d2", bg: "#edf0e9", short: "Fiesta" },
+  { id: "gin-kinross", name: "Gin Kinross", detail: "70 cl · Brevemente", packUnits: 1, category: "Espirituosas", comingSoon: true, image: "gin-kinross", color: "#2f4f85", bg: "#e2e9f3", short: "Kinross" },
+  { id: "ginja-100-vicios", name: "Ginja 100 Vícios", detail: "Box 5 L · Brevemente", packUnits: 1, category: "Espirituosas", comingSoon: true, color: "#862c3c", bg: "#f2dde0", short: "100 Vícios" }
 ];
 
 const state = {
@@ -101,20 +113,23 @@ function renderProducts() {
   grid.hidden = shown.length === 0;
   grid.innerHTML = shown.map(product => {
     const qty = cartQuantity(product.id);
+    const imageName = product.image || product.id;
+    const visual = product.comingSoon && !product.image
+      ? `<div class="product-placeholder">BREVEMENTE</div>`
+      : `<img class="product-photo" src="assets/products/${imageName}.png" alt="${product.name}" loading="lazy" />`;
+    const pricing = product.comingSoon
+      ? `<div class="price-pending"><strong>Preço por confirmar</strong><span>Disponível em breve.</span></div>`
+      : `<div class="price-row"><div class="price-main"><span>Sem IVA</span><strong>${money(product.exVat)}</strong></div><div class="price-inc"><span>Com IVA</span><strong>${money(unitIncVat(product))}</strong></div></div><div class="unit-row"><span>Preço por unidade</span><strong>${money(product.unitEx)} s/ IVA · ${money(product.unitInc)} c/ IVA</strong></div>`;
     return `
       <article class="product-card" data-product="${product.id}">
         <div class="product-visual product-visual--photo" style="--product-bg:${product.bg};--product-color:${product.color}">
-          <img class="product-photo" src="assets/products/${product.id}.png" alt="${product.name}" loading="lazy" />
+          ${visual}
         </div>
-        <div class="product-meta"><span>${product.detail}</span><span class="vat-badge ${product.volta ? "vat-badge--volta" : ""}">${product.volta ? "↻ VOLTA +0,10€/un." : `IVA ${Math.round(product.vat * 100)}%`}</span></div>
+        <div class="product-meta"><span>${product.detail}</span><span class="vat-badge ${product.volta ? "vat-badge--volta" : ""}">${product.comingSoon ? "EM BREVE" : product.volta ? "↻ VOLTA +0,10€/un." : `IVA ${Math.round(product.vat * 100)}%`}</span></div>
         <h3>${product.name}</h3>
-        <div class="price-row">
-          <div class="price-main"><span>Sem IVA</span><strong>${money(product.exVat)}</strong></div>
-          <div class="price-inc"><span>Com IVA</span><strong>${money(unitIncVat(product))}</strong></div>
-        </div>
-        <div class="unit-row"><span>Preço por unidade</span><strong>${money(product.unitEx)} s/ IVA · ${money(product.unitInc)} c/ IVA</strong></div>
+        ${pricing}
         <div class="product-action">
-          ${qty === 0 ? `
+          ${product.comingSoon ? `<button class="add-button add-button--disabled" type="button" disabled>Brevemente</button>` : qty === 0 ? `
             <button class="add-button" type="button" data-add="${product.id}">Adicionar</button>
           ` : `
             <div class="stepper" aria-label="Quantidade de ${product.name}">
@@ -131,7 +146,7 @@ function renderProducts() {
 function cartSummary() {
   return Object.entries(state.cart).reduce((summary, [id, qty]) => {
     const product = products.find(item => item.id === id);
-    if (!product || qty <= 0) return summary;
+    if (!product || product.comingSoon || qty <= 0) return summary;
     const exVat = roundMoney(product.exVat * qty);
     const incVat = roundMoney(unitIncVat(product) * qty);
     const volta = voltaDeposit(product, qty);
@@ -178,6 +193,7 @@ function renderCart() {
 }
 
 function updateQuantity(id, change) {
+  if (products.find(product => product.id === id)?.comingSoon) return;
   const current = cartQuantity(id);
   const next = Math.max(0, Math.min(99, current + change));
   if (next === 0) delete state.cart[id];

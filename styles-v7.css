@@ -153,6 +153,7 @@ svg { width: 1.25em; fill: none; stroke: currentColor; stroke-width: 1.8; stroke
 .product-visual--photo { background: #f7f8f3; border: 1px solid #eceee6; }
 .product-visual--photo::before, .product-visual--photo::after { display: none; }
 .product-visual--photo > .product-photo { position: absolute !important; inset: 10px !important; width: calc(100% - 20px) !important; height: calc(100% - 20px) !important; max-width: none !important; max-height: none !important; display: block; object-fit: contain !important; object-position: 50% 50% !important; margin: 0 !important; padding: 0 !important; border-radius: 10px; }
+.product-placeholder { color: #777b73; font: 800 13px "Manrope"; letter-spacing: 1.2px; }
 .bottle { width: 65px; height: 108px; background: var(--product-color); border-radius: 19px 19px 12px 12px; position: relative; z-index: 2; display: grid; place-items: center; color: white; box-shadow: 7px 12px 20px rgba(0,0,0,.16); transform: rotate(3deg); border: 1px solid rgba(255,255,255,.25); }
 .bottle::before { content: ""; position: absolute; width: 24px; height: 8px; border-radius: 3px 3px 0 0; background: var(--product-cap, #ddd); top: -5px; }
 .bottle b { max-width: 55px; text-align: center; font: 800 11px/1.05 "Manrope"; letter-spacing: -.3px; text-transform: uppercase; }
@@ -173,6 +174,7 @@ svg { width: 1.25em; fill: none; stroke: currentColor; stroke-width: 1.8; stroke
 .product-action { min-height: 43px; margin-top: 16px; }
 .add-button { width: 100%; height: 43px; border: 1px solid var(--ink); border-radius: 11px; background: var(--ink); color: white; font-weight: 700; font-size: 13px; cursor: pointer; }
 .add-button:hover { background: #292929; }
+.add-button--disabled, .add-button--disabled:hover { background: #d6d8d2; border-color: #d6d8d2; color: #777a73; cursor: not-allowed; }
 .stepper { height: 43px; display: grid; grid-template-columns: 42px 1fr 42px; align-items: center; border: 1px solid #d8d9d2; border-radius: 11px; overflow: hidden; background: #f8f8f5; }
 .stepper button { height: 100%; border: 0; background: transparent; font-size: 20px; cursor: pointer; }
 .stepper button:hover { background: #eceee7; }
