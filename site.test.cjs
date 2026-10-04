@@ -26,6 +26,10 @@ function parseEuro(text) {
   };
   dom.window.eval(script);
   const { document } = dom.window;
+  assert.match(document.querySelector('link[rel="icon"]').getAttribute('href'), /^assets\/products\/logo\.png/);
+  for (const page of ['sobre.html', 'contactos.html']) {
+    assert.match(fs.readFileSync(path.join(__dirname, page), 'utf8'), /rel="icon"[^>]*logo\.png/);
+  }
   const click = selector => document.querySelector(selector).click();
   const count = selector => document.querySelectorAll(selector).length;
 
@@ -57,7 +61,20 @@ function parseEuro(text) {
   [...document.querySelectorAll("[data-category]")].find(el => el.dataset.category === "Todos").click();
   [...document.querySelectorAll("[data-category]")].find(el => el.dataset.category === "Espirituosas").click();
   assert.equal(count(".product-card"), 11, "Categoria de espirituosas disponível");
-  assert.equal(document.querySelector('[data-product="dyatel-original"] .add-button').disabled, true, "Espirituosas ainda não entram no carrinho");
+  const spiritPrices = {"dyatel-original": 6.95, "dyatel-preta": 4.99, "dyatel-caramelo": 4.99, "whisky-william-lawsons": 9.20, "whisky-golden-loch-3-anos": 7.99, "whisky-jb": 9.99, "rum-magua-branco": 7.99, "rum-magua-anejo": 8.99, "tequila-fiesta": 8.99, "gin-kinross": 8.99, "ginja-100-vicios": 39.95};
+  for (const [id, price] of Object.entries(spiritPrices)) {
+    const product = dom.window.PACK24_TEST.products.find(item => item.id === id);
+    const card = document.querySelector(`[data-product="${id}"]`);
+    assert.equal(product.exVat, price);
+    assert.equal(product.incVat, Number((price * 1.23).toFixed(2)));
+    assert.equal(parseEuro(card.querySelector('.price-main strong').textContent), price);
+    assert.equal(parseEuro(card.querySelector('.price-inc strong').textContent), product.incVat);
+    assert.equal(card.querySelector('.add-button').disabled, false);
+    assert.equal(Boolean(product.comingSoon), false);
+  }
+  click('[data-product="ginja-100-vicios"] [data-add]');
+  assert.equal(document.querySelector('[data-product="ginja-100-vicios"] .stepper strong').textContent, '1 pack', 'Ginja pode entrar no pedido');
+  click('[data-product="ginja-100-vicios"] [data-decrease]');
   [...document.querySelectorAll("[data-category]")].find(el => el.dataset.category === "Todos").click();
 
   click('[data-product="coca-cola"] [data-add]');
@@ -107,7 +124,7 @@ function parseEuro(text) {
   assert.deepEqual([ucal.unitEx, ucal.exVat, ucal.incVat], [.61, 14.64, 15.52], "Ucal atualizada em 0,01 € por unidade");
   const allPricesComplete = dom.window.PACK24_TEST.products.filter(product => !product.comingSoon).every(product => [product.exVat, product.incVat, product.unitEx, product.unitInc].every(Number.isFinite));
   assert.equal(allPricesComplete, true, "Todos os produtos já vendáveis têm preço de pack e unitário");
-  const allPhotosExist = dom.window.PACK24_TEST.products.filter(product => !product.comingSoon || product.image).every(product => fs.existsSync(path.join(__dirname, "assets", "products", `${product.image || product.id}.png`)));
+  const allPhotosExist = dom.window.PACK24_TEST.products.filter(product => product.id !== 'ginja-100-vicios' && (!product.comingSoon || product.image)).every(product => fs.existsSync(path.join(__dirname, "assets", "products", `${product.image || product.id}.png`)));
   assert.equal(allPhotosExist, true, "Todos os produtos com imagem indicada têm fotografia");
 
   let leadRequest = null;

@@ -31,17 +31,17 @@ const products = [
   { id: "somersby-frutos-vermelhos", name: "Somersby Frutos Vermelhos", detail: "33 cl · pack 15", packUnits: 15, category: "Sidras", exVat: 12.15, incVat: 14.94, unitEx: .81, unitInc: 1.00, vat: .23, color: "#ad3d54", bg: "#f4dce2", short: "Somersby" },
   { id: "rodeo", name: "Rodeo", detail: "pack 24", packUnits: 24, category: "Energéticas", exVat: 10.08, incVat: 12.40, unitEx: .42, unitInc: .52, vat: .23, volta: true, color: "#e36b4b", bg: "#f6e1da", short: "Rodeo" },
   { id: "ucal", name: "Ucal Leite com Chocolate", detail: "200 ml · pack 24", packUnits: 24, category: "Leite", exVat: 14.64, incVat: 15.52, unitEx: .61, unitInc: .65, vat: .06, color: "#8d674c", bg: "#eee4dc", short: "Ucal" },
-  { id: "dyatel-original", name: "Vodka Dyatel Original", detail: "70 cl · Brevemente", packUnits: 1, category: "Espirituosas", comingSoon: true, image: "dyatel-original", color: "#68728a", bg: "#e8ebf0", short: "Dyatel" },
-  { id: "dyatel-preta", name: "Vodka Dyatel Preta", detail: "70 cl · Brevemente", packUnits: 1, category: "Espirituosas", comingSoon: true, image: "dyatel-preta", color: "#20232c", bg: "#e4e5e8", short: "Dyatel" },
-  { id: "dyatel-caramelo", name: "Vodka Dyatel Caramelo", detail: "70 cl · Brevemente", packUnits: 1, category: "Espirituosas", comingSoon: true, image: "dyatel-caramelo", color: "#b66a1d", bg: "#f3e4d0", short: "Dyatel" },
-  { id: "whisky-william-lawsons", name: "Whisky William Lawson's", detail: "70 cl · Brevemente", packUnits: 1, category: "Espirituosas", comingSoon: true, image: "whisky-william-lawsons", color: "#317744", bg: "#e0eddf", short: "William Lawson's" },
-  { id: "whisky-golden-loch-3-anos", name: "Whisky Golden Loch 3 anos", detail: "70 cl · Brevemente", packUnits: 1, category: "Espirituosas", comingSoon: true, image: "whisky-golden-loch-3-anos", color: "#b6811b", bg: "#f5e9c9", short: "Golden Loch" },
-  { id: "whisky-jb", name: "Whisky J&B", detail: "70 cl · Brevemente", packUnits: 1, category: "Espirituosas", comingSoon: true, image: "whisky-jb", color: "#536d25", bg: "#e5ebd7", short: "J&B" },
-  { id: "rum-magua-branco", name: "Rum Magua Branco", detail: "70 cl · Brevemente", packUnits: 1, category: "Espirituosas", comingSoon: true, image: "rum-magua-branco", color: "#d7d0bf", bg: "#f1efe9", short: "Magua" },
-  { id: "rum-magua-anejo", name: "Rum Magua Añejo", detail: "70 cl · Brevemente", packUnits: 1, category: "Espirituosas", comingSoon: true, image: "rum-magua-anejo", color: "#a26020", bg: "#f3e3d3", short: "Magua" },
-  { id: "tequila-fiesta", name: "Tequila Fiesta", detail: "70 cl · Brevemente", packUnits: 1, category: "Espirituosas", comingSoon: true, image: "tequila-fiesta", color: "#d3d6d2", bg: "#edf0e9", short: "Fiesta" },
-  { id: "gin-kinross", name: "Gin Kinross", detail: "70 cl · Brevemente", packUnits: 1, category: "Espirituosas", comingSoon: true, image: "gin-kinross", color: "#2f4f85", bg: "#e2e9f3", short: "Kinross" },
-  { id: "ginja-100-vicios", name: "Ginja 100 Vícios", detail: "Box 5 L · Brevemente", packUnits: 1, category: "Espirituosas", comingSoon: true, color: "#862c3c", bg: "#f2dde0", short: "100 Vícios" }
+  { id: "dyatel-original", name: "Vodka Dyatel Original", detail: "70 cl · unidade", packUnits: 1, category: "Espirituosas", exVat: 6.95, incVat: 8.55, unitEx: 6.95, unitInc: 8.55, vat: .23, image: "dyatel-original", color: "#68728a", bg: "#e8ebf0", short: "Dyatel" },
+  { id: "dyatel-preta", name: "Vodka Dyatel Preta", detail: "70 cl · unidade", packUnits: 1, category: "Espirituosas", exVat: 4.99, incVat: 6.14, unitEx: 4.99, unitInc: 6.14, vat: .23, image: "dyatel-preta", color: "#20232c", bg: "#e4e5e8", short: "Dyatel" },
+  { id: "dyatel-caramelo", name: "Vodka Dyatel Caramelo", detail: "70 cl · unidade", packUnits: 1, category: "Espirituosas", exVat: 4.99, incVat: 6.14, unitEx: 4.99, unitInc: 6.14, vat: .23, image: "dyatel-caramelo", color: "#b66a1d", bg: "#f3e4d0", short: "Dyatel" },
+  { id: "whisky-william-lawsons", name: "Whisky William Lawson's", detail: "70 cl · unidade", packUnits: 1, category: "Espirituosas", exVat: 9.20, incVat: 11.32, unitEx: 9.20, unitInc: 11.32, vat: .23, image: "whisky-william-lawsons", color: "#317744", bg: "#e0eddf", short: "William Lawson's" },
+  { id: "whisky-golden-loch-3-anos", name: "Whisky Golden Loch 3 anos", detail: "70 cl · unidade", packUnits: 1, category: "Espirituosas", exVat: 7.99, incVat: 9.83, unitEx: 7.99, unitInc: 9.83, vat: .23, image: "whisky-golden-loch-3-anos", color: "#b6811b", bg: "#f5e9c9", short: "Golden Loch" },
+  { id: "whisky-jb", name: "Whisky J&B", detail: "70 cl · unidade", packUnits: 1, category: "Espirituosas", exVat: 9.99, incVat: 12.29, unitEx: 9.99, unitInc: 12.29, vat: .23, image: "whisky-jb", color: "#536d25", bg: "#e5ebd7", short: "J&B" },
+  { id: "rum-magua-branco", name: "Rum Magua Branco", detail: "70 cl · unidade", packUnits: 1, category: "Espirituosas", exVat: 7.99, incVat: 9.83, unitEx: 7.99, unitInc: 9.83, vat: .23, image: "rum-magua-branco", color: "#d7d0bf", bg: "#f1efe9", short: "Magua" },
+  { id: "rum-magua-anejo", name: "Rum Magua Añejo", detail: "70 cl · unidade", packUnits: 1, category: "Espirituosas", exVat: 8.99, incVat: 11.06, unitEx: 8.99, unitInc: 11.06, vat: .23, image: "rum-magua-anejo", color: "#a26020", bg: "#f3e3d3", short: "Magua" },
+  { id: "tequila-fiesta", name: "Tequila Fiesta", detail: "70 cl · unidade", packUnits: 1, category: "Espirituosas", exVat: 8.99, incVat: 11.06, unitEx: 8.99, unitInc: 11.06, vat: .23, image: "tequila-fiesta", color: "#d3d6d2", bg: "#edf0e9", short: "Fiesta" },
+  { id: "gin-kinross", name: "Gin Kinross", detail: "70 cl · unidade", packUnits: 1, category: "Espirituosas", exVat: 8.99, incVat: 11.06, unitEx: 8.99, unitInc: 11.06, vat: .23, image: "gin-kinross", color: "#2f4f85", bg: "#e2e9f3", short: "Kinross" },
+  { id: "ginja-100-vicios", name: "Ginja 100 Vícios", detail: "Box 5 L · unidade", packUnits: 1, category: "Espirituosas", exVat: 39.95, incVat: 49.14, unitEx: 39.95, unitInc: 49.14, vat: .23, color: "#862c3c", bg: "#f2dde0", short: "100 Vícios" }
 ];
 
 const state = {
@@ -116,10 +116,10 @@ function renderProducts() {
   grid.innerHTML = shown.map(product => {
     const qty = cartQuantity(product.id);
     const imageName = product.image || product.id;
-    const visual = product.comingSoon && !product.image
-      ? `<div class="product-placeholder">BREVEMENTE</div>`
+    const visual = product.id === 'ginja-100-vicios'
+      ? `<div class="product-placeholder">GINJA<br>100 VÍCIOS<br>BOX 5 L</div>`
       : `<img class="product-photo" src="assets/products/${imageName}.png" alt="${product.name}" loading="lazy" />`;
-    const pricing = product.comingSoon
+    const pricing = !Number.isFinite(product.exVat)
       ? `<div class="price-pending"><strong>Preço por confirmar</strong><span>Disponível em breve.</span></div>`
       : `<div class="price-row"><div class="price-main"><span>Sem IVA</span><strong>${money(product.exVat)}</strong></div><div class="price-inc"><span>Com IVA</span><strong>${money(unitIncVat(product))}</strong></div></div><div class="unit-row"><span>Preço por unidade</span><strong>${money(product.unitEx)} s/ IVA · ${money(product.unitInc)} c/ IVA</strong></div>`;
     return `
