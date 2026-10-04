@@ -1,0 +1,451 @@
+const products = [
+  { id: "coca-cola", name: "Coca-Cola", detail: "33 cl · pack 24", packUnits: 24, category: "Refrigerantes", exVat: 13.20, incVat: 16.24, unitEx: .55, unitInc: .68, vat: .23, color: "#d21f26", bg: "#f4dadd", short: "Coca-Cola" },
+  { id: "coca-cola-zero", name: "Coca-Cola Zero", detail: "33 cl · pack 24", packUnits: 24, category: "Refrigerantes", exVat: 13.20, incVat: 16.24, unitEx: .55, unitInc: .68, vat: .23, color: "#141414", bg: "#e0e0dd", short: "Coca Zero" },
+  { id: "coca-cola-2l", name: "Coca-Cola 2L", detail: "2 L · pack 6", packUnits: 6, category: "Refrigerantes", exVat: 8.16, incVat: 10.04, unitEx: 1.36, unitInc: 1.67, vat: .23, color: "#d21f26", bg: "#f4dadd", short: "Coca-Cola" },
+  { id: "coca-cola-zero-2l", name: "Coca-Cola Zero 2L", detail: "2 L · pack 6", packUnits: 6, category: "Refrigerantes", exVat: 8.16, incVat: 10.04, unitEx: 1.36, unitInc: 1.67, vat: .23, color: "#141414", bg: "#e0e0dd", short: "Coca Zero" },
+  { id: "lipton-limao", name: "Lipton Limão", detail: "33 cl · pack 24", packUnits: 24, category: "Ice Tea", exVat: 13.92, incVat: 17.12, unitEx: .58, unitInc: .71, vat: .23, volta: true, color: "#e0b900", bg: "#f5eccb", short: "Lipton" },
+  { id: "lipton-pessego", name: "Lipton Pêssego", detail: "33 cl · pack 24", packUnits: 24, category: "Ice Tea", exVat: 13.92, incVat: 17.12, unitEx: .58, unitInc: .71, vat: .23, volta: true, color: "#e68a4b", bg: "#f7e4d7", short: "Lipton" },
+  { id: "lipton-manga", name: "Lipton Manga", detail: "33 cl · pack 24", packUnits: 24, category: "Ice Tea", exVat: 13.92, incVat: 17.12, unitEx: .58, unitInc: .71, vat: .23, volta: true, color: "#e6a319", bg: "#f7e9cf", short: "Lipton" },
+  { id: "seven-up", name: "7Up", detail: "33 cl · pack 24", packUnits: 24, category: "Refrigerantes", exVat: 12.48, incVat: 15.35, unitEx: .52, unitInc: .64, vat: .23, color: "#149447", bg: "#d9eee0", short: "7UP" },
+  { id: "guarana", name: "Guaraná", detail: "33 cl · pack 24", packUnits: 24, category: "Refrigerantes", exVat: 13.20, incVat: 16.24, unitEx: .55, unitInc: .68, vat: .23, volta: true, color: "#c82333", bg: "#f2dddd", short: "Guaraná" },
+  { id: "h2ope-50", name: "Água 50cl H2OPE Caramulo", detail: "50 cl · pack 24", packUnits: 24, category: "Águas", exVat: 3.84, incVat: 4.34, unitEx: .16, unitInc: .18, vat: .13, volta: true, color: "#3889c5", bg: "#dcecf5", short: "H2OPE" },
+  { id: "h2ope-150", name: "Água 1,5L H2OPE Caramulo", detail: "1,5 L · pack 6", packUnits: 6, category: "Águas", exVat: 1.74, incVat: 1.97, unitEx: .29, unitInc: .33, vat: .13, volta: true, color: "#2f80bc", bg: "#dcecf5", short: "H2OPE" },
+  { id: "pedras", name: "Água das Pedras", detail: "25 cl · pack 24", packUnits: 24, category: "Águas", exVat: 10.56, incVat: 11.93, unitEx: .44, unitInc: .50, vat: .13, color: "#216c51", bg: "#dcebe3", short: "Pedras" },
+  { id: "pedras-limao", name: "Água das Pedras Limão", detail: "25 cl · pack 24", packUnits: 24, category: "Águas Sabores", exVat: 11.28, incVat: 13.87, unitEx: .47, unitInc: .58, vat: .23, color: "#72a92a", bg: "#e6efd8", short: "Pedras" },
+  { id: "pedras-frutos-vermelhos", name: "Água das Pedras Frutos Vermelhos", detail: "25 cl · pack 24", packUnits: 24, category: "Águas Sabores", exVat: 11.52, incVat: 14.17, unitEx: .48, unitInc: .59, vat: .23, color: "#bd3652", bg: "#f0dce1", short: "Pedras" },
+  { id: "pedras-maracuja", name: "Água das Pedras Maracujá", detail: "25 cl · pack 24", packUnits: 24, category: "Águas Sabores", exVat: 11.28, incVat: 13.87, unitEx: .47, unitInc: .58, vat: .23, color: "#9d3c83", bg: "#f4ddeb", short: "Pedras" },
+  { id: "revo", name: "Revo", detail: "25 cl · pack 24", packUnits: 24, category: "Energéticas", exVat: 9.60, incVat: 11.81, unitEx: .40, unitInc: .49, vat: .23, color: "#172715", bg: "#dce7d8", short: "REVO" },
+  { id: "red-bull", name: "Red Bull", detail: "25 cl · pack 24", packUnits: 24, category: "Energéticas", exVat: 22.08, incVat: 27.16, unitEx: .92, unitInc: 1.13, vat: .23, volta: true, color: "#3154c6", bg: "#dce3f5", short: "Red Bull" },
+  { id: "monster-energy-verde", name: "Monster Energy Verde", detail: "50 cl · pack 24", packUnits: 24, category: "Energéticas", exVat: 22.80, incVat: 28.04, unitEx: .95, unitInc: 1.17, vat: .23, color: "#58b832", bg: "#dcefd5", short: "Monster" },
+  { id: "fanta", name: "Fanta", detail: "33 cl · pack 24", packUnits: 24, category: "Refrigerantes", exVat: 12.72, incVat: 15.65, unitEx: .53, unitInc: .65, vat: .23, color: "#ee7519", bg: "#f8e4cf", short: "Fanta" },
+  { id: "sumol-laranja", name: "Sumol Laranja", detail: "33 cl · pack 24", packUnits: 24, category: "Refrigerantes", exVat: 13.92, incVat: 17.12, unitEx: .58, unitInc: .71, vat: .23, volta: true, color: "#ed6f1a", bg: "#f7e3d4", short: "Sumol" },
+  { id: "sumol-ananas", name: "Sumol Ananás", detail: "33 cl · pack 24", packUnits: 24, category: "Refrigerantes", exVat: 13.92, incVat: 17.12, unitEx: .58, unitInc: .71, vat: .23, volta: true, color: "#5e941d", bg: "#e5eed7", short: "Sumol" },
+  { id: "sagres-media", name: "Sagres Média 33cl", detail: "33 cl · pack 24", packUnits: 24, category: "Cerveja", exVat: 14.88, incVat: 18.30, unitEx: .62, unitInc: .76, vat: .23, color: "#bf4b31", bg: "#f3e2d6", short: "Sagres" },
+  { id: "super-bock-media", name: "Super Bock Média 33cl", detail: "33 cl · pack 24", packUnits: 24, category: "Cerveja", exVat: 14.16, incVat: 17.42, unitEx: .59, unitInc: .73, vat: .23, color: "#a7271e", bg: "#f0ded5", short: "Super Bock" },
+  { id: "sagres-mini", name: "Sagres Mini 25cl", detail: "25 cl · pack 30", packUnits: 30, category: "Cerveja", exVat: 12.90, incVat: 15.87, unitEx: .43, unitInc: .53, vat: .23, color: "#b83b2b", bg: "#f3ded4", short: "Sagres Mini" },
+  { id: "super-bock-mini", name: "Super Bock Mini 20cl", detail: "20 cl · pack 24", packUnits: 24, category: "Cerveja", exVat: 9.36, incVat: 11.51, unitEx: .39, unitInc: .48, vat: .23, color: "#8c1d18", bg: "#eedbd3", short: "Super Bock" },
+  { id: "sagres-1l", name: "Sagres 1L", detail: "1 L · pack 6", packUnits: 6, category: "Cerveja", exVat: 8.34, incVat: 10.26, unitEx: 1.39, unitInc: 1.71, vat: .23, color: "#b74028", bg: "#f0dfd5", short: "Sagres" },
+  { id: "heineken", name: "Heineken 25cl", detail: "25 cl · pack 24", packUnits: 24, category: "Cerveja", exVat: 12.48, incVat: 15.35, unitEx: .52, unitInc: .64, vat: .23, color: "#176f3d", bg: "#dceadf", short: "Heineken" },
+  { id: "frize-limao", name: "Frize Limão", detail: "25 cl · pack 24", packUnits: 24, category: "Águas Sabores", exVat: 11.04, incVat: 13.58, unitEx: .46, unitInc: .57, vat: .23, color: "#94bd45", bg: "#edf2db", short: "Frize" },
+  { id: "somersby-maca", name: "Somersby Maçã", detail: "33 cl · pack 24", packUnits: 24, category: "Sidras", exVat: 19.44, incVat: 23.91, unitEx: .81, unitInc: 1.00, vat: .23, color: "#5b9a39", bg: "#e4efd9", short: "Somersby" },
+  { id: "somersby-frutos-vermelhos", name: "Somersby Frutos Vermelhos", detail: "33 cl · pack 15", packUnits: 15, category: "Sidras", exVat: 12.15, incVat: 14.94, unitEx: .81, unitInc: 1.00, vat: .23, color: "#ad3d54", bg: "#f4dce2", short: "Somersby" },
+  { id: "rodeo", name: "Rodeo", detail: "pack 24", packUnits: 24, category: "Energéticas", exVat: 10.08, incVat: 12.40, unitEx: .42, unitInc: .52, vat: .23, volta: true, color: "#e36b4b", bg: "#f6e1da", short: "Rodeo" },
+  { id: "ucal", name: "Ucal Leite com Chocolate", detail: "200 ml · pack 24", packUnits: 24, category: "Leite", exVat: 14.64, incVat: 15.52, unitEx: .61, unitInc: .65, vat: .06, color: "#8d674c", bg: "#eee4dc", short: "Ucal" },
+  { id: "dyatel-original", name: "Vodka Dyatel Original", detail: "70 cl · Brevemente", packUnits: 1, category: "Espirituosas", comingSoon: true, image: "dyatel-original", color: "#68728a", bg: "#e8ebf0", short: "Dyatel" },
+  { id: "dyatel-preta", name: "Vodka Dyatel Preta", detail: "70 cl · Brevemente", packUnits: 1, category: "Espirituosas", comingSoon: true, image: "dyatel-preta", color: "#20232c", bg: "#e4e5e8", short: "Dyatel" },
+  { id: "dyatel-caramelo", name: "Vodka Dyatel Caramelo", detail: "70 cl · Brevemente", packUnits: 1, category: "Espirituosas", comingSoon: true, image: "dyatel-caramelo", color: "#b66a1d", bg: "#f3e4d0", short: "Dyatel" },
+  { id: "whisky-william-lawsons", name: "Whisky William Lawson's", detail: "70 cl · Brevemente", packUnits: 1, category: "Espirituosas", comingSoon: true, image: "whisky-william-lawsons", color: "#317744", bg: "#e0eddf", short: "William Lawson's" },
+  { id: "whisky-golden-loch-3-anos", name: "Whisky Golden Loch 3 anos", detail: "70 cl · Brevemente", packUnits: 1, category: "Espirituosas", comingSoon: true, image: "whisky-golden-loch-3-anos", color: "#b6811b", bg: "#f5e9c9", short: "Golden Loch" },
+  { id: "whisky-jb", name: "Whisky J&B", detail: "70 cl · Brevemente", packUnits: 1, category: "Espirituosas", comingSoon: true, image: "whisky-jb", color: "#536d25", bg: "#e5ebd7", short: "J&B" },
+  { id: "rum-magua-branco", name: "Rum Magua Branco", detail: "70 cl · Brevemente", packUnits: 1, category: "Espirituosas", comingSoon: true, image: "rum-magua-branco", color: "#d7d0bf", bg: "#f1efe9", short: "Magua" },
+  { id: "rum-magua-anejo", name: "Rum Magua Añejo", detail: "70 cl · Brevemente", packUnits: 1, category: "Espirituosas", comingSoon: true, image: "rum-magua-anejo", color: "#a26020", bg: "#f3e3d3", short: "Magua" },
+  { id: "tequila-fiesta", name: "Tequila Fiesta", detail: "70 cl · Brevemente", packUnits: 1, category: "Espirituosas", comingSoon: true, image: "tequila-fiesta", color: "#d3d6d2", bg: "#edf0e9", short: "Fiesta" },
+  { id: "gin-kinross", name: "Gin Kinross", detail: "70 cl · Brevemente", packUnits: 1, category: "Espirituosas", comingSoon: true, image: "gin-kinross", color: "#2f4f85", bg: "#e2e9f3", short: "Kinross" },
+  { id: "ginja-100-vicios", name: "Ginja 100 Vícios", detail: "Box 5 L · Brevemente", packUnits: 1, category: "Espirituosas", comingSoon: true, color: "#862c3c", bg: "#f2dde0", short: "100 Vícios" }
+];
+
+const state = {
+  category: "Todos",
+  query: "",
+  cart: loadCart()
+};
+
+const euro = new Intl.NumberFormat("pt-PT", { style: "currency", currency: "EUR" });
+const grid = document.querySelector("#product-grid");
+const filters = document.querySelector("#filters");
+const resultCount = document.querySelector("#result-count");
+const search = document.querySelector("#search");
+const emptyState = document.querySelector("#empty-state");
+const shell = document.querySelector("#cart-shell");
+const cartItems = document.querySelector("#cart-items");
+const cartEmpty = document.querySelector("#cart-empty");
+const cartCheckout = document.querySelector("#cart-checkout");
+const mobileCart = document.querySelector(".mobile-cart");
+const toast = document.querySelector("#toast");
+const promoPopup = document.querySelector("#promo-popup");
+const promoTrigger = document.querySelector("#promo-trigger");
+
+function money(value) {
+  return euro.format(roundMoney(value));
+}
+
+function roundMoney(value) {
+  return Math.round((value + Number.EPSILON) * 100) / 100;
+}
+
+function normalize(value) {
+  return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+}
+
+function unitIncVat(product) {
+  return product.incVat;
+}
+
+function voltaDeposit(product, quantity = 1) {
+  return product.volta ? roundMoney(.10 * product.packUnits * quantity) : 0;
+}
+
+function filteredProducts() {
+  const query = normalize(state.query.trim());
+  return products.filter(product => {
+    const categoryMatch = state.category === "Todos" || product.category === state.category;
+    const searchMatch = !query || normalize(`${product.name} ${product.detail} ${product.category}`).includes(query);
+    return categoryMatch && searchMatch;
+  });
+}
+
+function cartQuantity(id) {
+  return state.cart[id] || 0;
+}
+
+function renderFilters() {
+  if (!filters) return;
+  const categories = ["Todos", ...new Set(products.map(product => product.category))];
+  filters.innerHTML = categories.map(category => `
+    <button class="filter-button ${category === state.category ? "is-active" : ""}" type="button" data-category="${category}" aria-pressed="${category === state.category}">
+      ${category}
+    </button>`).join("");
+}
+
+function renderProducts() {
+  if (!grid) return;
+  const shown = filteredProducts();
+  resultCount.textContent = `${shown.length} ${shown.length === 1 ? "produto" : "produtos"}`;
+  emptyState.hidden = shown.length !== 0;
+  grid.hidden = shown.length === 0;
+  grid.innerHTML = shown.map(product => {
+    const qty = cartQuantity(product.id);
+    const imageName = product.image || product.id;
+    const visual = product.comingSoon && !product.image
+      ? `<div class="product-placeholder">BREVEMENTE</div>`
+      : `<img class="product-photo" src="assets/products/${imageName}.png" alt="${product.name}" loading="lazy" />`;
+    const pricing = product.comingSoon
+      ? `<div class="price-pending"><strong>Preço por confirmar</strong><span>Disponível em breve.</span></div>`
+      : `<div class="price-row"><div class="price-main"><span>Sem IVA</span><strong>${money(product.exVat)}</strong></div><div class="price-inc"><span>Com IVA</span><strong>${money(unitIncVat(product))}</strong></div></div><div class="unit-row"><span>Preço por unidade</span><strong>${money(product.unitEx)} s/ IVA · ${money(product.unitInc)} c/ IVA</strong></div>`;
+    return `
+      <article class="product-card" data-product="${product.id}">
+        <div class="product-visual product-visual--photo" style="--product-bg:${product.bg};--product-color:${product.color}">
+          ${visual}
+        </div>
+        <div class="product-meta"><span>${product.detail}</span><span class="vat-badge ${product.volta ? "vat-badge--volta" : ""}">${product.comingSoon ? "EM BREVE" : product.volta ? "↻ VOLTA +0,10€/un." : `IVA ${Math.round(product.vat * 100)}%`}</span></div>
+        <h3>${product.name}</h3>
+        ${pricing}
+        <div class="product-action">
+          ${product.comingSoon ? `<button class="add-button add-button--disabled" type="button" disabled>Brevemente</button>` : qty === 0 ? `
+            <button class="add-button" type="button" data-add="${product.id}">Adicionar</button>
+          ` : `
+            <div class="stepper" aria-label="Quantidade de ${product.name}">
+              <button type="button" data-decrease="${product.id}" aria-label="Retirar um pack">−</button>
+              <strong>${qty} ${qty === 1 ? "pack" : "packs"}</strong>
+              <button type="button" data-increase="${product.id}" aria-label="Adicionar um pack">+</button>
+            </div>
+          `}
+        </div>
+      </article>`;
+  }).join("");
+}
+
+function cartSummary() {
+  return Object.entries(state.cart).reduce((summary, [id, qty]) => {
+    const product = products.find(item => item.id === id);
+    if (!product || product.comingSoon || qty <= 0) return summary;
+    const exVat = roundMoney(product.exVat * qty);
+    const incVat = roundMoney(unitIncVat(product) * qty);
+    const volta = voltaDeposit(product, qty);
+    summary.quantity += qty;
+    summary.exVat = roundMoney(summary.exVat + exVat);
+    summary.incVat = roundMoney(summary.incVat + incVat);
+    summary.volta = roundMoney(summary.volta + volta);
+    summary.total = roundMoney(summary.incVat + summary.volta);
+    summary.lines.push({ product, qty, exVat, incVat, volta });
+    return summary;
+  }, { quantity: 0, exVat: 0, incVat: 0, volta: 0, total: 0, lines: [] });
+}
+
+function renderCart() {
+  const summary = cartSummary();
+  document.querySelectorAll("[data-cart-count]").forEach(element => element.textContent = summary.quantity);
+  document.querySelector("[data-mobile-count]").textContent = summary.quantity;
+  document.querySelector("[data-mobile-label]").textContent = summary.quantity === 1 ? "pack" : "packs";
+  document.querySelector("[data-mobile-total]").textContent = money(summary.total);
+  mobileCart.hidden = summary.quantity === 0;
+  cartEmpty.hidden = summary.quantity !== 0;
+  cartCheckout.hidden = summary.quantity === 0;
+  cartItems.hidden = summary.quantity === 0;
+
+  cartItems.innerHTML = summary.lines.map(({ product, qty, incVat, volta }) => `
+    <div class="cart-line">
+      <div><h3>${product.name}</h3><p>${product.detail} · ${money(unitIncVat(product))} c/ IVA${volta ? ` + ${money(volta)} VOLTA` : ""}</p></div>
+      <strong>${money(roundMoney(incVat + volta))}</strong>
+      <div class="cart-line-actions">
+        <div class="mini-stepper">
+          <button type="button" data-decrease="${product.id}" aria-label="Retirar um pack de ${product.name}">−</button>
+          <strong>${qty}</strong>
+          <button type="button" data-increase="${product.id}" aria-label="Adicionar um pack de ${product.name}">+</button>
+        </div>
+        <button class="remove-button" type="button" data-remove="${product.id}">Remover</button>
+      </div>
+    </div>`).join("");
+
+  document.querySelector("#subtotal-ex").textContent = money(summary.exVat);
+  document.querySelector("#vat-total").textContent = money(roundMoney(summary.incVat - summary.exVat));
+  document.querySelector("#volta-total").textContent = money(summary.volta);
+  document.querySelector("#volta-total-row").hidden = summary.volta === 0;
+  document.querySelector("#total-inc").textContent = money(summary.total);
+}
+
+function updateQuantity(id, change) {
+  if (products.find(product => product.id === id)?.comingSoon) return;
+  const current = cartQuantity(id);
+  const next = Math.max(0, Math.min(99, current + change));
+  if (next === 0) delete state.cart[id];
+  else state.cart[id] = next;
+  saveCart();
+  renderProducts();
+  renderCart();
+  if (change > 0 && current === 0) showToast("Produto adicionado ao pedido");
+}
+
+function saveCart() {
+  try { localStorage.setItem("pack24-cart", JSON.stringify(state.cart)); } catch (_) {}
+}
+
+function loadCart() {
+  try {
+    const parsed = JSON.parse(localStorage.getItem("pack24-cart") || "{}");
+    return parsed && typeof parsed === "object" ? parsed : {};
+  } catch (_) { return {}; }
+}
+
+function openCart() {
+  shell.hidden = false;
+  document.body.classList.add("drawer-open");
+  window.setTimeout(() => shell.querySelector("[data-close-cart]").focus(), 20);
+}
+
+function closeCart() {
+  shell.hidden = true;
+  document.body.classList.remove("drawer-open");
+}
+
+function showToast(message) {
+  toast.textContent = message;
+  toast.classList.add("is-visible");
+  window.clearTimeout(showToast.timer);
+  showToast.timer = window.setTimeout(() => toast.classList.remove("is-visible"), 1700);
+}
+
+function buildWhatsAppMessage() {
+  const summary = cartSummary();
+  const name = document.querySelector("#customer-name").value.trim();
+  const location = document.querySelector("#customer-location").value.trim();
+  const lines = ["Olá PACK24! Gostaria de pedir:", ""];
+  summary.lines.forEach(({ product, qty, incVat, volta }) => {
+    lines.push(`• ${qty}× ${product.name} (${product.detail}) — ${money(incVat)}${volta ? ` + ${money(volta)} depósito VOLTA` : ""}`);
+  });
+  lines.push("", `Subtotal sem IVA: ${money(summary.exVat)}`, `IVA: ${money(roundMoney(summary.incVat - summary.exVat))}`);
+  if (summary.volta) lines.push(`Depósito VOLTA: ${money(summary.volta)}`);
+  lines.push(`Total com IVA e depósitos: ${money(summary.total)}`);
+  if (name || location) {
+    lines.push("");
+    if (name) lines.push(`Nome/estabelecimento: ${name}`);
+    if (location) lines.push(`Localidade: ${location}`);
+  }
+  lines.push("", "Podem confirmar disponibilidade e entrega? Obrigado.");
+  return lines.join("\n");
+}
+
+function prepareWhatsApp() {
+  const summary = cartSummary();
+  if (!summary.quantity) return;
+  const url = `https://wa.me/351938113585?text=${encodeURIComponent(buildWhatsAppMessage())}`;
+  window.open(url, "_blank", "noopener,noreferrer");
+}
+
+const ANALYTICS_API_URL = "https://api.pack24.pt/api/site-analytics/track";
+const ANALYTICS_SESSION_KEY = "pack24-analytics-session";
+
+function analyticsSessionId() {
+  let id = sessionStorage.getItem(ANALYTICS_SESSION_KEY);
+  if (!id) {
+    id = window.crypto?.randomUUID?.().replaceAll("-", "") || `${Date.now().toString(36)}${Math.random().toString(36).slice(2)}${Math.random().toString(36).slice(2)}`;
+    sessionStorage.setItem(ANALYTICS_SESSION_KEY, id);
+  }
+  return id;
+}
+
+function analyticsSource() {
+  const params = new URLSearchParams(location.search);
+  const campaign = (params.get("utm_source") || "").toLowerCase();
+  if (campaign) return campaign.slice(0, 60);
+  if (params.has("gclid")) return "google";
+  if (params.has("fbclid")) return "facebook";
+  const host = (() => { try { return new URL(document.referrer).hostname.toLowerCase(); } catch (_) { return ""; } })();
+  if (!host) return "direto";
+  if (host.includes("google")) return "google";
+  if (host.includes("instagram")) return "instagram";
+  if (host.includes("facebook") || host === "fb.com") return "facebook";
+  if (host.includes("whatsapp")) return "whatsapp";
+  if (host.includes("bing")) return "bing";
+  if (host === location.hostname) return "direto";
+  return "outro";
+}
+
+function analyticsDevice() {
+  if (/ipad|tablet/i.test(navigator.userAgent)) return "tablet";
+  if (/mobile|android|iphone/i.test(navigator.userAgent)) return "telemóvel";
+  return "computador";
+}
+
+function trackSite(event = "heartbeat") {
+  const payload = { session_id: analyticsSessionId(), event, path: `${location.pathname}${location.hash}`, source: analyticsSource(), referrer: document.referrer, device_type: analyticsDevice() };
+  fetch(ANALYTICS_API_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload), keepalive: true }).catch(() => {});
+}
+
+trackSite("pageview");
+window.setInterval(() => { if (!document.hidden) trackSite("heartbeat"); }, 30000);
+window.addEventListener("hashchange", () => trackSite("pageview"));
+const navToggleBtn = document.getElementById('nav-toggle');
+const mobileNavEl = document.getElementById('mobile-nav');
+if (navToggleBtn && mobileNavEl) {
+  mobileNavEl.addEventListener('click', event => {
+    if (!event.target.closest('a')) return;
+    mobileNavEl.hidden = true;
+    mobileNavEl.classList.remove('open');
+    navToggleBtn.setAttribute('aria-expanded', 'false');
+    navToggleBtn.setAttribute('aria-label', 'Abrir menu');
+  });
+  navToggleBtn.addEventListener('click', () => {
+    mobileNavEl.hidden = !mobileNavEl.hidden;
+    mobileNavEl.classList.toggle('open', !mobileNavEl.hidden);
+    navToggleBtn.setAttribute('aria-expanded', String(!mobileNavEl.hidden));
+    navToggleBtn.setAttribute('aria-label', mobileNavEl.hidden ? 'Abrir menu' : 'Fechar menu');
+  });
+}
+
+document.addEventListener("visibilitychange", () => { if (!document.hidden) trackSite("heartbeat"); });
+
+const LEAD_API_URL = "https://api.pack24.pt/api/promotion-leads";
+
+async function savePromotionLead(event) {
+  event.preventDefault();
+  const form = document.querySelector("#lead-form");
+  const contact = document.querySelector("#lead-contact").value.trim();
+  const business = document.querySelector("#lead-business").value.trim();
+  const consent = document.querySelector("#lead-consent").checked;
+  const button = form.querySelector('button[type="submit"]');
+  const status = document.querySelector("#lead-status");
+  if (!contact || !consent) {
+    form.reportValidity();
+    return;
+  }
+
+  button.disabled = true;
+  button.textContent = "A guardar…";
+  status.textContent = "";
+  status.className = "lead-status";
+
+  try {
+    const response = await fetch(LEAD_API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        business_name: business,
+        contact,
+        consent: true,
+        source: "pack24.pt",
+        website: ""
+      })
+    });
+    if (!response.ok) throw new Error("Pedido recusado");
+
+    localStorage.setItem("pack24-promo-sent", "1");
+    localStorage.setItem("pack24-promo-last-seen", String(Date.now()));
+    status.textContent = "Obrigado! O seu contacto foi guardado.";
+    status.classList.add("is-success");
+    form.reset();
+    window.setTimeout(() => {
+      hidePromoPopup();
+    }, 1800);
+  } catch (_) {
+    status.textContent = "Não foi possível guardar o contacto. Tente novamente.";
+    status.classList.add("is-error");
+  } finally {
+    button.disabled = false;
+    button.textContent = "Quero receber promoções";
+  }
+}
+
+function showPromoPopup() {
+  promoPopup.hidden = false;
+  promoTrigger.hidden = true;
+}
+
+function hidePromoPopup() {
+  promoPopup.hidden = true;
+  promoTrigger.hidden = false;
+}
+
+function schedulePromoPopup() {
+  if (!promoPopup || !promoTrigger) return;
+  const lastSeen = Number(localStorage.getItem("pack24-promo-last-seen") || 0);
+  if (lastSeen && Date.now() - lastSeen < 7 * 24 * 60 * 60 * 1000) {
+    promoTrigger.hidden = false;
+    return;
+  }
+  window.setTimeout(() => {
+    showPromoPopup();
+  }, 4500);
+}
+
+document.addEventListener("click", event => {
+  const add = event.target.closest("[data-add]");
+  const increase = event.target.closest("[data-increase]");
+  const decrease = event.target.closest("[data-decrease]");
+  const remove = event.target.closest("[data-remove]");
+  const category = event.target.closest("[data-category]");
+  if (add) updateQuantity(add.dataset.add, 1);
+  if (increase) updateQuantity(increase.dataset.increase, 1);
+  if (decrease) updateQuantity(decrease.dataset.decrease, -1);
+  if (remove) updateQuantity(remove.dataset.remove, -cartQuantity(remove.dataset.remove));
+  if (category) {
+    state.category = category.dataset.category;
+    renderFilters();
+    renderProducts();
+  }
+  if (event.target.closest("[data-open-cart]")) openCart();
+  if (event.target.closest("[data-close-cart]")) closeCart();
+});
+
+search?.addEventListener("input", () => { state.query = search.value; renderProducts(); });
+document.querySelector("#clear-filters")?.addEventListener("click", () => {
+  state.query = "";
+  state.category = "Todos";
+  search.value = "";
+  renderFilters();
+  renderProducts();
+  search.focus();
+});
+document.querySelector("#whatsapp-action").addEventListener("click", prepareWhatsApp);
+document.querySelector("#lead-form")?.addEventListener("submit", savePromotionLead);
+document.querySelector("#promo-close")?.addEventListener("click", () => {
+  localStorage.setItem("pack24-promo-last-seen", String(Date.now()));
+  hidePromoPopup();
+});
+promoTrigger?.addEventListener("click", showPromoPopup);
+document.addEventListener("keydown", event => {
+  if (search && (event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+    event.preventDefault();
+    closeCart();
+    document.querySelector("#catalogo").scrollIntoView();
+    search.focus({ preventScroll: true });
+  }
+  if (event.key === "Escape" && !shell.hidden) closeCart();
+});
+
+renderFilters();
+renderProducts();
+renderCart();
+schedulePromoPopup();
+
+window.PACK24_TEST = { products, roundMoney, unitIncVat, voltaDeposit, cartSummary, buildWhatsAppMessage, state };
