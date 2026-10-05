@@ -15,7 +15,7 @@ const products = [
   { id: "pedras-frutos-vermelhos", name: "Água das Pedras Frutos Vermelhos", detail: "25 cl · pack 24", packUnits: 24, category: "Águas Sabores", exVat: 11.52, incVat: 14.17, unitEx: .48, unitInc: .59, vat: .23, color: "#bd3652", bg: "#f0dce1", short: "Pedras" },
   { id: "pedras-maracuja", name: "Água das Pedras Maracujá", detail: "25 cl · pack 24", packUnits: 24, category: "Águas Sabores", exVat: 11.28, incVat: 13.87, unitEx: .47, unitInc: .58, vat: .23, color: "#9d3c83", bg: "#f4ddeb", short: "Pedras" },
   { id: "revo", name: "Revo", detail: "25 cl · pack 24", packUnits: 24, category: "Energéticas", exVat: 9.60, incVat: 11.81, unitEx: .40, unitInc: .49, vat: .23, color: "#172715", bg: "#dce7d8", short: "REVO" },
-  { id: "red-bull", name: "Red Bull", detail: "25 cl · pack 24", packUnits: 24, category: "Energéticas", exVat: 22.08, incVat: 27.16, unitEx: .92, unitInc: 1.13, vat: .23, volta: true, color: "#3154c6", bg: "#dce3f5", short: "Red Bull" },
+  { id: "red-bull", name: "Red Bull", detail: "25 cl · pack 24", packUnits: 24, category: "Energéticas", exVat: 22.08, incVat: 27.16, unitEx: .92, unitInc: 1.13, previousUnitEx: .95, vat: .23, volta: true, color: "#3154c6", bg: "#dce3f5", short: "Red Bull" },
   { id: "monster-energy-verde", name: "Monster Energy Verde", detail: "50 cl · pack 24", packUnits: 24, category: "Energéticas", exVat: 22.80, incVat: 28.04, unitEx: .95, unitInc: 1.17, vat: .23, color: "#58b832", bg: "#dcefd5", short: "Monster" },
   { id: "fanta", name: "Fanta", detail: "33 cl · pack 24", packUnits: 24, category: "Refrigerantes", exVat: 12.72, incVat: 15.65, unitEx: .53, unitInc: .65, vat: .23, color: "#ee7519", bg: "#f8e4cf", short: "Fanta" },
   { id: "sumol-laranja", name: "Sumol Laranja", detail: "33 cl · pack 24", packUnits: 24, category: "Refrigerantes", exVat: 13.92, incVat: 17.12, unitEx: .58, unitInc: .71, vat: .23, volta: true, color: "#ed6f1a", bg: "#f7e3d4", short: "Sumol" },
@@ -129,6 +129,7 @@ function renderProducts() {
         </div>
         <div class="product-meta"><span>${product.detail}</span><span class="vat-badge ${product.volta ? "vat-badge--volta" : ""}">${product.comingSoon ? "EM BREVE" : product.volta ? "↻ VOLTA +0,10€/un." : `IVA ${Math.round(product.vat * 100)}%`}</span></div>
         <h3>${product.name}</h3>
+        ${product.previousUnitEx ? `<div class="product-promotion"><strong>PROMOÇÃO</strong><span><s>${money(product.previousUnitEx)}</s> → ${money(product.unitEx)} / un. + IVA</span></div>` : ""}
         ${pricing}
         <div class="product-action">
           ${product.comingSoon ? `<button class="add-button add-button--disabled" type="button" disabled>Brevemente</button>` : qty === 0 ? `

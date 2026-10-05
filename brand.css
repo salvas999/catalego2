@@ -91,6 +91,7 @@
 .testimonials>.testimonial-draft-note{font-size:10px;text-align:center;margin:24px auto 0;max-width:700px;line-height:1.7}
 @media(max-width:700px){.review-card{padding:26px}.review-card blockquote p{font-size:14px}}
 /* Always-visible newsletter and the recoverable promotions popup. */
+.product-promotion{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 12px;color:#375015;font-size:12px}.product-promotion>strong{background:#b9e43d;color:#111;border-radius:5px;padding:4px 7px;font-size:10px;letter-spacing:.05em}.product-promotion s{color:#73776e}
 .newsletter-section{max-width:1296px;margin:48px auto;padding:40px;background:#10110e;color:#fff;border-radius:24px;display:grid;grid-template-columns:1fr 1fr;gap:40px}
 .newsletter-kicker{color:#b9e43d;font-size:12px;font-weight:800;letter-spacing:.15em}
 .newsletter-section h2{font-size:clamp(28px,3vw,42px);line-height:1.1;margin:16px 0}
