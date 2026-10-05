@@ -388,14 +388,7 @@ function hidePromoPopup() {
 
 function schedulePromoPopup() {
   if (!promoPopup || !promoTrigger) return;
-  const lastSeen = Number(localStorage.getItem("pack24-promo-last-seen") || 0);
-  if (lastSeen && Date.now() - lastSeen < 7 * 24 * 60 * 60 * 1000) {
-    promoTrigger.hidden = false;
-    return;
-  }
-  window.setTimeout(() => {
-    showPromoPopup();
-  }, 4500);
+  showPromoPopup();
 }
 
 document.addEventListener("click", event => {
@@ -428,7 +421,6 @@ document.querySelector("#clear-filters")?.addEventListener("click", () => {
 });
 document.querySelector("#whatsapp-action").addEventListener("click", prepareWhatsApp);
 document.querySelector("#lead-form")?.addEventListener("submit", savePromotionLead);
-document.querySelector("#newsletter-form")?.addEventListener("submit", savePromotionLead);
 document.querySelector("#promo-close")?.addEventListener("click", () => {
   localStorage.setItem("pack24-promo-last-seen", String(Date.now()));
   hidePromoPopup();
