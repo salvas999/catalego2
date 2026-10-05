@@ -143,6 +143,14 @@ function parseEuro(text) {
   assert.equal(leadPayload.contact, "teste@example.pt");
   assert.equal(leadPayload.consent, true);
   assert.match(document.querySelector("#lead-status").textContent, /contacto foi guardado/);
+  const newsletter = document.querySelector('#newsletter-form');
+  assert.equal(document.querySelector('#newsletter').hidden, false);
+  newsletter.querySelector('[name="contact"]').value = 'newsletter@example.pt';
+  newsletter.querySelector('[name="consent"]').checked = true;
+  newsletter.dispatchEvent(new dom.window.Event('submit', {bubbles:true,cancelable:true}));
+  await new Promise(resolve => dom.window.setTimeout(resolve, 0));
+  assert.equal(JSON.parse(leadRequest.options.body).contact, 'newsletter@example.pt');
+  assert.match(newsletter.querySelector('[data-lead-status]').textContent, /contacto foi guardado/);
   assert.deepEqual(browserErrors, [], `Erros no navegador: ${browserErrors.join(", ")}`);
   console.log("PASS: catálogo, produtos brevemente, pesquisa, carrinho, IVA, VOLTA, WhatsApp e captação consentida validados.");
   dom.window.close();

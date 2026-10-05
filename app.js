@@ -329,12 +329,12 @@ const LEAD_API_URL = "https://api.pack24.pt/api/promotion-leads";
 
 async function savePromotionLead(event) {
   event.preventDefault();
-  const form = document.querySelector("#lead-form");
-  const contact = document.querySelector("#lead-contact").value.trim();
-  const business = document.querySelector("#lead-business").value.trim();
-  const consent = document.querySelector("#lead-consent").checked;
+  const form = event.currentTarget;
+  const contact = form.querySelector('[name="contact"], #lead-contact').value.trim();
+  const business = form.querySelector('[name="business"], #lead-business').value.trim();
+  const consent = form.querySelector('[name="consent"], #lead-consent').checked;
   const button = form.querySelector('button[type="submit"]');
-  const status = document.querySelector("#lead-status");
+  const status = form.querySelector('[data-lead-status], #lead-status');
   if (!contact || !consent) {
     form.reportValidity();
     return;
@@ -364,7 +364,7 @@ async function savePromotionLead(event) {
     status.textContent = "Obrigado! O seu contacto foi guardado.";
     status.classList.add("is-success");
     form.reset();
-    window.setTimeout(() => {
+    if (form.id === 'lead-form') window.setTimeout(() => {
       hidePromoPopup();
     }, 1800);
   } catch (_) {
@@ -428,6 +428,7 @@ document.querySelector("#clear-filters")?.addEventListener("click", () => {
 });
 document.querySelector("#whatsapp-action").addEventListener("click", prepareWhatsApp);
 document.querySelector("#lead-form")?.addEventListener("submit", savePromotionLead);
+document.querySelector("#newsletter-form")?.addEventListener("submit", savePromotionLead);
 document.querySelector("#promo-close")?.addEventListener("click", () => {
   localStorage.setItem("pack24-promo-last-seen", String(Date.now()));
   hidePromoPopup();
