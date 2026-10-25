@@ -1,8 +1,8 @@
 const products = [
   { id: "coca-cola", name: "Coca-Cola", detail: "33 cl · pack 24", packUnits: 24, category: "Refrigerantes", exVat: 13.20, incVat: 16.24, unitEx: .55, unitInc: .68, vat: .23, color: "#d21f26", bg: "#f4dadd", short: "Coca-Cola" },
   { id: "coca-cola-zero", name: "Coca-Cola Zero", detail: "33 cl · pack 24", packUnits: 24, category: "Refrigerantes", exVat: 13.20, incVat: 16.24, unitEx: .55, unitInc: .68, vat: .23, color: "#141414", bg: "#e0e0dd", short: "Coca Zero" },
-  { id: "coca-cola-2l", name: "Coca-Cola 2L", detail: "2 L · pack 6", packUnits: 6, category: "Refrigerantes", exVat: 8.16, incVat: 10.04, unitEx: 1.36, unitInc: 1.67, vat: .23, color: "#d21f26", bg: "#f4dadd", short: "Coca-Cola" },
-  { id: "coca-cola-zero-2l", name: "Coca-Cola Zero 2L", detail: "2 L · pack 6", packUnits: 6, category: "Refrigerantes", exVat: 8.16, incVat: 10.04, unitEx: 1.36, unitInc: 1.67, vat: .23, color: "#141414", bg: "#e0e0dd", short: "Coca Zero" },
+  { id: "coca-cola-2l", name: "Coca-Cola 2L", detail: "2 L · pack 6", packUnits: 6, category: "Refrigerantes", exVat: 8.16, incVat: 10.04, unitEx: 1.36, unitInc: 1.67, vat: .23, volumePromotion: { group: "cola-2l", minimumPacks: 10, unitEx: 1.27 }, color: "#d21f26", bg: "#f4dadd", short: "Coca-Cola" },
+  { id: "coca-cola-zero-2l", name: "Coca-Cola Zero 2L", detail: "2 L · pack 6", packUnits: 6, category: "Refrigerantes", exVat: 8.16, incVat: 10.04, unitEx: 1.36, unitInc: 1.67, vat: .23, volumePromotion: { group: "cola-2l", minimumPacks: 10, unitEx: 1.27 }, color: "#141414", bg: "#e0e0dd", short: "Coca Zero" },
   { id: "lipton-limao", name: "Lipton Limão", detail: "33 cl · pack 24", packUnits: 24, category: "Ice Tea", exVat: 13.92, incVat: 17.12, unitEx: .58, unitInc: .71, vat: .23, volta: true, color: "#e0b900", bg: "#f5eccb", short: "Lipton" },
   { id: "lipton-pessego", name: "Lipton Pêssego", detail: "33 cl · pack 24", packUnits: 24, category: "Ice Tea", exVat: 13.92, incVat: 17.12, unitEx: .58, unitInc: .71, vat: .23, volta: true, color: "#e68a4b", bg: "#f7e4d7", short: "Lipton" },
   { id: "lipton-manga", name: "Lipton Manga", detail: "33 cl · pack 24", packUnits: 24, category: "Ice Tea", exVat: 13.92, incVat: 17.12, unitEx: .58, unitInc: .71, vat: .23, volta: true, color: "#e6a319", bg: "#f7e9cf", short: "Lipton" },
@@ -98,6 +98,20 @@ function cartQuantity(id) {
   return state.cart[id] || 0;
 }
 
+function promotionQuantity(product) {
+  if (!product.volumePromotion) return 0;
+  return products.filter(item => !item.comingSoon && item.volumePromotion?.group === product.volumePromotion.group)
+    .reduce((total, item) => total + cartQuantity(item.id), 0);
+}
+
+function cartPricing(product) {
+  const promotion = product.volumePromotion;
+  if (!promotion || promotionQuantity(product) < promotion.minimumPacks) {
+    return { exVat: product.exVat, incVat: product.incVat, unitEx: product.unitEx, unitInc: product.unitInc, promotionApplied: false };
+  }
+  const exVat = roundMoney(promotion.unitEx * product.packUnits);
+  return { exVat, incVat: roundMoney(exVat * (1 + product.vat)), unitEx: promotion.unitEx, unitInc: roundMoney(promotion.unitEx * (1 + product.vat)), promotionApplied: true };
+}
 function renderFilters() {
   if (!filters) return;
   const categories = ["Todos", ...new Set(products.map(product => product.category))];
@@ -115,13 +129,15 @@ function renderProducts() {
   grid.hidden = shown.length === 0;
   grid.innerHTML = shown.map(product => {
     const qty = cartQuantity(product.id);
+    const price = cartPricing(product);
+    const promotion = product.volumePromotion;
     const imageName = product.image || product.id;
     const visual = product.id === 'ginja-100-vicios'
       ? `<div class="product-placeholder">GINJA<br>100 VÍCIOS<br>BOX 5 L</div>`
       : `<img class="product-photo" src="assets/products/${imageName}.png" alt="${product.name}" loading="lazy" />`;
     const pricing = !Number.isFinite(product.exVat)
       ? `<div class="price-pending"><strong>Preço por confirmar</strong><span>Disponível em breve.</span></div>`
-      : `<div class="price-row"><div class="price-main"><span>Sem IVA</span><strong>${money(product.exVat)}</strong></div><div class="price-inc"><span>Com IVA</span><strong>${money(unitIncVat(product))}</strong></div></div><div class="unit-row"><span>Preço por unidade</span><strong>${money(product.unitEx)} s/ IVA · ${money(product.unitInc)} c/ IVA</strong></div>`;
+      : `<div class="price-row"><div class="price-main"><span>${promotion ? price.promotionApplied ? "Pack promo s/ IVA" : "Pack normal s/ IVA" : "Sem IVA"}</span><strong>${money(price.exVat)}</strong></div><div class="price-inc"><span>Com IVA</span><strong>${money(price.incVat)}</strong></div></div><div class="unit-row"><span>Preço por unidade</span><strong>${money(price.unitEx)} s/ IVA · ${money(price.unitInc)} c/ IVA</strong></div>`;
     return `
       <article class="product-card" data-product="${product.id}">
         <div class="product-visual product-visual--photo" style="--product-bg:${product.bg};--product-color:${product.color}">
@@ -130,6 +146,7 @@ function renderProducts() {
         <div class="product-meta"><span>${product.detail}</span><span class="vat-badge ${product.volta ? "vat-badge--volta" : ""}">${product.comingSoon ? "EM BREVE" : product.volta ? "↻ VOLTA +0,10€/un." : `IVA ${Math.round(product.vat * 100)}%`}</span></div>
         <h3>${product.name}</h3>
         ${product.previousUnitEx ? `<div class="product-promotion"><strong>PROMOÇÃO</strong><span><s>${money(product.previousUnitEx)}</s> → ${money(product.unitEx)} / un. + IVA</span></div>` : ""}
+        ${promotion ? `<div class="product-promotion product-promotion--volume"><strong>${price.promotionApplied ? "PROMO APLICADA" : "PROMOÇÃO"}</strong><span>${money(promotion.unitEx)} / garrafa + IVA</span><small>Mín. 10 packs mistos de Coca-Cola 2L / Zero 2L.</small></div>` : ""}
         ${pricing}
         <div class="product-action">
           ${product.comingSoon ? `<button class="add-button add-button--disabled" type="button" disabled>Brevemente</button>` : qty === 0 ? `
@@ -150,15 +167,16 @@ function cartSummary() {
   return Object.entries(state.cart).reduce((summary, [id, qty]) => {
     const product = products.find(item => item.id === id);
     if (!product || product.comingSoon || qty <= 0) return summary;
-    const exVat = roundMoney(product.exVat * qty);
-    const incVat = roundMoney(unitIncVat(product) * qty);
+    const price = cartPricing(product);
+    const exVat = roundMoney(price.exVat * qty);
+    const incVat = price.promotionApplied ? roundMoney(exVat * (1 + product.vat)) : roundMoney(price.incVat * qty);
     const volta = voltaDeposit(product, qty);
     summary.quantity += qty;
     summary.exVat = roundMoney(summary.exVat + exVat);
     summary.incVat = roundMoney(summary.incVat + incVat);
     summary.volta = roundMoney(summary.volta + volta);
     summary.total = roundMoney(summary.incVat + summary.volta);
-    summary.lines.push({ product, qty, exVat, incVat, volta });
+    summary.lines.push({ product, price, qty, exVat, incVat, volta });
     return summary;
   }, { quantity: 0, exVat: 0, incVat: 0, volta: 0, total: 0, lines: [] });
 }
@@ -174,9 +192,9 @@ function renderCart() {
   cartCheckout.hidden = summary.quantity === 0;
   cartItems.hidden = summary.quantity === 0;
 
-  cartItems.innerHTML = summary.lines.map(({ product, qty, incVat, volta }) => `
+  cartItems.innerHTML = summary.lines.map(({ product, price, qty, incVat, volta }) => `
     <div class="cart-line">
-      <div><h3>${product.name}</h3><p>${product.detail} · ${money(unitIncVat(product))} c/ IVA${volta ? ` + ${money(volta)} VOLTA` : ""}</p></div>
+      <div><h3>${product.name}</h3><p>${product.detail} · ${money(price.incVat)} c/ IVA${volta ? ` + ${money(volta)} VOLTA` : ""}</p>${product.volumePromotion ? `<p class="cart-promotion">${price.promotionApplied ? `Promoção aplicada: ${money(price.unitEx)} / garrafa + IVA (mínimo 10 packs mistos).` : `Promoção a partir de 10 packs mistos de Coca-Cola 2L e Zero 2L. Faltam ${product.volumePromotion.minimumPacks - promotionQuantity(product)} packs.`}</p>` : ""}</div>
       <strong>${money(roundMoney(incVat + volta))}</strong>
       <div class="cart-line-actions">
         <div class="mini-stepper">
@@ -241,8 +259,9 @@ function buildWhatsAppMessage() {
   const name = document.querySelector("#customer-name").value.trim();
   const location = document.querySelector("#customer-location").value.trim();
   const lines = ["Olá PACK24! Gostaria de pedir:", ""];
-  summary.lines.forEach(({ product, qty, incVat, volta }) => {
+  summary.lines.forEach(({ product, price, qty, incVat, volta }) => {
     lines.push(`• ${qty}× ${product.name} (${product.detail}) — ${money(incVat)}${volta ? ` + ${money(volta)} depósito VOLTA` : ""}`);
+    if (price.promotionApplied) lines.push(`  Promoção: ${money(price.unitEx)} / garrafa + IVA, mínimo de 10 packs de Coca-Cola 2L e/ou Zero 2L no total.`);
   });
   lines.push("", `Subtotal sem IVA: ${money(summary.exVat)}`, `IVA: ${money(roundMoney(summary.incVat - summary.exVat))}`);
   if (summary.volta) lines.push(`Depósito VOLTA: ${money(summary.volta)}`);

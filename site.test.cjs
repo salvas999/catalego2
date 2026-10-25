@@ -108,6 +108,45 @@ function parseEuro(text) {
   click('[data-decrease="seven-up"]');
   assert.equal(document.querySelector("#cart-empty").hidden, false, "Estado vazio aparece");
 
+  assert.match(document.querySelector('.cola-promotion').textContent, /10 packs no total/);
+  assert.equal(document.querySelector('#promotions-title').textContent, 'Promoções em destaque');
+  assert.match(document.querySelector('.redbull-promotion s').textContent, /0,95/);
+  assert.match(document.querySelector('.redbull-promotion-price').textContent, /0,92/);
+  assert.match(document.querySelector('.redbull-deposit').textContent, /0,10/);
+  assert.match(document.querySelector('[data-product="coca-cola-2l"] .product-promotion').textContent, /1,27/);
+  const colaCard = id => document.querySelector(`[data-product="${id}"]`);
+  const addPacks = (id, qty) => {
+    for (let i = 0; i < qty; i++) colaCard(id).querySelector('[data-add], [data-increase]').click();
+  };
+  addPacks('coca-cola-2l', 5);
+  addPacks('coca-cola-zero-2l', 4);
+  assert.equal(dom.window.PACK24_TEST.cartSummary().exVat, 73.44, '9 packs mistos mantêm preço normal');
+  addPacks('coca-cola', 1);
+  assert.equal(parseEuro(colaCard('coca-cola-2l').querySelector('.price-main strong').textContent), 8.16, 'Cola 33 cl não conta para os 10 packs');
+  click('[data-remove="coca-cola"]');
+  addPacks('coca-cola-zero-2l', 1);
+  let mixedPromotion = dom.window.PACK24_TEST.cartSummary();
+  assert.equal(mixedPromotion.exVat, 76.20, '5 packs de cada variedade ativam promoção em ambas');
+  assert.equal(mixedPromotion.incVat, 93.72, 'IVA calculado sobre cada linha promocional de 5 packs');
+  assert.ok(mixedPromotion.lines.every(line => line.price.promotionApplied && line.price.exVat === 7.62));
+  assert.equal(parseEuro(colaCard('coca-cola-2l').querySelector('.price-main strong').textContent), 7.62);
+  assert.equal(parseEuro(colaCard('coca-cola-zero-2l').querySelector('.unit-row strong').textContent.split(' s/ IVA')[0]), 1.27);
+  assert.match(document.querySelector('.cart-promotion').textContent, /Promoção aplicada/);
+  assert.match(dom.window.PACK24_TEST.buildWhatsAppMessage(), /Promoção: 1,27/);
+  assert.match(dom.window.PACK24_TEST.buildWhatsAppMessage(), /Subtotal sem IVA: 76,20/);
+  click('[data-product="coca-cola-zero-2l"] [data-decrease]');
+  assert.equal(dom.window.PACK24_TEST.cartSummary().exVat, 73.44, 'Ao voltar a 9 packs, remove desconto das duas variedades');
+  assert.ok(dom.window.PACK24_TEST.cartSummary().lines.every(line => !line.price.promotionApplied));
+  assert.doesNotMatch(dom.window.PACK24_TEST.buildWhatsAppMessage(), /Promoção:/);
+  click('[data-remove="coca-cola-zero-2l"]');
+  addPacks('coca-cola-2l', 5);
+  assert.equal(dom.window.PACK24_TEST.cartSummary().exVat, 76.20, '10 packs só de Coca-Cola também ativam promoção');
+  assert.equal(dom.window.PACK24_TEST.cartSummary().incVat, 93.73, 'Uma linha de 10 packs tem IVA arredondado no total da linha');
+  click('[data-remove="coca-cola-2l"]');
+  addPacks('coca-cola-zero-2l', 11);
+  assert.equal(dom.window.PACK24_TEST.cartSummary().exVat, 83.82, '11 packs Zero usam preço promocional em todos os packs');
+  click('[data-remove="coca-cola-zero-2l"]');
+
   const water = dom.window.PACK24_TEST.products.find(product => product.id === "h2ope-50");
   assert.equal(dom.window.PACK24_TEST.unitIncVat(water), 4.34, "IVA de água a 13% correto");
   assert.equal(dom.window.PACK24_TEST.voltaDeposit(water), 2.40, "Depósito VOLTA de 0,10 € por unidade correto");
