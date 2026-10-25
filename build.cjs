@@ -1,5 +1,6 @@
 const fs = require("node:fs");
 const path = require("node:path");
+const crypto = require("node:crypto");
 
 const root = __dirname;
 const output = path.join(root, "dist");
@@ -9,6 +10,25 @@ fs.mkdirSync(output, { recursive: true });
 
 for (const filename of ["index.html", "sobre.html", "contactos.html", "styles-v7.css", "brand.css", "app.js"]) {
   fs.copyFileSync(path.join(root, filename), path.join(output, filename));
+}
+
+// Every HTML page references content-addressed assets, so a browser cannot
+// combine a fresh page with cached JavaScript or styles from an older release.
+const versionedAssets = ["styles-v7.css", "brand.css", "app.js"].map(filename => {
+  const content = fs.readFileSync(path.join(root, filename));
+  const hash = crypto.createHash("sha256").update(content).digest("hex").slice(0, 12);
+  const ext = path.extname(filename);
+  const versioned = `${path.basename(filename, ext)}-${hash}${ext}`;
+  fs.writeFileSync(path.join(output, versioned), content);
+  return [filename, versioned];
+});
+for (const page of ["index.html", "sobre.html", "contactos.html"]) {
+  let html = fs.readFileSync(path.join(output, page), "utf8");
+  for (const [filename, versioned] of versionedAssets) {
+    const escaped = filename.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    html = html.replace(new RegExp(`="${escaped}(?:\\?[^"\\s]*)?"`, "g"), `="${versioned}"`);
+  }
+  fs.writeFileSync(path.join(output, page), html);
 }
 
 fs.cpSync(path.join(root, "assets"), path.join(output, "assets"), { recursive: true });
