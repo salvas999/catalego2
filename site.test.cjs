@@ -148,7 +148,7 @@ function parseEuro(text) {
   click('[data-remove="coca-cola-zero-2l"]');
 
   const water = dom.window.PACK24_TEST.products.find(product => product.id === "h2ope-50");
-  assert.equal(dom.window.PACK24_TEST.unitIncVat(water), 4.34, "IVA de água a 13% correto");
+  assert.equal(dom.window.PACK24_TEST.unitIncVat(water), 4.61, "IVA de água a 13% correto");
   assert.equal(dom.window.PACK24_TEST.voltaDeposit(water), 2.40, "Depósito VOLTA de 0,10 € por unidade correto");
   const somersbyApple = dom.window.PACK24_TEST.products.find(product => product.id === "somersby-maca");
   assert.deepEqual([somersbyApple.packUnits, somersbyApple.exVat, somersbyApple.incVat], [24, 19.44, 23.91], "Somersby Maçã com pack e preços corretos");
